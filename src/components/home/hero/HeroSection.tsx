@@ -47,7 +47,7 @@ const HeroSection = () => {
   const onSildeChange = contextSafe(() => {
     gsap.fromTo(
       ".swiper-slide-next div h2",
-      { opacity: 0, scale: 10 },
+      { opacity: 0, scale: 5 },
       {
         opacity: 1,
         scale: 1,

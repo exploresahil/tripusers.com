@@ -159,6 +159,7 @@ const Menu = (logo: props) => {
             <input type="text" placeholder="Search Destinations" />
             <BiSearch size={20} />
           </div>
+          <button className="formButton">Customise your trip</button>
           <button ref={menuOpenButtonRef}>
             <BiMenu size={40} />
           </button>
@@ -187,11 +188,11 @@ const Menu = (logo: props) => {
                   className="link"
                 >
                   {link.title}
+                  <CgArrowTopRight size={30} />
                 </Link>
               ))}
             </div>
 
-            <button className="formButton">Customise your trip</button>
             <Link href="tel:+918888800696" target="_blank" className="tel">
               <BiPhoneCall size={20} />
               +91 88888 00696

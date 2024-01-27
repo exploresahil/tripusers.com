@@ -9,8 +9,6 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  overflow-x: clip;
-  overflow-y: visible;
   z-index: 98;
 
   .logo-container {
@@ -167,15 +165,17 @@ header {
             right: 5px;
           }
         }
+        .formButton {
+          background-color: $yellow;
+          color: $dark;
+          padding: 8px 20px;
+          border-radius: 10px;
+        }
       }
 
       nav {
         .links {
           padding: 100px;
-        }
-
-        .formButton {
-          margin: 0 100px;
         }
       }
     }
@@ -194,6 +194,17 @@ header {
       //border: 1px dotted $red;
     }
     #menu {
+      .ipad-menu {
+        gap: 2vw;
+        .formButton {
+          background-color: $yellow;
+          color: $dark;
+          padding: 8px 20px;
+          border-radius: 10px;
+          color: $light;
+        }
+      }
+
       nav {
         width: 30vw;
         padding: 20px 4vw 40px 4vw;

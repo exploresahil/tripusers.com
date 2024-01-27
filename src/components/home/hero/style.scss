@@ -62,7 +62,7 @@
           padding: 10px 20px;
           border-radius: 100px;
           position: absolute;
-          bottom: -130px;
+          bottom: -14vh;
         }
       }
     }
@@ -131,12 +131,13 @@
       .info {
         gap: 10px;
         img {
-          width: 40px;
-          height: 40px;
+          $size: 30px;
+          width: $size;
+          height: $size;
         }
 
         p {
-          font-size: 1.2rem;
+          font-size: 1rem;
         }
 
         &:nth-of-type(1) {
@@ -155,6 +156,43 @@
         &:nth-of-type(4) {
           grid-column: 4 / 5;
           grid-row: 2 / 3;
+        }
+      }
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #heroSec {
+    .mySwiper {
+      .swiperSlide-card {
+        .text-container {
+          margin-top: -40px;
+          p {
+            font-size: 2.4rem;
+          }
+          h2 {
+            font-size: 6rem;
+          }
+
+          button {
+            font-size: 1rem;
+            padding: 10px 20px;
+          }
+        }
+      }
+    }
+
+    .info-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 12vw 20px 12vw;
+      .info {
+        p {
+          font-size: 1rem;
         }
       }
     }
