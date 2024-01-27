@@ -104,8 +104,10 @@ const HeroSection = () => {
       {
         scale: 0,
         opacity: 0,
+        y: -100,
       },
       {
+        y: 0,
         scale: 1,
         opacity: 1,
         duration: 0.6,

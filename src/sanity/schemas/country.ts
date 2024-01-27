@@ -25,6 +25,13 @@ const country = {
       options: { hotspot: true, sources: [unsplashAssetSource] },
     },
     {
+      name: "istrending",
+      title: "Is trending",
+      type: "boolean",
+      description: "Select true if this country is Trending, false otherwise",
+      initialValue: false,
+    },
+    {
       name: "countryImages",
       title: "Country Images",
       type: "array",
@@ -39,7 +46,6 @@ const country = {
         layout: "grid",
       },
     },
-    
   ],
 };
 
