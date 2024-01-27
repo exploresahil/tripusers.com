@@ -18,7 +18,12 @@ const packages = {
         source: "title",
       },
     },
-
+    {
+      name: "country",
+      title: "Country",
+      type: "reference",
+      to: [{ type: "country" }],
+    },
     {
       name: "packageImages",
       title: "Package Slider Images",

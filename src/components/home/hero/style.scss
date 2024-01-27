@@ -1,4 +1,4 @@
-@use "@/app/(client)/scss/variables" as *;
+@use "@/src/app/(client)/scss/variables" as *;
 
 #heroSec {
   max-width: 100vw;
@@ -45,14 +45,24 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 10px;
 
         p {
-          font-size: 1.3rem;
-          color: $yellow;
+          font-size: 2rem;
+          font-family: $cookie;
         }
 
         h2 {
-          font-size: 3rem;
+          font-size: 3.4rem;
+        }
+
+        button {
+          background-color: $light;
+          color: $dark;
+          padding: 10px 20px;
+          border-radius: 100px;
+          position: absolute;
+          bottom: -130px;
         }
       }
     }

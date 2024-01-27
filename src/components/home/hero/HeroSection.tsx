@@ -1,20 +1,28 @@
 "use client";
 import "./style.scss";
-import { getHero, getHeroInfo } from "@/sanity/sanity-utils";
-import { hero } from "@/types/hero";
+import { getHero, getHeroInfo } from "@/src/sanity/sanity-utils";
+import { hero } from "@/src/types/hero";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
-import { heroInfo } from "@/types/heroInfo";
+import { heroInfo } from "@/src/types/heroInfo";
+import Link from "next/link";
+import { useGSAP } from "@gsap/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const [data, setData] = useState<hero>([]);
   const [dataInfo, setDataInfo] = useState<heroInfo>([]);
+  const container = useRef<HTMLSelectElement | null>(null);
+  const swiperRef = useRef<any>(null);
+  const { contextSafe } = useGSAP({ scope: container });
+  const router = useRouter();
+
   useEffect(() => {
     async function fetchHero() {
       const data = await getHero();
@@ -24,7 +32,7 @@ const HeroSection = () => {
     fetchHero();
   }, []);
 
-  console.log(data);
+  //console.log(data);
 
   useEffect(() => {
     async function fetchHeroInfo() {
@@ -34,6 +42,14 @@ const HeroSection = () => {
 
     fetchHeroInfo();
   }, []);
+
+  const onSildeChange = contextSafe(() => {
+    const currentIndex = swiperRef.current?.swiper.realIndex || 0;
+    const totalSlides = swiperRef.current?.swiper.slides.length || 1;
+    console.log("currentIndex->", currentIndex);
+    console.log("totalSlides->", totalSlides);
+  });
+
   return (
     <section id="heroSec">
       <Swiper
@@ -42,14 +58,15 @@ const HeroSection = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        navigation={true}
-        onSlideChange={() => console.log("slide change")}
+        //navigation={true}
+        onSlideChange={onSildeChange}
         loop={true}
         modules={[EffectFade, Navigation, Autoplay]}
         className="mySwiper"
         speed={1200}
         allowTouchMove={false}
         slidesPerView={1}
+        ref={swiperRef}
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="swiperSlide-card">
@@ -63,8 +80,15 @@ const HeroSection = () => {
               />
             </div>
             <div className="text-container">
-              <p>{item.subtitle}</p>
-              <h2>{item.title}</h2>
+              <p>{item.title}</p>
+              <h2>{item.country.countryName}</h2>
+              <button
+                onClick={() => {
+                  router.push(`/country/${item.country.slug}`);
+                }}
+              >
+                Read More
+              </button>
             </div>
           </SwiperSlide>
         ))}

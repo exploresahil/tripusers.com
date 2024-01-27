@@ -39,12 +39,7 @@ const country = {
         layout: "grid",
       },
     },
-    {
-      name: "packages",
-      title: "Packages",
-      type: "reference",
-      to: [{ type: "packages" }],
-    },
+    
   ],
 };
 

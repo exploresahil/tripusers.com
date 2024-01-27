@@ -1,5 +1,5 @@
 import "./style.scss";
-import { getBrand } from "@/sanity/sanity-utils";
+import { getBrand } from "@/src/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
 import Menu from "./Menu";
@@ -17,6 +17,7 @@ const Header = async () => {
           alt="tripusers.com logo"
           fill
           sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+          priority={true}
         />
       </Link>
       <Menu logo={logoMark} />

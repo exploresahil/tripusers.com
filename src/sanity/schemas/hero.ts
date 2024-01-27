@@ -11,9 +11,10 @@ const hero = {
       type: "string",
     },
     {
-      name: "subtitle",
-      title: "Subtitle",
-      type: "string",
+      name: "country",
+      title: "Country",
+      type: "reference",
+      to: [{ type: "country" }],
     },
     {
       name: "heroImage",

@@ -1,6 +1,6 @@
 import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
-import schemas from "./sanity/schemas";
+import schemas from "@/src/sanity/schemas";
 import { visionTool } from "@sanity/vision";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 

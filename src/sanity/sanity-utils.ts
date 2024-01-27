@@ -1,9 +1,9 @@
 import { createClient, groq } from "next-sanity";
 import clientConfig from "./config/client-config";
-import { brand } from "@/types/brand";
-import { hero } from "@/types/hero";
-import { heroInfo } from "@/types/heroInfo";
-import { packages } from "@/types/packages";
+import { brand } from "@/src/types/brand";
+import { hero } from "@/src/types/hero";
+import { heroInfo } from "@/src/types/heroInfo";
+import { packages } from "@/src/types/country";
 
 export async function getBrand(): Promise<brand[]> {
   return createClient(clientConfig).fetch(
@@ -24,8 +24,8 @@ export async function getHero(): Promise<hero> {
     groq`*[_type == "hero"] | order(_createdAt asc) {
       _id,
       _createdAt,
-      subtitle,
       title,
+      country->{countryName,slug},
       "heroImage": heroImage.asset->url,
     }`
   );
@@ -45,44 +45,44 @@ export async function getHeroInfo(): Promise<heroInfo> {
 
 export async function getPackages(): Promise<packages> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "packages"] {
+    groq`*[_type == "country"] {
       _id,
       _createdAt,
-      title,
+      countryName,
       "slug": slug.current,
-      "country": {
-        "_id": country->_id,
+      "cardImage": cardImage.asset->url,
+      "countryImages": countryImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "packages": *[_type == "packages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
         "slug": slug.current,
-        "_createdAt": country->_createdAt,
-        "countryName": country->countryName,
-        "cardImage": country->cardImage.asset->url,
-        "countryImages": country->countryImages[] {
-        "_id": asset->_id,
-        "url": asset->url,
-        }
-      },
-      "packageImages" : packageImages[] {
-        "_id": asset->_id,
-        "url": asset->url,
-      },
-      timeline,
-      deal,
-      price,
-      priceSubtitle,
-      aboutTheTour,
-      "itinerary": itinerary[] {
-        "title": title,
-        "day": day,
-        "description": description,
-        "content": content[] {
+        "packageImages" : packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
           "title": title,
+          "day": day,
           "description": description,
-          "images": images[] {
-            "_id": asset->_id,
-            "url": asset->url,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
           }
         }
-      }
+      },
     }`
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./scss/globals.scss";
-import Header from "@/components/default/header/Header";
+import Header from "@/src/components/default/header/Header";
 
 export const metadata: Metadata = {
   title: "tripusers.com",
