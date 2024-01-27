@@ -19,7 +19,7 @@ export async function getBrand(): Promise<brand[]> {
   );
 }
 
-export async function getHero(): Promise<hero> {
+export async function getHero(): Promise<hero[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "hero"] | order(_createdAt asc) {
       _id,
@@ -31,7 +31,7 @@ export async function getHero(): Promise<hero> {
   );
 }
 
-export async function getHeroInfo(): Promise<heroInfo> {
+export async function getHeroInfo(): Promise<heroInfo[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "heroInfo"] | order(_createdAt asc) {
       _id,
