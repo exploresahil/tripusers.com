@@ -100,13 +100,15 @@ const HeroSection = () => {
     //------> Button Animation
 
     gsap.fromTo(
-      ".swiper-slide-next div button",
+      ".swiper-slide-next div a",
       {
-        y: 60,
+        scale: 0,
+        opacity: 0,
       },
       {
-        y: 0,
-        duration: 0.4,
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
         ease: "power1.out",
       }
     );
@@ -117,7 +119,7 @@ const HeroSection = () => {
       <Swiper
         effect={"fade"}
         autoplay={{
-          delay: 3500,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         //navigation={true}
