@@ -99,7 +99,7 @@ export async function getTradingCountries(): Promise<Country[]> {
         "url": asset->url,
       },
       isTrending,
-      "packages": *[_type == "packages" && references(^._id)] | order(price desc){
+      "packages": *[_type == "packages" && references(^._id)] | order(price asc){
         _id,
         _createdAt,
         title,

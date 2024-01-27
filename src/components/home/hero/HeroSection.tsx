@@ -31,7 +31,7 @@ const HeroSection = () => {
     fetchHero();
   }, []);
 
-  console.log("link->", data);
+  //console.log("link->", data);
 
   useEffect(() => {
     async function fetchHeroInfo() {
