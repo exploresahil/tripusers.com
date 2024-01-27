@@ -68,6 +68,7 @@ header {
           flex-direction: column;
           gap: 5px;
           z-index: 2;
+          overflow: hidden;
 
           a {
             transition: color 200ms ease-in-out;
@@ -120,6 +121,8 @@ header {
       .links {
         width: 100%;
         padding: 20px;
+        position: relative;
+        z-index: 2;
 
         a {
           display: block;
@@ -322,15 +325,22 @@ header {
 .scrolled {
   background-color: $light;
   box-shadow: 0px 1px 5px $dark;
-  #menu {
-    .search-container {
-      input {
-        border: 1px solid $dark !important;
-        color: $dark !important;
-      }
+}
 
-      svg {
-        color: $dark !important;
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  .scrolled {
+    #menu {
+      .search-container {
+        input {
+          border: 1px solid $dark !important;
+          color: $dark !important;
+        }
+
+        svg {
+          color: $dark !important;
+        }
       }
     }
   }

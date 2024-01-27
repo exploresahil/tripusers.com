@@ -24,6 +24,7 @@ const Search = ({ data }: { data: Country[] }) => {
     }
     return () => {};
   }, [query]);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const PopoverRef = useRef<HTMLInputElement>(null);
   const { contextSafe } = useGSAP({ scope: PopoverRef });
@@ -35,6 +36,7 @@ const Search = ({ data }: { data: Country[] }) => {
       ease: "power1.inOut",
     });
   });
+
   const handleOpenPopover = contextSafe(() => {
     gsap.to(PopoverRef.current, {
       opacity: 1,
@@ -43,7 +45,7 @@ const Search = ({ data }: { data: Country[] }) => {
     });
   });
 
-  useGSAP(() => {
+  useEffect(() => {
     const popoverClose = (e: any) => {
       if (!PopoverRef.current?.contains(e.target)) {
         handleClosePopover();
