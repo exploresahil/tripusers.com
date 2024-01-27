@@ -16,8 +16,8 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 const HeroSection = () => {
-  const [data, setData] = useState<hero>([]);
-  const [dataInfo, setDataInfo] = useState<heroInfo>([]);
+  const [data, setData] = useState<hero[]>([]);
+  const [dataInfo, setDataInfo] = useState<heroInfo[]>([]);
   const container = useRef<HTMLElement | null>(null);
   const swiperRef = useRef<any>(null);
   const { contextSafe } = useGSAP({ scope: container });
@@ -31,7 +31,7 @@ const HeroSection = () => {
     fetchHero();
   }, []);
 
-  //console.log("link->", data);
+  console.log("link->", data);
 
   useEffect(() => {
     async function fetchHeroInfo() {
