@@ -29,7 +29,7 @@ const Loader = () => {
     setTimeout(() => {
       setIsLoading(false);
       window.scrollTo(0, 0);
-    }, 3400);
+    }, 4500);
   }, []);
 
   useEffect(() => {
