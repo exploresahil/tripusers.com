@@ -135,8 +135,7 @@ const Menu = (logo: props) => {
               </button>
             </div>
             <div className="search-container">
-              <input type="text" placeholder="Search Destinations" />
-              <BiSearch size={20} />
+              <Search data={data} />
             </div>
 
             <div className="links" ref={linksRef}>

@@ -1,6 +1,7 @@
 import { Country } from "@/src/types/country";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 const search = (data: Country[], query: string) => {
@@ -9,7 +10,7 @@ const search = (data: Country[], query: string) => {
 };
 
 const Popover = ({ data }: { data: Country }) => {
-  return <p>{data.countryName}</p>;
+  return <Link href={`/country/${data.slug}`}>{data.countryName}</Link>;
 };
 const Search = ({ data }: { data: Country[] }) => {
   //   console.log(data);
@@ -25,20 +26,23 @@ const Search = ({ data }: { data: Country[] }) => {
   }, [query]);
   const inputRef = useRef<HTMLInputElement>(null);
   const PopoverRef = useRef<HTMLInputElement>(null);
-  const handleClosePopover = () => {
+  const { contextSafe } = useGSAP({ scope: PopoverRef });
+
+  const handleClosePopover = contextSafe(() => {
     gsap.to(PopoverRef.current, {
       opacity: 0,
-      top: "-1000%",
+      height: "0px",
       ease: "power1.inOut",
     });
-  };
-  const handleOpenPopover = () => {
+  });
+  const handleOpenPopover = contextSafe(() => {
     gsap.to(PopoverRef.current, {
       opacity: 1,
-      top: "150%",
+      height: "auto",
       ease: "power1.inOut",
     });
-  };
+  });
+
   useGSAP(() => {
     const popoverClose = (e: any) => {
       if (!PopoverRef.current?.contains(e.target)) {
