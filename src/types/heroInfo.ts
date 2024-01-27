@@ -4,4 +4,4 @@ export type heroInfo = {
   title: string;
   subtitle: string;
   icon: string;
-}[];
+};

@@ -1,19 +1,8 @@
+import { Country } from "./country";
 export type hero = {
   _id: string;
   createdAt: Date;
   title: string;
-  country: {
-    _id: string;
-    _createdAt: Date;
-    countryName: string;
-    slug: {
-      current: string;
-    };
-    cardImage: string;
-    countryImages: {
-      _id: string;
-      url: string;
-    }[];
-  };
+  country: Country;
   heroImage: string;
-}[];
+};
