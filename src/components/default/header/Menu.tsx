@@ -9,9 +9,12 @@ import { BiPhoneCall } from "react-icons/bi";
 import { useMediaQuery } from "react-responsive";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Search from "./Search";
+import { getCountry } from "@/src/sanity/sanity-utils";
+import { Country } from "@/src/types/country";
 
 interface props {
   logo: string;
@@ -40,7 +43,7 @@ const Menu = (logo: props) => {
   const linksRef = useRef<HTMLDivElement | null>(null);
   const linkRef = useRef<HTMLAnchorElement | null>(null);
   const logoMarkRef = useRef<HTMLAnchorElement | null>(null);
-
+  const [data, setData] = useState<Country[]>([]);
   const handleCloseMenu = () => {
     gsap.to(navRef.current, {
       right: "-100%",
@@ -104,7 +107,11 @@ const Menu = (logo: props) => {
       document.removeEventListener("mousedown", dropdownClose);
     };
   });
-
+  useEffect(() => {
+    (async () => {
+      setData(await getCountry());
+    })();
+  }, []);
   return (
     <div id="menu">
       {isMobile ? (
@@ -156,8 +163,7 @@ const Menu = (logo: props) => {
       ) : (
         <div className="ipad-menu">
           <div className="search-container">
-            <input type="text" placeholder="Search Destinations" />
-            <BiSearch size={20} />
+            <Search data={data} />
           </div>
           <button className="formButton">Customise your trip</button>
           <button ref={menuOpenButtonRef}>

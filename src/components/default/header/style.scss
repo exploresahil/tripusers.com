@@ -66,10 +66,13 @@ header {
             outline: none;
           }
         }
+
         svg {
           position: absolute;
           right: 30px;
         }
+
+
       }
 
       .logo-container {
@@ -160,11 +163,13 @@ header {
               outline: none;
             }
           }
+
           svg {
             position: absolute;
             right: 5px;
           }
         }
+
         .formButton {
           background-color: $yellow;
           color: $light;
@@ -176,6 +181,7 @@ header {
 
       nav {
         padding-bottom: 50px;
+
         .links {
           padding: 100px;
         }
@@ -189,15 +195,36 @@ header {
 @media screen and (min-width: 1025px) {
   header {
     padding: 0 12vw;
+
     .logo-container {
       width: 170px;
       height: 60px;
 
       //border: 1px dotted $red;
     }
+
     #menu {
       .ipad-menu {
+
+
         gap: 2vw;
+
+        .search-container {
+          position: relative;
+
+
+
+          .box {
+            background-color: antiquewhite;
+            position: absolute;
+            top: 150%;
+            width: 100%;
+            border-radius: 2px;
+            padding: 20px;
+
+          }
+        }
+
         .formButton {
           background-color: $yellow;
           color: $dark;
