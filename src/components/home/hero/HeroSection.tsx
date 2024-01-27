@@ -9,6 +9,7 @@ import { Navigation, EffectFade, Autoplay } from "swiper/modules";
 import { heroInfo } from "@/src/types/heroInfo";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,7 +19,7 @@ import { useRouter } from "next/navigation";
 const HeroSection = () => {
   const [data, setData] = useState<hero>([]);
   const [dataInfo, setDataInfo] = useState<heroInfo>([]);
-  const container = useRef<HTMLSelectElement | null>(null);
+  const container = useRef<HTMLElement | null>(null);
   const swiperRef = useRef<any>(null);
   const { contextSafe } = useGSAP({ scope: container });
   const router = useRouter();
@@ -48,10 +49,37 @@ const HeroSection = () => {
     const totalSlides = swiperRef.current?.swiper.slides.length || 1;
     console.log("currentIndex->", currentIndex);
     console.log("totalSlides->", totalSlides);
+
+    gsap.fromTo(
+      `.swiperSlide-card:nth-child(${currentIndex + 1}) h2`,
+      { opacity: 0, scale: 10 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power1.inOut",
+      }
+    );
+
+    gsap.fromTo(
+      `.swiperSlide-card:nth-child(${currentIndex}) h2`,
+      {
+        opacity: 1,
+        scale: 1,
+      },
+      {
+        scale: 0,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power1.inOut",
+      }
+    );
   });
 
   return (
-    <section id="heroSec">
+    <section id="heroSec" ref={container}>
       <Swiper
         effect={"fade"}
         autoplay={{
