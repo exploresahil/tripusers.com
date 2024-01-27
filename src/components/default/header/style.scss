@@ -167,13 +167,15 @@ header {
         }
         .formButton {
           background-color: $yellow;
-          color: $dark;
+          color: $light;
+          font-size: 0.9rem;
           padding: 8px 20px;
           border-radius: 10px;
         }
       }
 
       nav {
+        padding-bottom: 50px;
         .links {
           padding: 100px;
         }
@@ -202,6 +204,11 @@ header {
           padding: 8px 20px;
           border-radius: 10px;
           color: $light;
+          transition: background 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+
+          &:hover {
+            background-color: $dark;
+          }
         }
       }
 

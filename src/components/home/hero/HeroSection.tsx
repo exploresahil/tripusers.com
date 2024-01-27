@@ -14,7 +14,6 @@ import gsap from "gsap";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
   const [data, setData] = useState<hero>([]);
@@ -22,7 +21,6 @@ const HeroSection = () => {
   const container = useRef<HTMLElement | null>(null);
   const swiperRef = useRef<any>(null);
   const { contextSafe } = useGSAP({ scope: container });
-  const router = useRouter();
 
   useEffect(() => {
     async function fetchHero() {
@@ -33,7 +31,7 @@ const HeroSection = () => {
     fetchHero();
   }, []);
 
-  //console.log(data);
+  //console.log("link->", data);
 
   useEffect(() => {
     async function fetchHeroInfo() {
@@ -45,13 +43,15 @@ const HeroSection = () => {
   }, []);
 
   const onSildeChange = contextSafe(() => {
+    //------> Title Animation
+
     gsap.fromTo(
       ".swiper-slide-next div h2",
       { opacity: 0, scale: 5 },
       {
         opacity: 1,
         scale: 1,
-        duration: 0.4,
+        duration: 0.6,
         ease: "power1.inOut",
       }
     );
@@ -69,6 +69,47 @@ const HeroSection = () => {
         ease: "power1.inOut",
       }
     );
+
+    //------> Image Animation
+
+    gsap.fromTo(
+      ".swiper-slide-next div img",
+      {
+        scale: 1,
+      },
+      {
+        scale: 1.2,
+        duration: 2,
+      }
+    );
+
+    //------> Paragraph Animation
+
+    gsap.fromTo(
+      ".swiper-slide-next div p",
+      {
+        y: -100,
+      },
+      {
+        y: 0,
+        duration: 0.4,
+        ease: "power1.out",
+      }
+    );
+
+    //------> Button Animation
+
+    gsap.fromTo(
+      ".swiper-slide-next div button",
+      {
+        y: 60,
+      },
+      {
+        y: 0,
+        duration: 0.4,
+        ease: "power1.out",
+      }
+    );
   });
 
   return (
@@ -76,7 +117,7 @@ const HeroSection = () => {
       <Swiper
         effect={"fade"}
         autoplay={{
-          delay: 2500,
+          delay: 3500,
           disableOnInteraction: false,
         }}
         //navigation={true}
@@ -103,13 +144,9 @@ const HeroSection = () => {
             <div className="text-container">
               <p>{item.title}</p>
               <h2>{item.country.countryName}</h2>
-              <button
-                onClick={() => {
-                  router.push(`/country/${item.country.slug}`);
-                }}
-              >
+              <Link href={`/country/${item.country.slug.current}`}>
                 Read More
-              </button>
+              </Link>
             </div>
           </SwiperSlide>
         ))}

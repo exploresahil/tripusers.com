@@ -6,7 +6,9 @@ export type hero = {
     _id: string;
     _createdAt: Date;
     countryName: string;
-    slug: string;
+    slug: {
+      current: string;
+    };
     cardImage: string;
     countryImages: {
       _id: string;

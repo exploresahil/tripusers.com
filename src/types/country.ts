@@ -6,7 +6,7 @@ export type packages = {
   packageImages: {
     _id: string;
     url: string;
-  }[];
+  };
   timeline: string;
   deal: string;
   price: number;
@@ -22,21 +22,23 @@ export type packages = {
       images: {
         _id: string;
         url: string;
-      }[];
-    }[];
-  }[];
-}[];
+      };
+    };
+  };
+};
 
 export type Country = {
   _id: string;
   _createdAt: Date;
   countryName: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
   cardImage: string;
   countryImages: {
     _id: string;
     url: string;
-  }[];
+  };
   packages: {
     _id: string;
     _createdAt: Date;
@@ -45,7 +47,7 @@ export type Country = {
     packageImages: {
       _id: string;
       url: string;
-    }[];
+    };
     timeline: string;
     deal: string;
     price: number;
@@ -61,8 +63,8 @@ export type Country = {
         images: {
           _id: string;
           url: string;
-        }[];
-      }[];
-    }[];
-  }[];
-}[];
+        };
+      };
+    };
+  };
+};
