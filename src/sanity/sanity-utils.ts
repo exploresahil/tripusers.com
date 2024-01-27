@@ -43,7 +43,7 @@ export async function getHeroInfo(): Promise<heroInfo[]> {
   );
 }
 
-export async function getCountry(): Promise<Country[]> {
+export async function getCountry(): Promise<Country> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "country"] | order(_createdAt asc) {
       _id,
@@ -84,6 +84,50 @@ export async function getCountry(): Promise<Country[]> {
         }
       },
     }`
+  );
+}
+export async function getTradingCountries(): Promise<Country[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "country" && isTrending == true] | order(_createdAt asc) {
+    _id,
+    _createdAt,
+    countryName,
+    "slug": slug.current,
+    "cardImage": cardImage.asset->url,
+    "countryImages": countryImages[] {
+      "_id": asset->_id,
+      "url": asset->url,
+    },
+    isTrending,
+    "packages": *[_type == "packages" && references(^._id)] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      "packageImages" : packageImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      timeline,
+      deal,
+      price,
+      priceSubtitle,
+      aboutTheTour,
+      "itinerary": itinerary[] {
+        "title": title,
+        "day": day,
+        "description": description,
+        "content": content[] {
+          "title": title,
+          "description": description,
+          "images": images[] {
+            "_id": asset->_id,
+            "url": asset->url,
+          }
+        }
+      }
+    },
+  }`
   );
 }
 
