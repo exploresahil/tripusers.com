@@ -1,5 +1,7 @@
 "use client";
 
+import { CgArrowTopRight } from "react-icons/cg";
+import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
 import { BiMenu } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -41,7 +43,7 @@ const Menu = (logo: props) => {
 
   const handleCloseMenu = () => {
     gsap.to(navRef.current, {
-      left: "100%",
+      right: "-100%",
       ease: "power1.inOut",
     });
   };
@@ -49,7 +51,7 @@ const Menu = (logo: props) => {
   useGSAP(() => {
     menuOpenButtonRef.current?.addEventListener("click", () => {
       gsap.to(navRef.current, {
-        left: 0,
+        right: 0,
         ease: "power1.inOut",
       });
 
@@ -67,6 +69,15 @@ const Menu = (logo: props) => {
           stagger: 0.1,
         }
       );
+
+      let mm = gsap.matchMedia();
+
+      mm.add("(min-width: 1025px)", () => {
+        gsap.to(navRef.current, {
+          right: 0,
+          ease: "power1.inOut",
+        });
+      });
     });
 
     menuCloseButtonRef.current?.addEventListener("click", () => {
@@ -80,12 +91,74 @@ const Menu = (logo: props) => {
     logoMarkRef.current?.addEventListener("click", () => {
       handleCloseMenu();
     });
+
+    const dropdownClose = (e: any) => {
+      if (!navRef.current?.contains(e.target)) {
+        handleCloseMenu();
+      }
+    };
+
+    document.addEventListener("mousedown", dropdownClose);
+
+    return () => {
+      document.removeEventListener("mousedown", dropdownClose);
+    };
   });
 
   return (
     <div id="menu">
       {isMobile ? (
         <div>
+          <button ref={menuOpenButtonRef}>
+            <BiMenu size={40} />
+          </button>
+
+          <nav ref={navRef}>
+            <div className="logo-container">
+              <Link href="/" className="logo-mark" ref={logoMarkRef}>
+                <Image
+                  src={logo.logo}
+                  alt="tripusers.com logo"
+                  fill
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                />
+              </Link>
+              <button ref={menuCloseButtonRef}>
+                <AiFillCloseCircle size={40} />
+              </button>
+            </div>
+            <div className="search-container">
+              <input type="text" placeholder="Search Destinations" />
+              <BiSearch size={20} />
+            </div>
+
+            <div className="links" ref={linksRef}>
+              {links.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.link}
+                  ref={linkRef}
+                  className="link"
+                >
+                  {link.title}
+                  <CgArrowTopRight size={30} />
+                </Link>
+              ))}
+            </div>
+
+            <button className="formButton">Customise your trip</button>
+            <Link href="tel:+918888800696" target="_blank" className="tel">
+              <BiPhoneCall size={20} />
+              +91 88888 00696
+            </Link>
+          </nav>
+        </div>
+      ) : (
+        <div className="ipad-menu">
+          <div className="search-container">
+            <input type="text" placeholder="Search Destinations" />
+            <BiSearch size={20} />
+          </div>
           <button ref={menuOpenButtonRef}>
             <BiMenu size={40} />
           </button>
@@ -125,7 +198,7 @@ const Menu = (logo: props) => {
             </Link>
           </nav>
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

@@ -45,25 +45,19 @@ const HeroSection = () => {
   }, []);
 
   const onSildeChange = contextSafe(() => {
-    const currentIndex = swiperRef.current?.swiper.realIndex || 0;
-    const totalSlides = swiperRef.current?.swiper.slides.length || 1;
-    console.log("currentIndex->", currentIndex);
-    console.log("totalSlides->", totalSlides);
-
     gsap.fromTo(
-      `.swiperSlide-card:nth-child(${currentIndex + 1}) h2`,
+      ".swiper-slide-next div h2",
       { opacity: 0, scale: 10 },
       {
         opacity: 1,
         scale: 1,
-        duration: 0.5,
-        stagger: 0.1,
+        duration: 0.4,
         ease: "power1.inOut",
       }
     );
 
     gsap.fromTo(
-      `.swiperSlide-card:nth-child(${currentIndex}) h2`,
+      ".swiper-slide-active div h2",
       {
         opacity: 1,
         scale: 1,
@@ -71,8 +65,7 @@ const HeroSection = () => {
       {
         scale: 0,
         opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
+        duration: 0.3,
         ease: "power1.inOut",
       }
     );
@@ -91,7 +84,7 @@ const HeroSection = () => {
         loop={true}
         modules={[EffectFade, Navigation, Autoplay]}
         className="mySwiper"
-        speed={1200}
+        speed={500}
         allowTouchMove={false}
         slidesPerView={1}
         ref={swiperRef}
