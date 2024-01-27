@@ -27,13 +27,15 @@ const Search = ({ data }: { data: Country[] }) => {
   const PopoverRef = useRef<HTMLInputElement>(null);
   const handleClosePopover = () => {
     gsap.to(PopoverRef.current, {
-      display: "none",
+      opacity: 0,
+      top: "-1000%",
       ease: "power1.inOut",
     });
   };
   const handleOpenPopover = () => {
     gsap.to(PopoverRef.current, {
-      display: "block",
+      opacity: 1,
+      top: "150%",
       ease: "power1.inOut",
     });
   };
@@ -43,12 +45,8 @@ const Search = ({ data }: { data: Country[] }) => {
         handleClosePopover();
       }
     };
-    const popoverOpen = (e: any) => {
-      //   if () {
-      //     handleOpenPopover();
-      //   }
-    };
-    inputRef.current?.addEventListener("focus", popoverOpen);
+
+    inputRef.current?.addEventListener("focus", handleOpenPopover);
     document.addEventListener("mousedown", popoverClose);
 
     return () => {
