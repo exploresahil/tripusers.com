@@ -25,7 +25,7 @@ const country = {
       options: { hotspot: true, sources: [unsplashAssetSource] },
     },
     {
-      name: "istrending",
+      name: "isTrending",
       title: "Is trending",
       type: "boolean",
       description: "Select true if this country is Trending, false otherwise",

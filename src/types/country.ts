@@ -38,6 +38,7 @@ export type Country = {
     current: string;
   };
   cardImage: string;
+  isTrending: boolean;
   countryImages: {
     _id: string;
     url: string;
