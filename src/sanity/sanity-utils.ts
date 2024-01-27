@@ -43,7 +43,7 @@ export async function getHeroInfo(): Promise<heroInfo[]> {
   );
 }
 
-export async function getCountry(): Promise<Country> {
+export async function getCountry(): Promise<Country[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "country"] | order(_createdAt asc) {
       _id,
