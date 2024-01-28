@@ -2,12 +2,12 @@ import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
 const BestOfIndia = {
   name: "Indian",
-  title: "Best of Indian",
+  title: "Best of India",
   type: "document",
   fields: [
     {
-      name: "stateName",
-      title: "State Name",
+      name: "Name",
+      title: "Name",
       type: "string",
     },
     {
@@ -23,13 +23,6 @@ const BestOfIndia = {
       title: "Card Image",
       type: "image",
       options: { hotspot: true, sources: [unsplashAssetSource] },
-    },
-    {
-      name: "isTrending",
-      title: "Is trending",
-      type: "boolean",
-      description: "Select true if this State is Trending, false otherwise",
-      initialValue: false,
     },
     {
       name: "StateImages",
