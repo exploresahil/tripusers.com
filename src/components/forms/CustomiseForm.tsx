@@ -1,9 +1,11 @@
 "use client";
 
+import { AiFillCloseCircle } from "react-icons/ai";
 import "./style.scss";
 import FormImage from "../Icons/FormImage";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
+import { useEffect, useRef } from "react";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -19,6 +21,10 @@ const schema = z.object({
   message: z.string().min(1),
 });
 
+interface props {
+  onClick: () => void;
+}
+
 type formFields = {
   name: string;
   email: string;
@@ -30,7 +36,8 @@ type formFields = {
 
 //type formFields = z.infer<typeof schema>;
 
-const CustomiseForm = () => {
+const CustomiseForm = ({ onClick }: props) => {
+  const CustomiseFormRef = useRef<HTMLElement | null>(null);
   const {
     register,
     handleSubmit,
@@ -43,7 +50,7 @@ const CustomiseForm = () => {
     const error = schema.safeParse(data);
     if (!error.success) {
       error.error.issues.map((v: any) => {
-        console.log(v);
+        //console.log(v);
 
         setError(v.path[0], { message: v.message });
       });
@@ -53,9 +60,15 @@ const CustomiseForm = () => {
   };
 
   return (
-    <section id="CustomiseForm">
+    <section id="CustomiseForm" ref={CustomiseFormRef}>
       <div className="form-container">
-        <h2>Customise your trip</h2>
+        <div className="title-container">
+          <h2>Customise your trip</h2>
+          <button onClick={onClick}>
+            <AiFillCloseCircle size={30} />
+          </button>
+        </div>
+
         <div className="form-main">
           <div className="left">
             <FormImage fill="#fa0001" />
@@ -126,9 +139,7 @@ const CustomiseForm = () => {
               {errors.message && (
                 <p style={{ color: "tomato" }}>{errors.message.message}</p>
               )}
-              {errors.phone && (
-                <p style={{ color: "tomato" }}>An Input is not valid!</p>
-              )}
+
               <button type="submit" disabled={isSubmitting}>
                 Submit Enquiry
               </button>

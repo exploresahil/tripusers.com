@@ -9,7 +9,6 @@ export default function Home() {
       <Loader />
       <HeroSection />
       <Trending />
-      <CustomiseForm />
     </>
   );
 }

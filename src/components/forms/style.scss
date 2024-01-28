@@ -3,27 +3,37 @@
 #CustomiseForm {
   position: absolute;
   inset: 0;
+
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 4vw;
+  padding: 4vw 4vw;
+  color: $dark !important;
 
   .form-container {
     width: 100%;
-
+    height: 100%;
     background-color: $light;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 20px;
+    overflow-y: scroll;
   }
 
-  h2 {
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid $dark;
     padding-bottom: 10px;
     width: 100%;
     text-align: center;
+
+    svg {
+      color: $red;
+    }
   }
 
   .form-main {
@@ -43,7 +53,6 @@
     }
 
     .right {
-      height: 260px;
       overflow-y: scroll;
       padding-right: 15px;
 
@@ -89,6 +98,11 @@
           height: 40px;
           background-color: $yellow;
           border-radius: 5px;
+          color: $dark;
+
+          &:disabled {
+            background-color: rgb(136, 136, 136);
+          }
         }
       }
     }

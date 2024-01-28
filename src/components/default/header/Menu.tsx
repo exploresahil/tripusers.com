@@ -15,6 +15,7 @@ import Image from "next/image";
 import Search from "./Search";
 import { getCountry } from "@/src/sanity/sanity-utils";
 import { Country } from "@/src/types/country";
+import CustomiseForm from "../../forms/CustomiseForm";
 
 interface props {
   logo: string;
@@ -44,6 +45,7 @@ const Menu = (logo: props) => {
   const linkRef = useRef<HTMLAnchorElement | null>(null);
   const logoMarkRef = useRef<HTMLAnchorElement | null>(null);
   const [data, setData] = useState<Country[]>([]);
+  const [mobileForm, setMobileForm] = useState(false);
   const handleCloseMenu = () => {
     gsap.to(navRef.current, {
       right: "-100%",
@@ -121,6 +123,9 @@ const Menu = (logo: props) => {
           </button>
 
           <nav ref={navRef}>
+            {mobileForm && (
+              <CustomiseForm onClick={() => setMobileForm(false)} />
+            )}
             <div className="logo-container">
               <Link href="/" className="logo-mark" ref={logoMarkRef}>
                 <Image
@@ -152,7 +157,9 @@ const Menu = (logo: props) => {
               ))}
             </div>
 
-            <button className="formButton">Customise your trip</button>
+            <button onClick={() => setMobileForm(true)} className="formButton">
+              Customise your trip
+            </button>
             <Link href="tel:+918888800696" target="_blank" className="tel">
               <BiPhoneCall size={20} />
               +91 88888 00696
