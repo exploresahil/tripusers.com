@@ -1,11 +1,11 @@
-import { getTradingCountries } from "@/src/sanity/sanity-utils";
+import { getTrendingCountries } from "@/src/sanity/sanity-utils";
 import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 
 const Trending = async () => {
-  const trendingData = await getTradingCountries();
+  const trendingData = await getTrendingCountries();
 
   //console.log(trendingData);
 

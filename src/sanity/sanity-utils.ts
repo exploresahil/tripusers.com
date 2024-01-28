@@ -132,7 +132,7 @@ export async function getBestOfIndia(): Promise<BestOfIndia[]> {
     }`
   );
 }
-export async function getTradingCountries(): Promise<Country[]> {
+export async function getTrendingCountries(): Promise<Country[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "country" && isTrending == true] | order(_createdAt asc) {
       _id,
