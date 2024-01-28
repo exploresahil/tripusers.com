@@ -135,7 +135,7 @@ const Menu = (logo: props) => {
               </button>
             </div>
             <div className="search-container">
-              <Search data={data} />
+              <Search data={data} closeMenu={handleCloseMenu} />
             </div>
 
             <div className="links" ref={linksRef}>

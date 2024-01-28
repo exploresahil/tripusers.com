@@ -15,17 +15,31 @@ const search = (data: Country[], query: string) => {
 const Popover = ({
   data,
   closeFunction,
+  menuCloseFunction,
 }: {
   data: Country;
   closeFunction: () => any;
+  menuCloseFunction: () => any;
 }) => {
   return (
-    <Link href={`/country/${data.slug}`} onClick={() => closeFunction()}>
+    <Link
+      href={`/country/${data.slug}`}
+      onClick={() => {
+        closeFunction();
+        menuCloseFunction();
+      }}
+    >
       {data.countryName}
     </Link>
   );
 };
-const Search = ({ data }: { data: Country[] }) => {
+const Search = ({
+  data,
+  closeMenu,
+}: {
+  data: Country[];
+  closeMenu?: () => any;
+}) => {
   //   console.log(data);
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<Country[] | undefined>();
@@ -89,7 +103,13 @@ const Search = ({ data }: { data: Country[] }) => {
       {result && result.length !== 0 ? (
         <div ref={PopoverRef} id="search-box" data-popover className="box">
           {result.map((v) => (
-            <Popover closeFunction={handleClosePopover} data={v} />
+            <Popover
+              menuCloseFunction={
+                typeof closeMenu !== "undefined" ? closeMenu : () => {}
+              }
+              closeFunction={handleClosePopover}
+              data={v}
+            />
           ))}
         </div>
       ) : null}
