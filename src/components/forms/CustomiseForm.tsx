@@ -5,7 +5,7 @@ import "./style.scss";
 import FormImage from "../Icons/FormImage";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -43,9 +43,10 @@ const CustomiseForm = ({ onClick }: props) => {
     handleSubmit,
     formState: { errors, isSubmitting },
     setError,
+    reset,
   } = useForm<formFields>();
   console.log(errors);
-
+  const [isSubmit, setIsSubmit] = useState(false);
   const onSubmitForm: SubmitHandler<formFields> = (data) => {
     const error = schema.safeParse(data);
     if (!error.success) {
@@ -56,6 +57,12 @@ const CustomiseForm = ({ onClick }: props) => {
       });
     } else {
       console.log(data);
+      setIsSubmit(true);
+      setTimeout(() => {
+        setIsSubmit(false);
+        reset();
+        console.log("in 500", data);
+      }, 5000);
     }
   };
 
@@ -141,7 +148,7 @@ const CustomiseForm = ({ onClick }: props) => {
               )}
 
               <button type="submit" disabled={isSubmitting}>
-                Submit Enquiry
+                {isSubmit ? "Submit" : "Submit Enquiry"}
               </button>
             </form>
           </div>
