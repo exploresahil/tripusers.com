@@ -90,7 +90,7 @@ export async function getCountry(): Promise<Country[]> {
 
 export async function getBestOfIndia(): Promise<BestOfIndia[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "Indian" && isTrending == true] | order(_createdAt asc) {
+    groq`*[_type == "Indian"] | order(_createdAt asc) {
       _id,
       _createdAt,
       stateName,

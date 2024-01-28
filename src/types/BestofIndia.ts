@@ -9,7 +9,6 @@ export type BestOfIndia = {
     current: string;
   };
   cardImage: string;
-  isTrending: boolean;
   StateImages: {
     _id: string;
     url: string;
