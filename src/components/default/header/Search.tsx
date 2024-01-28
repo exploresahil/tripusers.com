@@ -4,13 +4,26 @@ import gsap from "gsap";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
+const escapeRegExp = (string: string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
 const search = (data: Country[], query: string) => {
-  const reg = new RegExp(query.toLocaleLowerCase(), "i");
+  const reg = new RegExp(escapeRegExp(query.toLocaleLowerCase()), "i");
   return data.filter((data) => reg.test(data.countryName.toLocaleLowerCase()));
 };
 
-const Popover = ({ data }: { data: Country }) => {
-  return <Link href={`/country/${data.slug}`}>{data.countryName}</Link>;
+const Popover = ({
+  data,
+  closeFunction,
+}: {
+  data: Country;
+  closeFunction: () => any;
+}) => {
+  return (
+    <Link href={`/country/${data.slug}`} onClick={() => closeFunction()}>
+      {data.countryName}
+    </Link>
+  );
 };
 const Search = ({ data }: { data: Country[] }) => {
   //   console.log(data);
@@ -74,7 +87,7 @@ const Search = ({ data }: { data: Country[] }) => {
       {result && result.length !== 0 ? (
         <div ref={PopoverRef} id="search-box" data-popover className="box">
           {result.map((v) => (
-            <Popover data={v} />
+            <Popover closeFunction={handleClosePopover} data={v} />
           ))}
         </div>
       ) : null}
