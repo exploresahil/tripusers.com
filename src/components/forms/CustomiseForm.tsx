@@ -10,9 +10,14 @@ import { error } from "console";
 const schema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
-  phone: z.string().min(10),
+  phone: z
+    .string()
+    .min(10)
+    .regex(/^\+(?:\d\s?){10,15}\d$/, {
+      message: "phone number not valid",
+    }),
   date: z.string(),
-  guest: z.number(),
+  guest: z.string().min(0),
   message: z.string().min(1),
 });
 
@@ -32,14 +37,25 @@ const CustomiseForm = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setError,
   } = useForm<formFields>();
+  console.log(errors);
 
   const onSubmitForm: SubmitHandler<formFields> = (data) => {
-    console.log(data);
+    const error = schema.safeParse(data);
+    if (!error.success) {
+      error.error.issues.map((v: any) => {
+        console.log(v);
+
+        setError(v.path[0], { message: v.message });
+      });
+    } else {
+      console.log(data);
+    }
   };
 
   return (
-    <section id="CustomiseForm" onSubmit={handleSubmit(onSubmitForm)}>
+    <section id="CustomiseForm">
       <div className="form-container">
         <h2>Customise your trip</h2>
         <div className="form-main">
@@ -47,7 +63,7 @@ const CustomiseForm = () => {
             <FormImage fill="#fa0001" />
           </div>
           <div className="right">
-            <form>
+            <form onSubmit={handleSubmit(onSubmitForm)}>
               <input
                 {...register("name", {
                   required: "Name is required",
@@ -55,7 +71,9 @@ const CustomiseForm = () => {
                 type="text"
                 placeholder="Name"
               />
-              {errors.name && <p>{errors.name.message}</p>}
+              {errors.name && (
+                <p style={{ color: "tomato" }}>{errors.name.message}</p>
+              )}
               <input
                 {...register("email", {
                   required: "Email is required",
@@ -69,7 +87,9 @@ const CustomiseForm = () => {
                 type="email"
                 placeholder="Email"
               />
-              {errors.email && <p>{errors.email.message}</p>}
+              {errors.email && (
+                <p style={{ color: "tomato" }}>{errors.email.message}</p>
+              )}
               <input
                 {...register("phone", {
                   required: "Phone No is required",
@@ -81,7 +101,9 @@ const CustomiseForm = () => {
                 type="text"
                 placeholder="Phone No"
               />
-              {errors.phone && <p>{errors.phone.message}</p>}
+              {errors.phone && (
+                <p style={{ color: "tomato" }}>{errors.phone.message}</p>
+              )}
               <div className="data-container">
                 <input
                   {...register("date")}
@@ -91,6 +113,7 @@ const CustomiseForm = () => {
                 <input
                   {...register("guest")}
                   type="number"
+                  min={0}
                   placeholder="Number of Guest"
                 />
               </div>
@@ -101,7 +124,9 @@ const CustomiseForm = () => {
                 placeholder="Tell us where you want to go ?"
                 rows={5}
               />
-              {errors.message && <p>{errors.message.message}</p>}
+              {errors.message && (
+                <p style={{ color: "tomato" }}>{errors.message.message}</p>
+              )}
               <button type="submit" disabled={isSubmitting}>
                 Submit Enquiry
               </button>
