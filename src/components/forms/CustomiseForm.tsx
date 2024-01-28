@@ -22,7 +22,7 @@ const schema = z.object({
 });
 
 interface props {
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 type formFields = {
