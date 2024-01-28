@@ -1,0 +1,92 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#CustomiseForm {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 4vw;
+
+  .form-container {
+    width: 100%;
+
+    background-color: $light;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  h2 {
+    border-bottom: 1px solid $dark;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-main {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 260px;
+
+      svg {
+        height: 200px;
+      }
+    }
+
+    .right {
+      height: 260px;
+      overflow-y: scroll;
+      padding-right: 15px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        input,
+        textarea {
+          width: 100%;
+          background: none;
+          border: 1px solid $dark;
+          border-radius: 5px;
+          padding: 0 10px;
+          resize: none;
+
+          &:focus {
+            outline: none;
+            border: 1px solid $yellow;
+          }
+        }
+
+        input {
+          height: 40px;
+        }
+
+        textarea {
+          padding: 10px;
+        }
+        .data-container {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        button {
+          width: 100%;
+          height: 40px;
+          background-color: $yellow;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
