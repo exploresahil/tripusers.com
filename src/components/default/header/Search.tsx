@@ -45,6 +45,7 @@ const Search = ({ data }: { data: Country[] }) => {
   const handleClosePopover = contextSafe(() => {
     gsap.to(PopoverRef.current, {
       opacity: 0,
+      pointerEvents: "none",
       height: "0px",
       ease: "power1.inOut",
     });
@@ -53,6 +54,7 @@ const Search = ({ data }: { data: Country[] }) => {
   const handleOpenPopover = contextSafe(() => {
     gsap.to(PopoverRef.current, {
       opacity: 1,
+      pointerEvents: "auto",
       height: "auto",
       ease: "power1.inOut",
     });
