@@ -52,6 +52,10 @@
         flex-direction: column;
         gap: 10px;
 
+        p {
+          font-size: 0.8rem;
+        }
+
         input,
         textarea {
           width: 100%;

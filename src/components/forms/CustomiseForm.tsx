@@ -3,9 +3,7 @@
 import "./style.scss";
 import FormImage from "../Icons/FormImage";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { error } from "console";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -14,7 +12,7 @@ const schema = z.object({
     .string()
     .min(10)
     .regex(/^\+(?:\d\s?){10,15}\d$/, {
-      message: "phone number not valid",
+      message: "phone number not valid (country code required)",
     }),
   date: z.string(),
   guest: z.string().min(0),
@@ -95,7 +93,8 @@ const CustomiseForm = () => {
                   required: "Phone No is required",
                   minLength: {
                     value: 10,
-                    message: "Phone No must be atleast 10 digits",
+                    message:
+                      "Phone No must be atleast 10 digits and countrycode is required",
                   },
                 })}
                 type="text"
@@ -126,6 +125,9 @@ const CustomiseForm = () => {
               />
               {errors.message && (
                 <p style={{ color: "tomato" }}>{errors.message.message}</p>
+              )}
+              {errors.phone && (
+                <p style={{ color: "tomato" }}>An Input is not valid!</p>
               )}
               <button type="submit" disabled={isSubmitting}>
                 Submit Enquiry
