@@ -1,6 +1,6 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
-const BestOfIndia = {
+const bestOfIndia = {
   name: "Indian",
   title: "Best of India",
   type: "document",
@@ -42,4 +42,4 @@ const BestOfIndia = {
   ],
 };
 
-export default BestOfIndia;
+export default bestOfIndia;
