@@ -168,10 +168,13 @@ const Menu = (logo: props) => {
         </div>
       ) : (
         <div className="ipad-menu">
+          {mobileForm && <CustomiseForm onClick={() => setMobileForm(false)} />}
           <div className="search-container">
             <Search data={data} />
           </div>
-          <button className="formButton">Customise your trip</button>
+          <button onClick={() => setMobileForm(true)} className="formButton">
+            Customise your trip
+          </button>
           <button ref={menuOpenButtonRef}>
             <BiMenu size={40} />
           </button>
