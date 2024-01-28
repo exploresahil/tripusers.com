@@ -1,4 +1,4 @@
-export type heroInfo = {
+export type Testimonial = {
   _id: string;
   createdAt: Date;
   name: string;
