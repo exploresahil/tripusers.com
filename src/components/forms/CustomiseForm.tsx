@@ -39,6 +39,7 @@ type formFields = {
 
 const CustomiseForm = ({ onClick }: props) => {
   const CustomiseFormRef = useRef<HTMLElement | null>(null);
+  const formDontainerRef = useRef<HTMLDivElement | null>(null);
   const {
     register,
     handleSubmit,
@@ -68,7 +69,7 @@ const CustomiseForm = ({ onClick }: props) => {
   };
   useGSAP(() => {
     const boxClose = (e: any) => {
-      if (!CustomiseFormRef.current?.contains(e.target)) {
+      if (!formDontainerRef.current?.contains(e.target)) {
         if (typeof onClick !== "undefined") onClick();
       }
     };
@@ -79,7 +80,7 @@ const CustomiseForm = ({ onClick }: props) => {
   });
   return (
     <section id="CustomiseForm" ref={CustomiseFormRef}>
-      <div className="form-container">
+      <div className="form-container" ref={formDontainerRef}>
         <div className="title-container">
           <h2>Customise your trip</h2>
           <button onClick={onClick}>
