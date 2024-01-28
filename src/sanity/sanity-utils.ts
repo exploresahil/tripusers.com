@@ -4,6 +4,7 @@ import { brand } from "@/src/types/brand";
 import { hero } from "@/src/types/hero";
 import { heroInfo } from "@/src/types/heroInfo";
 import { Country } from "@/src/types/country";
+import { BestOfIndia } from "../types/BestofIndia";
 
 export async function getBrand(): Promise<brand[]> {
   return createClient(clientConfig).fetch(
@@ -52,6 +53,51 @@ export async function getCountry(): Promise<Country[]> {
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
       "countryImages": countryImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "packages": *[_type == "packages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages" : packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`
+  );
+}
+
+export async function getBestOfIndia(): Promise<BestOfIndia[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "Indian" && isTrending == true] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      stateName,
+      isTrending,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "StateImages": countryImages[] {
         "_id": asset->_id,
         "url": asset->url,
       },
