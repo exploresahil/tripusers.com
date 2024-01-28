@@ -6,6 +6,7 @@ import FormImage from "../Icons/FormImage";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { useEffect, useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -65,7 +66,17 @@ const CustomiseForm = ({ onClick }: props) => {
       }, 5000);
     }
   };
-
+  useGSAP(() => {
+    const boxClose = (e: any) => {
+      if (!CustomiseFormRef.current?.contains(e.target)) {
+        if (typeof onClick !== "undefined") onClick();
+      }
+    };
+    document.addEventListener("mousedown", boxClose);
+    return () => {
+      document.removeEventListener("mousedown", boxClose);
+    };
+  });
   return (
     <section id="CustomiseForm" ref={CustomiseFormRef}>
       <div className="form-container">
