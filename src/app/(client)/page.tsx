@@ -6,7 +6,7 @@ import Trending from "@/src/components/home/trending/Trending";
 export default function Home() {
   return (
     <>
-      <Loader />
+      {/* <Loader /> */}
       <HeroSection />
       <Trending />
     </>
