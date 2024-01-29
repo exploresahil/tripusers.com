@@ -28,10 +28,10 @@ export async function getBrand(): Promise<brand[]> {
 export async function getHero(): Promise<hero[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "hero"] | order(_createdAt asc) {
-      _id,
+       _id,
       _createdAt,
       title,
-      place,
+      place->{name, slug},
       "heroImage": heroImage.asset->url,
     }`
   );
@@ -95,6 +95,53 @@ export async function getInternational(): Promise<international[]> {
   );
 }
 
+export async function getInternationalSlug(
+  slug: string
+): Promise<international> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "international" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "InternationalPackages": *[_type == "InternationalPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`,
+    { slug } // Pass parameters here if needed
+  );
+}
+
 export async function getTrendingInternational(): Promise<international[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "international" && isTrending == true] | order(_createdAt asc) {
@@ -137,53 +184,6 @@ export async function getTrendingInternational(): Promise<international[]> {
         }
       },
     }`
-  );
-}
-
-export async function getInternationalSlug(
-  slug: string
-): Promise<international> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "international" && slug.current == $slug][0] {
-      _id,
-      _createdAt,
-      name,
-      "slug": slug.current,
-      "cardImage": cardImage.asset->url,
-      "bannerImages": countryImages[] {
-        "_id": asset->_id,
-        "url": asset->url,
-      },
-      "InternationalPackages": *[_type == "InternationalPackages" && references(^._id)] {
-        _id,
-        _createdAt,
-        title,
-        "slug": slug.current,
-        "packageImages" : packageImages[] {
-          "_id": asset->_id,
-          "url": asset->url,
-        },
-        timeline,
-        deal,
-        price,
-        priceSubtitle,
-        aboutTheTour,
-        "itinerary": itinerary[] {
-          "title": title,
-          "day": day,
-          "description": description,
-          "content": content[] {
-            "title": title,
-            "description": description,
-            "images": images[] {
-              "_id": asset->_id,
-              "url": asset->url,
-            }
-          }
-        }
-      },
-    }`,
-    { slug }
   );
 }
 

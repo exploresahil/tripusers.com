@@ -43,12 +43,14 @@ const Header = () => {
   return (
     <header className={isScrolled ? "scrolled" : ""}>
       <Link href="/" className="logo-container">
-        <Image
-          src={isScrolled ? darkLogo : logo}
-          alt="tripusers.com logo"
-          fill
-          sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-        />
+        {brandData[0]?.darkImage && brandData[0]?.headerImage && (
+          <Image
+            src={isScrolled ? darkLogo : logo}
+            alt="tripusers.com logo"
+            fill
+            sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+          />
+        )}
       </Link>
       <Menu logo={logoMark} />
     </header>

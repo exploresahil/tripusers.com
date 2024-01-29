@@ -18,7 +18,11 @@ const Trending = async () => {
       </div>
       <div className="trending-grid">
         {trendingData.map((item, index) => (
-          <Link href={`/country/${item.slug}`} key={index} className="country">
+          <Link
+            href={`/international/${item.slug}`}
+            key={index}
+            className="country"
+          >
             {item.cardImage && (
               <Image
                 src={item.cardImage}

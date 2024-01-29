@@ -1,29 +1,38 @@
 "use client";
 
-import { getCountry, getCountrySlug } from "@/src/sanity/sanity-utils";
-import { Country } from "@/src/types/international";
+import { getInternationalSlug } from "@/src/sanity/sanity-utils";
+import { international } from "@/src/types/international";
 import { useEffect, useState } from "react";
 
 type Props = {
-  params: { country: string };
+  params: { international: string };
 };
 
 const page = ({ params }: Props) => {
-  const [countrySlugData, setCountrySlugData] = useState<Country>();
-  const slug = params.country;
+  const [countrySlugData, setCountrySlugData] = useState<international>();
+  const slug = params.international;
 
   useEffect(() => {
     async function fetchCountrySlug() {
-      const data = await getCountrySlug(slug);
-      setCountrySlugData(data);
+      try {
+        const data = await getInternationalSlug(slug);
+        setCountrySlugData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
     fetchCountrySlug();
   }, [slug]);
 
+  if (!countrySlugData) {
+    return <div>Loading...</div>;
+  }
+  console.log("slug->", countrySlugData);
+
   return (
-    <div>
-      <h2>{countrySlugData?.countryName}</h2>
-    </div>
+    <section id="internationalSlug">
+      <h2>{countrySlugData?.name}</h2>
+    </section>
   );
 };
 
