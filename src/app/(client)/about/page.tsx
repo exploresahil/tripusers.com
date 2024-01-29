@@ -3,13 +3,7 @@
 import CustomiseForm from "@/src/components/forms/CustomiseForm";
 
 const page = () => {
-  return (
-    <section
-      style={{ backgroundColor: "black", width: "100vw", height: "100dvh" }}
-    >
-      <CustomiseForm />
-    </section>
-  );
+  return <section id="about"></section>;
 };
 
 export default page;

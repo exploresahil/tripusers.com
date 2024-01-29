@@ -109,7 +109,7 @@ export async function getInternationalSlug(
         "_id": asset->_id,
         "url": asset->url,
       },
-      "InternationalPackages": *[_type == "InternationalPackages" && references(^._id)] {
+      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
         _createdAt,
         title,

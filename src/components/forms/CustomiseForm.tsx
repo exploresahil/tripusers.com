@@ -58,7 +58,7 @@ const CustomiseForm = ({ onClick }: props) => {
         setError(v.path[0], { message: v.message });
       });
     } else {
-      console.log(data);
+      //console.log(data);
       setIsSubmit(true);
       setTimeout(() => {
         setIsSubmit(false);
