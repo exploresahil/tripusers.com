@@ -1,5 +1,3 @@
-import { packages } from "./international";
-
 export type domestic = {
   _id: string;
   _createdAt: Date;
@@ -13,5 +11,4 @@ export type domestic = {
     _id: string;
     url: string;
   }[];
-  packages: packages[];
 };
