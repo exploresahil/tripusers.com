@@ -4,7 +4,7 @@ import { brand } from "@/src/types/brand";
 import { hero } from "@/src/types/hero";
 import { heroInfo } from "@/src/types/heroInfo";
 
-import { domestic } from "../types/domestic";
+import { Domestic } from "../types/domestic";
 import { international } from "../types/international";
 
 //*------------------> Brand
@@ -189,7 +189,7 @@ export async function getTrendingInternational(): Promise<international[]> {
 
 //*------------------> Domestic
 
-export async function getDomestic(): Promise<domestic[]> {
+export async function getDomestic(): Promise<Domestic[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "domestic"] | order(_createdAt asc) {
       _id,
@@ -198,11 +198,11 @@ export async function getDomestic(): Promise<domestic[]> {
       isTrending,
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
-      "StateImages": countryImages[] {
+      "bannerImages": bannerImages[] {
         "_id": asset->_id,
         "url": asset->url,
       },
-      "InternationalPackages": *[_type == "InternationalPackages" && references(^._id)] {
+      "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
         _id,
         _createdAt,
         title,
