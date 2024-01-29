@@ -147,8 +147,8 @@ const HeroSection = () => {
             </div>
             <div className="text-container">
               <p>{item.title}</p>
-              <h2>{item.country.countryName}</h2>
-              <Link href={`/country/${item.country.slug.current}`}>
+              <h2>{item.place.name}</h2>
+              <Link href={`/international/${item.place.slug.current}`}>
                 Read More
               </Link>
             </div>

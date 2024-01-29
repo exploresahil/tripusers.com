@@ -1,13 +1,13 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
-const country = {
-  name: "country",
-  title: "Country",
+const domestic = {
+  name: "Indian",
+  title: "Best of India",
   type: "document",
   fields: [
     {
-      name: "countryName",
-      title: "Country Name",
+      name: "name",
+      title: "Name",
       type: "string",
     },
     {
@@ -15,7 +15,7 @@ const country = {
       title: "Slug",
       type: "slug",
       options: {
-        source: "countryName",
+        source: "name",
       },
     },
     {
@@ -32,7 +32,7 @@ const country = {
       initialValue: false,
     },
     {
-      name: "countryImages",
+      name: "bannerImages",
       title: "Country Images",
       type: "array",
       of: [
@@ -49,4 +49,4 @@ const country = {
   ],
 };
 
-export default country;
+export default domestic;

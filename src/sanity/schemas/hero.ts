@@ -11,10 +11,10 @@ const hero = {
       type: "string",
     },
     {
-      name: "country",
-      title: "Country",
+      name: "place",
+      title: "Place",
       type: "reference",
-      to: [{ type: "country" }],
+      to: [{ type: "international" }],
     },
     {
       name: "heroImage",

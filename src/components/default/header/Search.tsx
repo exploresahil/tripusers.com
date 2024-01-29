@@ -1,4 +1,4 @@
-import { Country } from "@/src/types/country";
+import { international } from "@/src/types/international";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Link from "next/link";
@@ -7,9 +7,9 @@ import { BiSearch } from "react-icons/bi";
 const escapeRegExp = (string: string) => {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 };
-const search = (data: Country[], query: string) => {
+const search = (data: international[], query: string) => {
   const reg = new RegExp(escapeRegExp(query.toLocaleLowerCase()), "i");
-  return data.filter((data) => reg.test(data.countryName.toLocaleLowerCase()));
+  return data.filter((data) => reg.test(data.name.toLocaleLowerCase()));
 };
 
 const Popover = ({
@@ -17,19 +17,19 @@ const Popover = ({
   closeFunction,
   menuCloseFunction,
 }: {
-  data: Country;
+  data: international;
   closeFunction: () => any;
   menuCloseFunction: () => any;
 }) => {
   return (
     <Link
-      href={`/country/${data.slug}`}
+      href={`/international/${data.slug}`}
       onClick={() => {
         closeFunction();
         menuCloseFunction();
       }}
     >
-      {data.countryName}
+      {data.name}
     </Link>
   );
 };
@@ -37,12 +37,12 @@ const Search = ({
   data,
   closeMenu,
 }: {
-  data: Country[];
+  data: international[];
   closeMenu?: () => any;
 }) => {
   //   console.log(data);
   const [query, setQuery] = useState("");
-  const [result, setResult] = useState<Country[] | undefined>();
+  const [result, setResult] = useState<international[] | undefined>();
   useEffect(() => {
     if (query !== "") {
       setResult(search(data, query));

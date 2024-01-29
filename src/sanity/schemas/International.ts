@@ -1,12 +1,12 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
-const bestOfIndia = {
-  name: "Indian",
-  title: "Best of India",
+const international = {
+  name: "international",
+  title: "International",
   type: "document",
   fields: [
     {
-      name: "Name",
+      name: "name",
       title: "Name",
       type: "string",
     },
@@ -15,7 +15,7 @@ const bestOfIndia = {
       title: "Slug",
       type: "slug",
       options: {
-        source: "countryName",
+        source: "name",
       },
     },
     {
@@ -25,8 +25,15 @@ const bestOfIndia = {
       options: { hotspot: true, sources: [unsplashAssetSource] },
     },
     {
-      name: "StateImages",
-      title: "State Images",
+      name: "isTrending",
+      title: "Is trending",
+      type: "boolean",
+      description: "Select true if this country is Trending, false otherwise",
+      initialValue: false,
+    },
+    {
+      name: "bannerImages",
+      title: "Country Images",
       type: "array",
       of: [
         {
@@ -42,4 +49,4 @@ const bestOfIndia = {
   ],
 };
 
-export default bestOfIndia;
+export default international;

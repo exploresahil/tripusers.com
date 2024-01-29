@@ -1,8 +1,8 @@
-import { Country } from "./country";
+import { international } from "./international";
 export type hero = {
   _id: string;
   createdAt: Date;
   title: string;
-  country: Country;
+  place: international;
   heroImage: string;
 };

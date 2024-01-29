@@ -1,11 +1,11 @@
-import { getTrendingCountries } from "@/src/sanity/sanity-utils";
+import { getTrendingInternational } from "@/src/sanity/sanity-utils";
 import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 
 const Trending = async () => {
-  const trendingData = await getTrendingCountries();
+  const trendingData = await getTrendingInternational();
 
   //console.log(trendingData);
 
@@ -22,17 +22,19 @@ const Trending = async () => {
             {item.cardImage && (
               <Image
                 src={item.cardImage}
-                alt={`image of  ${item.countryName}`}
+                alt={`image of  ${item.name}`}
                 fill
                 sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
               />
             )}
             <div className="text-container">
-              <h3>{item.countryName}</h3>
-              <p>
+              <h3>{item.name}</h3>
+              {/* <p>
                 Starts from{" "}
-                {item.packages.length == 0 ? 1500 : item.packages[0]?.price}
-              </p>
+                {item.internationalPackages?.length == 0
+                  ? 1500
+                  : item.internationalPackages[0]?.price}
+              </p> */}
             </div>
           </Link>
         ))}

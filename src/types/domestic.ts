@@ -1,16 +1,15 @@
-import { PortableTextBlock } from "sanity";
-import { packages } from "./country";
+import { packages } from "./international";
 
-export type BestOfIndia = {
+export type domestic = {
   _id: string;
   _createdAt: Date;
-  stateName: string;
+  name: string;
   slug: {
     current: string;
   };
   cardImage: string;
   isTrending: boolean;
-  StateImages: {
+  bannerImages: {
     _id: string;
     url: string;
   }[];

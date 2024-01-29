@@ -1,7 +1,7 @@
 "use client";
 
 import { getCountry, getCountrySlug } from "@/src/sanity/sanity-utils";
-import { Country } from "@/src/types/country";
+import { Country } from "@/src/types/international";
 import { useEffect, useState } from "react";
 
 type Props = {

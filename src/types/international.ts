@@ -1,5 +1,5 @@
 import { PortableTextBlock } from "sanity";
-export type packages = {
+export type internationalPackages = {
   _id: string;
   _createdAt: Date;
   title: string;
@@ -30,18 +30,18 @@ export type packages = {
   }[];
 };
 
-export type Country = {
+export type international = {
   _id: string;
   _createdAt: Date;
-  countryName: string;
+  name: string;
   slug: {
     current: string;
   };
   cardImage: string;
   isTrending: boolean;
-  countryImages: {
+  bannerImages: {
     _id: string;
     url: string;
   }[];
-  packages: packages[];
+  internationalPackages: internationalPackages[];
 };
