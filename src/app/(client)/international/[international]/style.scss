@@ -3,7 +3,7 @@
 #internationalSlugHero {
   max-width: 100vw;
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   height: 60dvh;
   position: relative;
   overflow: hidden;
@@ -35,6 +35,18 @@
     width: 100%;
     height: 100%;
     background-color: $dark;
+    background: linear-gradient(90deg, $yellow, $red, $yellow);
+    background-size: 200%;
+    animation: skeleton 1s infinite linear;
+
+    @keyframes skeleton {
+      from {
+        background-position: -100% 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
 
     .swiperSlide-card {
       display: flex;
@@ -70,7 +82,8 @@
 }
 
 #packages {
-  width: 100vw;
+  max-width: 100vw;
+  width: 100%;
   height: 100vh;
   padding: 20px 4vw;
   display: flex;
