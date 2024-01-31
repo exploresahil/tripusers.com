@@ -1,9 +1,41 @@
+"use client";
+
 import { MdEmail } from "react-icons/md";
 import "./style.scss";
 import Image from "next/image";
 import BGImage from "@/src/public/assets/contact-us-bg.svg";
 import { BiPhoneCall } from "react-icons/bi";
+import { useState } from "react";
 const ContactUs = () => {
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    fetch(
+      "https://script.google.com/macros/s/AKfycbysvpPeuHRGHaG3qIdLSk_vdv52AhxzE4sOqo34SCSqMDArxgJqPNEVkRWG4KzjMhAg/exec?action=addData",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          name: name,
+          phone_number: phoneNumber,
+        }),
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          console.log("Data successfully submitted!");
+          alert("Data successfully submitted!");
+        } else {
+          console.error("Failed to submit data");
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting data:", error);
+      });
+  };
+
   return (
     <section className="container">
       <div className="form">
@@ -29,13 +61,23 @@ const ContactUs = () => {
           </div>
         </div>
         <div className="body">
-          <form>
+          <form onSubmit={handleSubmit}>
             <label>Want us to call you?</label>
             <div className="input-cont">
-              <input placeholder="Name" />
-              <input placeholder="phone number" />
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="tel"
+                placeholder="Phone number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
             </div>
-            <button>
+            <button type="submit">
               <BiPhoneCall />
               Request Call Back
             </button>

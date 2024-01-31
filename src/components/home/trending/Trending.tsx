@@ -35,9 +35,9 @@ const Trending = async () => {
               <h3>{item.name}</h3>
               {/* <p>
                 Starts from{" "}
-                {item.internationalPackages?.length == 0
+                {item.internationalPackages.length == 0
                   ? 1500
-                  : item.internationalPackages[0]?.price}
+                  : item.internationalPackages[0].price}
               </p> */}
             </div>
           </Link>
