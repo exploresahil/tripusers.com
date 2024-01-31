@@ -12,6 +12,7 @@ interface dataTypes {
   id: number;
   name: string;
   phone_number: number;
+  createAt: string;
 }
 const Admin = () => {
   const [contactData, setContactData] = useState<dataTypes[]>([]);
@@ -26,9 +27,9 @@ const Admin = () => {
     console.log("Fetching..");
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbysvpPeuHRGHaG3qIdLSk_vdv52AhxzE4sOqo34SCSqMDArxgJqPNEVkRWG4KzjMhAg/exec?action=getData",
+      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=getData",
       {
-        method: "POST",
+        method: "GET",
       }
     )
       .then((response) => {
@@ -129,6 +130,7 @@ const Admin = () => {
                       <th>Sr/No</th>
                       <th>Name</th>
                       <th>Phone Number</th>
+                      <th>CreateAt</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -137,6 +139,7 @@ const Admin = () => {
                         <td>{data.id}</td>
                         <td>{data.name}</td>
                         <td>{data.phone_number}</td>
+                        <td>{data.createAt}</td>
                       </tr>
                     ))}
                   </tbody>

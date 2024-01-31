@@ -5,7 +5,7 @@ import { auth } from "@clerk/nextjs";
 const page = () => {
   const { userId } = auth();
 
-  //console.log("userId--->", userId);
+  // console.log("userId--->", userId);
 
   return (
     <>

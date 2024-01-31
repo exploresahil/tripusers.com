@@ -16,7 +16,7 @@ const ContactUs = () => {
     event.preventDefault();
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbysvpPeuHRGHaG3qIdLSk_vdv52AhxzE4sOqo34SCSqMDArxgJqPNEVkRWG4KzjMhAg/exec?action=addData",
+      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=addData",
       {
         method: "POST",
         body: JSON.stringify({
