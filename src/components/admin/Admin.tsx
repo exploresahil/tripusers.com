@@ -20,7 +20,6 @@ const Admin = () => {
     "contact"
   );
   const conatctTableRef = useRef<HTMLTableElement | null>(null);
-  const router = useRouter();
 
   const fetchData = () => {
     setLoading(true);
