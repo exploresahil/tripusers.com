@@ -13,7 +13,6 @@ import gsap from "gsap";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import "swiper/css/virtual";
 import { useGSAP } from "@gsap/react";
 
 const HeroSection = () => {
