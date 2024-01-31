@@ -1,0 +1,154 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+.container {
+    max-width: 100vw;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 20px;
+    background: $dark;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .bg {
+        // justify-content: start;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .form,
+    .bg {
+        color: $dark;
+        padding: 0 20px;
+
+        width: 100%;
+        height: 50%;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 20px;
+        padding: 20px;
+        background-color: $light;
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &>h1 {
+                position: relative;
+                margin-bottom: 20px;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -2px;
+                    width: 115px;
+                    height: 4px;
+                    background: url(https://www.veenaworld.com/yellow-border.294235ead0cfe70a.svg) no-repeat left center;
+                    background-size: cover;
+                }
+            }
+
+            .info-con {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .info {
+                    padding-left: 29px;
+                }
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    text-transform: capitalize;
+
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                        padding: 5px;
+                        border-radius: 50%;
+                        border: 1px solid $dark ;
+                    }
+                }
+            }
+        }
+
+        .body {
+            // margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .input-cont {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    input {
+                        width: 100%;
+                        height: 50px;
+                        background: none;
+                        border: 1px solid $dark;
+                        border-radius: 5px;
+                        padding: 0 10px;
+                        resize: none;
+                        color: $dark;
+                    }
+                }
+
+
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    width: 100%;
+                    height: 40px;
+                    background-color: #fd8f04;
+                    border-radius: 5px;
+                    color: #1d1d1f;
+                }
+            }
+        }
+    }
+
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+    .container {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+    .container {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 12vw;
+
+        .form {
+            width: 45%;
+        }
+    }
+}
