@@ -19,8 +19,8 @@ const domesticPackage = {
       },
     },
     {
-      name: "country",
-      title: "Country",
+      name: "place",
+      title: "place",
       type: "reference",
       to: [{ type: "domestic" }],
     },

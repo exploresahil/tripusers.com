@@ -19,8 +19,8 @@ const InternationalPackages = {
       },
     },
     {
-      name: "country",
-      title: "Country",
+      name: "place",
+      title: "place",
       type: "reference",
       to: [{ type: "international" }],
     },

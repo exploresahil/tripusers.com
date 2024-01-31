@@ -89,7 +89,7 @@ const page = ({ params }: Props) => {
         </div>
       </section>
       <section id="packages">
-        <h2>{data.name} Packages</h2>
+        <h2 className="place-title">{data.name} Packages</h2>
         <div className="packages-container">
           {data.internationalPackages.length != 0 ? (
             <>
@@ -113,7 +113,6 @@ const page = ({ params }: Props) => {
                       {item.packageImages.map((item, index) => (
                         <SwiperSlide key={index} className="swiperSlide-card">
                           <div className="bg-container">
-                            <div className="bg" />
                             <Image
                               src={item.url}
                               alt="hero background"

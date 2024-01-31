@@ -1,8 +1,8 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
 const domestic = {
-  name: "Indian",
-  title: "Best of India",
+  name: "domestic",
+  title: "Domestic",
   type: "document",
   fields: [
     {

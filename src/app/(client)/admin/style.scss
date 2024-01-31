@@ -25,11 +25,11 @@
 #dataTabs {
   max-width: 100vw;
   width: 100%;
-  padding: 0 4vw;
+  padding: 20px 4vw;
 
   .menu {
     width: 100%;
-    padding: 20px 0;
+    padding: 0 0 20px 0;
     display: flex;
     justify-content: space-between;
 
@@ -73,6 +73,22 @@
   }
 
   .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .table-title {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $dark;
+      padding-bottom: 10px;
+
+      svg {
+        font-size: 1.4rem;
+        color: $yellow;
+      }
+    }
+
     th,
     td {
       border-bottom: 1px solid $dark;
@@ -89,14 +105,21 @@
       }
     }
 
-    table {
-      width: 100%;
+    .table-container {
       border: 1px solid $dark;
+      border-radius: 5px;
+      height: calc(100vh - 48vh);
+      height: calc(100dvh - 48dvh);
+      overflow-y: scroll;
 
-      th,
-      td {
-        text-align: left;
-        padding: 5px;
+      table {
+        width: 100%;
+
+        th,
+        td {
+          text-align: left;
+          padding: 5px;
+        }
       }
     }
   }

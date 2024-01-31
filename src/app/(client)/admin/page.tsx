@@ -1,7 +1,9 @@
 "use client";
+import { IoMdDownload } from "react-icons/io";
 import { BsArrowClockwise } from "react-icons/bs";
 import "./style.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDownloadExcel } from "react-export-table-to-excel";
 interface dataTypes {
   id: number;
   name: string;
@@ -13,6 +15,7 @@ const page = () => {
   const [activeTab, setActiveTab] = useState<"contact" | "enquiries">(
     "contact"
   );
+  const conatctTableRef = useRef<HTMLTableElement | null>(null);
 
   const fetchData = () => {
     setLoading(true);
@@ -53,6 +56,24 @@ const page = () => {
 
   //console.log("contactData=>", contactData);
 
+  const generateFilename = (prefix: string) => {
+    const date = new Date();
+    const dd = String(date.getDate()).padStart(2, "0");
+    const mm = String(date.getMonth() + 1).padStart(2, "0");
+    const yyyy = date.getFullYear();
+    const hh = String(date.getHours() % 12 || 12).padStart(2, "0");
+    const min = String(date.getMinutes()).padStart(2, "0");
+    const ampm = date.getHours() >= 12 ? "pm" : "am";
+
+    return `TU-${prefix}-${dd}-${mm}-${yyyy}-${hh}-${min}-${ampm}`;
+  };
+
+  const { onDownload: contactDownload } = useDownloadExcel({
+    currentTableRef: conatctTableRef.current,
+    filename: generateFilename("Contact-sheet"),
+    sheet: "Orders",
+  });
+
   return (
     <>
       <section id="adminHero">
@@ -83,24 +104,38 @@ const page = () => {
         </div>
         <div className="tabs">
           {activeTab === "contact" && (
-            <table>
-              <thead>
-                <tr>
-                  <th>Sr/No</th>
-                  <th>Name</th>
-                  <th>Phone Number</th>
-                </tr>
-              </thead>
-              <tbody>
-                {contactData.map((data, index) => (
-                  <tr key={index}>
-                    <td>{data.id}</td>
-                    <td>{data.name}</td>
-                    <td>{data.phone_number}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="table-title">
+              <h3>Contact Form Data</h3>
+              <button onClick={contactDownload}>
+                <IoMdDownload />
+              </button>
+            </div>
+          )}
+          {loading ? (
+            <p>Loading Data...</p>
+          ) : (
+            <div className="table-container">
+              {activeTab === "contact" && (
+                <table ref={conatctTableRef}>
+                  <thead>
+                    <tr>
+                      <th>Sr/No</th>
+                      <th>Name</th>
+                      <th>Phone Number</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {contactData.map((data, index) => (
+                      <tr key={index}>
+                        <td>{data.id}</td>
+                        <td>{data.name}</td>
+                        <td>{data.phone_number}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
           )}
         </div>
       </section>

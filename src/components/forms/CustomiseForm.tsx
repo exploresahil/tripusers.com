@@ -7,6 +7,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
+import { brand } from "@/src/types/brand";
+import { getBrand } from "@/src/sanity/sanity-utils";
+import Image from "next/image";
+import Link from "next/link";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -38,6 +42,8 @@ type formFields = {
 //type formFields = z.infer<typeof schema>;
 
 const CustomiseForm = ({ onClick }: props) => {
+  const [brandData, setBrandData] = useState<brand[]>([]);
+
   const CustomiseFormRef = useRef<HTMLElement | null>(null);
   const formDontainerRef = useRef<HTMLDivElement | null>(null);
   const {
@@ -78,10 +84,27 @@ const CustomiseForm = ({ onClick }: props) => {
       document.removeEventListener("mousedown", boxClose);
     };
   });
+
+  useEffect(() => {
+    async function fetchBrand() {
+      const brand = await getBrand();
+      setBrandData(brand);
+    }
+    fetchBrand();
+  }, []);
+
   return (
     <section id="CustomiseForm" ref={CustomiseFormRef}>
       <div className="form-container" ref={formDontainerRef}>
         <div className="title-container">
+          <Link href="/" className="logo-mark">
+            <Image
+              src={brandData[0]?.logoMark}
+              alt="tripusers.com logo"
+              fill
+              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+            />
+          </Link>
           <h2>Customise your trip</h2>
           <button onClick={onClick}>
             <AiFillCloseCircle size={30} />

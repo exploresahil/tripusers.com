@@ -34,6 +34,13 @@
     padding-bottom: 10px;
     width: 100%;
     text-align: center;
+    font-size: 0.9rem;
+
+    .logo-mark {
+      width: 30px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
 
     svg {
       color: $red;
@@ -121,7 +128,7 @@
     height: auto;
 
     .title-container {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
 
     .form-container {
