@@ -1,0 +1,11 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#about {
+  max-width: 100vw;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  display: grid;
+  place-content: center;
+}

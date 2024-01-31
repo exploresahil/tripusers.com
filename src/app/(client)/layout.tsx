@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import "./scss/globals.scss";
 import Header from "@/src/components/default/header/Header";
@@ -20,11 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <Header />
-        <main>{children}</main>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Header />
+          <main>{children}</main>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

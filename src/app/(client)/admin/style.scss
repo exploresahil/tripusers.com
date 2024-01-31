@@ -40,22 +40,29 @@
       padding: 10px 20px;
     }
 
-    .refetch {
-      padding: 10px;
-      background-color: $dark;
-      color: $light;
-    }
+    .refresh-signout {
+      display: flex;
+      gap: 10px;
 
-    .loading {
-      background-color: $red;
-      border: none;
+      button {
+        background-color: $red;
+        border: none;
+        padding: 10px;
+        background-color: $dark;
+        color: $light;
+      }
 
-      svg {
-        animation: rotate 1s ease-in-out infinite;
+      .loading {
+        background-color: $red;
+        border: none;
 
-        @keyframes rotate {
-          to {
-            transform: rotate(360deg);
+        svg {
+          animation: rotate 1s ease-in-out infinite;
+
+          @keyframes rotate {
+            to {
+              transform: rotate(360deg);
+            }
           }
         }
       }
@@ -111,6 +118,12 @@
       height: calc(100vh - 48vh);
       height: calc(100dvh - 48dvh);
       overflow-y: scroll;
+
+      thead {
+        position: sticky;
+        background-color: $light;
+        top: 1px;
+      }
 
       table {
         width: 100%;

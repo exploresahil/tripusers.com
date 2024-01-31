@@ -1,9 +1,13 @@
 "use client";
+import { GoSignOut } from "react-icons/go";
 import { IoMdDownload } from "react-icons/io";
 import { BsArrowClockwise } from "react-icons/bs";
 import "./style.scss";
 import { useEffect, useRef, useState } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
+import { SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
+
 interface dataTypes {
   id: number;
   name: string;
@@ -16,6 +20,7 @@ const page = () => {
     "contact"
   );
   const conatctTableRef = useRef<HTMLTableElement | null>(null);
+  const router = useRouter();
 
   const fetchData = () => {
     setLoading(true);
@@ -95,12 +100,19 @@ const page = () => {
               Enquiries
             </button>
           </div>
-          <button
-            className={`refetch ${loading ? "loading" : ""}`}
-            onClick={() => fetchData()}
-          >
-            <BsArrowClockwise />
-          </button>
+          <div className="refresh-signout">
+            <button
+              className={`refetch ${loading ? "loading" : ""}`}
+              onClick={() => fetchData()}
+            >
+              <BsArrowClockwise />
+            </button>
+            <button>
+              <SignOutButton signOutCallback={() => router.push("/")}>
+                <GoSignOut />
+              </SignOutButton>
+            </button>
+          </div>
         </div>
         <div className="tabs">
           {activeTab === "contact" && (

@@ -1,9 +1,17 @@
 "use client";
-
-import CustomiseForm from "@/src/components/forms/CustomiseForm";
+import { useRouter } from "next/navigation";
+import "./style.scss";
+import { SignOutButton } from "@clerk/nextjs";
 
 const page = () => {
-  return <section id="about"></section>;
+  const router = useRouter();
+  return (
+    <section id="about">
+      <SignOutButton signOutCallback={() => router.push("/")}>
+        Signout
+      </SignOutButton>
+    </section>
+  );
 };
 
 export default page;
