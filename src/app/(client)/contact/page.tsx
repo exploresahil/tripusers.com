@@ -1,4 +1,6 @@
 "use client";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { AiFillPhone } from "react-icons/ai";
 
 import { MdEmail } from "react-icons/md";
 import "./style.scss";
@@ -43,7 +45,7 @@ const ContactUs = () => {
           <h1>Contact Us today</h1>
           <div className="info-con">
             <div className="icon">
-              <BiPhoneCall />
+              <AiFillPhone />
               <p>call</p>
             </div>
             <div className="info">
@@ -78,7 +80,7 @@ const ContactUs = () => {
               />
             </div>
             <button type="submit">
-              <BiPhoneCall />
+              <BsFillTelephoneFill />
               Request Call Back
             </button>
           </form>

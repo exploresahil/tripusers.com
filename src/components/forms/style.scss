@@ -96,6 +96,7 @@
         textarea {
           padding: 10px;
         }
+
         .data-container {
           display: flex;
           flex-direction: column;
@@ -160,7 +161,9 @@
     .form-container {
       width: auto;
       height: auto;
+      overflow-y: visible;
     }
+
     .form-main {
       flex-direction: row;
       justify-content: space-between;
@@ -175,13 +178,16 @@
         width: 300px;
 
         form {
+
           input,
           textarea {
             border: 1px solid rgba(0, 0, 0, 0.5);
           }
+
           input {
             height: 30px;
           }
+
           button {
             height: 30px;
           }

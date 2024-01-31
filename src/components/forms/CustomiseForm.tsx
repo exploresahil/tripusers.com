@@ -19,7 +19,7 @@ const schema = z.object({
     .string()
     .min(10)
     .regex(/^\+(?:\d\s?){10,15}\d$/, {
-      message: "phone number not valid (country code required)",
+      message: "The phone number is not valid; a country code is required.",
     }),
   date: z.string(),
   guest: z.string().min(0),
@@ -149,7 +149,7 @@ const CustomiseForm = ({ onClick }: props) => {
                   minLength: {
                     value: 10,
                     message:
-                      "Phone No must be atleast 10 digits and countrycode is required",
+                      "Phone number must be at least 10 digits, and a country code is required.",
                   },
                 })}
                 type="text"
@@ -161,21 +161,23 @@ const CustomiseForm = ({ onClick }: props) => {
               <div className="data-container">
                 <input
                   {...register("date")}
-                  type="date"
+                  type="text"
+                  onFocus={(e) => (e.currentTarget.type = "date")}
+                  onBlur={(e) => (e.currentTarget.type = "text")}
                   placeholder="Travel Date"
                 />
                 <input
                   {...register("guest")}
                   type="number"
                   min={0}
-                  placeholder="Number of Guest"
+                  placeholder="Number of guests."
                 />
               </div>
               <textarea
                 {...register("message", {
                   required: "Message is required",
                 })}
-                placeholder="Tell us where you want to go ?"
+                placeholder="Tell us where you would like to go?"
                 rows={5}
               />
               {errors.message && (
