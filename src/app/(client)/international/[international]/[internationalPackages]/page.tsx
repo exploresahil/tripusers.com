@@ -24,6 +24,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -114,7 +115,12 @@ const page = ({ params }: Props) => {
           <div className="text-container">
             <div className="title">
               <h2>{data?.title}</h2>
-              <p>{data?.timeline}</p>
+              <div className="tags">
+                <p>{data?.timeline}</p>
+                <Link href={`/international/${data?.place.slug.current}`}>
+                  #{data?.place.name}
+                </Link>
+              </div>
             </div>
             <div className="icons">
               <RiHotelFill />
