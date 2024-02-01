@@ -41,7 +41,7 @@ const ContactUs = () => {
       });
     } else {
       fetch(
-        "https://script.google.com/macros/s/AKfycbx1ImXBCxylm5-BlTKlR0n0QmGVQ35TWtrDMBhsHUJlZYOj3YhZ2hvnOBABKX05eIAb/exec?action=addData",
+        "https://script.google.com/macros/s/AKfycbzOKOIGA8gjND4d30LJ99C66dGOSUkbKHvZsclGqmuKZct_QNi-5Xm8s9BMgyz9A6U4/exec?action=addData",
         {
           method: "POST",
           body: JSON.stringify({
