@@ -20,9 +20,9 @@ const Header = () => {
     fetchBrand();
   }, []);
 
-  const logo = brandData[0]?.headerImage;
-  const logoMark = brandData[0]?.logoMark;
-  const darkLogo = brandData[0]?.darkImage;
+  // const logo = brandData[0]?.headerImage;
+  // const logoMark = brandData[0]?.logoMark;
+  // const darkLogo = brandData[0]?.darkImage;
 
   const handleScroll = () => {
     // Check if the user has scrolled down enough to trigger the change
@@ -45,14 +45,16 @@ const Header = () => {
       <Link href="/" className="logo-container">
         {brandData[0]?.darkImage && brandData[0]?.headerImage && (
           <Image
-            src={isScrolled ? darkLogo : logo}
+            src={
+              isScrolled ? brandData[0]?.darkImage : brandData[0]?.headerImage
+            }
             alt="tripusers.com logo"
             fill
             sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
           />
         )}
       </Link>
-      <Menu logo={logoMark} />
+      {brandData[0]?.logoMark && <Menu logo={brandData[0]?.logoMark} />}
     </header>
   );
 };
