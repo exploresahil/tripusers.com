@@ -120,77 +120,79 @@ const HeroSection = () => {
 
   return (
     <section id="heroSec" ref={container}>
-      <Swiper
-        effect={"fade"}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
-        //navigation={true}
-        onSlideChange={onSildeChange}
-        loop={true}
-        modules={[EffectFade, Navigation, Autoplay]}
-        className="mySwiper"
-        speed={500}
-        allowTouchMove={false}
-        slidesPerView={1}
-        ref={swiperRef}
-      >
-        <SwiperSlide className="swiperSlide-card">
-          <div className="bg-container">
-            <div className="bg" />
-            <Image
-              src={data[0]?.heroImage}
-              alt="hero background"
-              fill
-              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-            />
-          </div>
-          <div className="text-container">
-            <p>{data[0]?.title}</p>
-            <h2>{data[0]?.place.name}</h2>
-            <Link href={`/international/${data[0]?.place.slug.current}`}>
-              Read More
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide-card">
-          <div className="bg-container">
-            <div className="bg" />
-            <Image
-              src={data[1]?.heroImage}
-              alt="hero background"
-              fill
-              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-            />
-          </div>
-          <div className="text-container">
-            <p>{data[1]?.title}</p>
-            <h2>{data[1]?.place.name}</h2>
-            <Link href={`/international/${data[1]?.place.slug.current}`}>
-              Read More
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="swiperSlide-card">
-          <div className="bg-container">
-            <div className="bg" />
-            <Image
-              src={data[2]?.heroImage}
-              alt="hero background"
-              fill
-              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-            />
-          </div>
-          <div className="text-container">
-            <p>{data[2]?.title}</p>
-            <h2>{data[2]?.place.name}</h2>
-            <Link href={`/international/${data[2]?.place.slug.current}`}>
-              Read More
-            </Link>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      {data.length !== 0 && (
+        <Swiper
+          effect={"fade"}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+          }}
+          //navigation={true}
+          onSlideChange={onSildeChange}
+          loop={true}
+          modules={[EffectFade, Navigation, Autoplay]}
+          className="mySwiper"
+          speed={500}
+          allowTouchMove={false}
+          slidesPerView={1}
+          ref={swiperRef}
+        >
+          <SwiperSlide className="swiperSlide-card">
+            <div className="bg-container">
+              <div className="bg" />
+              <Image
+                src={data[0]?.heroImage}
+                alt="hero background"
+                fill
+                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+              />
+            </div>
+            <div className="text-container">
+              <p>{data[0]?.title}</p>
+              <h2>{data[0]?.place.name}</h2>
+              <Link href={`/international/${data[0]?.place.slug.current}`}>
+                Read More
+              </Link>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="swiperSlide-card">
+            <div className="bg-container">
+              <div className="bg" />
+              <Image
+                src={data[1]?.heroImage}
+                alt="hero background"
+                fill
+                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+              />
+            </div>
+            <div className="text-container">
+              <p>{data[1]?.title}</p>
+              <h2>{data[1]?.place.name}</h2>
+              <Link href={`/international/${data[1]?.place.slug.current}`}>
+                Read More
+              </Link>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="swiperSlide-card">
+            <div className="bg-container">
+              <div className="bg" />
+              <Image
+                src={data[2]?.heroImage}
+                alt="hero background"
+                fill
+                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+              />
+            </div>
+            <div className="text-container">
+              <p>{data[2]?.title}</p>
+              <h2>{data[2]?.place.name}</h2>
+              <Link href={`/international/${data[2]?.place.slug.current}`}>
+                Read More
+              </Link>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      )}
 
       <div className="info-container">
         {dataInfo.map((item, index) => (
