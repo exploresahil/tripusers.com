@@ -16,6 +16,7 @@ interface dataTypes {
 }
 const Admin = () => {
   const [contactData, setContactData] = useState<dataTypes[]>([]);
+  const [enquiryData, setEnquiryData] = useState<dataTypes[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<"contact" | "enquiries">(
     "contact"
@@ -55,11 +56,46 @@ const Admin = () => {
       });
   };
 
+  const fetchEnquiryData = () => {
+    setLoading(true);
+    console.log("Fetching..");
+
+    fetch(
+      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=getEnquiry",
+      {
+        method: "GET",
+      }
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        const sortedData = result.data.sort(
+          (a: dataTypes, b: dataTypes) => b.id - a.id
+        );
+        setEnquiryData(sortedData);
+      })
+      .catch((error) => {
+        console.error("Error fetching contactData:", error);
+        setLoading(false);
+      })
+      .finally(() => {
+        console.log("Finished fetching contactData");
+
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     fetchData();
+    fetchEnquiryData();
   }, []);
 
   //console.log("contactData=>", contactData);
+  console.log("enquiryData=>", enquiryData);
 
   const generateFilename = (prefix: string) => {
     const date = new Date();
@@ -130,7 +166,7 @@ const Admin = () => {
                       <th>Sr/No</th>
                       <th>Name</th>
                       <th>Phone Number</th>
-                      <th>CreateAt</th>
+                      <th>Submitted at</th>
                     </tr>
                   </thead>
                   <tbody>

@@ -315,10 +315,10 @@
 
         .line {
           width: 1px;
-          height: 100%;
+          height: auto;
           margin: 0;
           border: none;
-          border-left: 1px dashed $yellow;
+          border-left: 2px dashed $yellow;
         }
 
         .cta-container {

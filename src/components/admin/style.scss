@@ -130,7 +130,7 @@
       border-radius: 5px;
       height: calc(100vh - 48vh);
       height: calc(100dvh - 48dvh);
-      overflow-y: scroll;
+      overflow: scroll;
 
       thead {
         position: sticky;
@@ -139,7 +139,7 @@
       }
 
       table {
-        width: 100%;
+        width: 500px;
 
         th,
         td {
