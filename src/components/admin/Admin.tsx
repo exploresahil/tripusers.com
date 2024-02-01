@@ -1,12 +1,11 @@
 "use client";
-import { GoSignOut } from "react-icons/go";
+
 import { IoMdDownload } from "react-icons/io";
 import { BsArrowClockwise } from "react-icons/bs";
 import "./style.scss";
 import { useEffect, useRef, useState } from "react";
 import { useDownloadExcel } from "react-export-table-to-excel";
-import { SignOutButton, UserButton, auth } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { UserButton } from "@clerk/nextjs";
 
 interface dataTypes {
   id: number;
