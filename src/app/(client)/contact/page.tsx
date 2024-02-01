@@ -8,34 +8,60 @@ import Image from "next/image";
 import BGImage from "@/src/public/assets/contact-us-bg.svg";
 import { BiPhoneCall } from "react-icons/bi";
 import { useState } from "react";
+import { z } from "zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+const schema = z.object({
+  name: z.string().min(1),
+  phone_number: z
+    .string()
+    .min(10)
+    .regex(/^\+(?:\d\s?){10,15}\d$/, {
+      message: "The phone number is not valid; a country code is required.",
+    }),
+});
+type formFields = {
+  name: string;
+  phone_number: string;
+};
 const ContactUs = () => {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setError,
+    reset,
+  } = useForm<formFields>();
+  const onSubmitForm: SubmitHandler<formFields> = (data) => {
+    const error = schema.safeParse(data);
+    if (!error.success) {
+      error.error.issues.map((v: any) => {
+        //console.log(v);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    fetch(
-      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=addData",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: name,
-          phone_number: phoneNumber,
-        }),
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          console.log("Data successfully submitted!");
-          alert("Data successfully submitted!");
-        } else {
-          console.error("Failed to submit data");
-        }
-      })
-      .catch((error) => {
-        console.error("Error submitting data:", error);
+        setError(v.path[0], { message: v.message });
       });
+    } else {
+      fetch(
+        "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=addData",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            ...error.data,
+          }),
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            console.log("Data successfully submitted!");
+            alert("Data successfully submitted!");
+            reset();
+          } else {
+            console.error("Failed to submit data");
+          }
+        })
+        .catch((error) => {
+          console.error("Error submitting data:", error);
+        });
+    }
   };
 
   return (
@@ -63,21 +89,29 @@ const ContactUs = () => {
           </div>
         </div>
         <div className="body">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(onSubmitForm)}>
             <label>Want us to call you?</label>
             <div className="input-cont">
               <input
+                {...register("name", {
+                  required: "Name is required",
+                })}
                 type="text"
                 placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
               />
+              {errors.name && (
+                <p style={{ color: "tomato" }}>{errors.name.message}</p>
+              )}
               <input
+                {...register("phone_number", {
+                  required: "phone number is required",
+                })}
                 type="tel"
                 placeholder="Phone number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
               />
+              {errors.phone_number && (
+                <p style={{ color: "tomato" }}>{errors.phone_number.message}</p>
+              )}
             </div>
             <button type="submit">
               <BsFillTelephoneFill />

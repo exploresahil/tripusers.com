@@ -64,13 +64,32 @@ const CustomiseForm = ({ onClick }: props) => {
         setError(v.path[0], { message: v.message });
       });
     } else {
-      //console.log(data);
       setIsSubmit(true);
-      setTimeout(() => {
-        setIsSubmit(false);
-        reset();
-        console.log("in 500", data);
-      }, 5000);
+      fetch(
+        "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=addEnquiries",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            ...error.data,
+          }),
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            console.log("Data successfully submitted!");
+            alert("Data successfully submitted!");
+            reset();
+          } else {
+            console.error("Failed to submit data");
+          }
+        })
+        .catch((error) => {
+          console.error("Error submitting data:", error);
+        })
+        .finally(() => {
+          setIsSubmit(false);
+        });
+      //console.log(data);
     }
   };
   useGSAP(() => {
