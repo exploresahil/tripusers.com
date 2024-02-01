@@ -156,6 +156,8 @@
   }
 }
 
+//*---------->> Desktop
+
 @media screen and (min-width: 1025px) {
   #CustomiseForm {
     .form-container {
@@ -178,7 +180,6 @@
         width: 300px;
 
         form {
-
           input,
           textarea {
             border: 1px solid rgba(0, 0, 0, 0.5);
