@@ -21,6 +21,7 @@ interface enquiryDataTypes {
   date: string;
   guest: number;
   message: string;
+  createAt: string;
 }
 
 const Admin = () => {
@@ -31,6 +32,7 @@ const Admin = () => {
     "contact"
   );
   const conatctTableRef = useRef<HTMLTableElement | null>(null);
+  const enquiriesTableRef = useRef<HTMLTableElement | null>(null);
 
   const fetchData = () => {
     setLoading(true);
@@ -104,7 +106,7 @@ const Admin = () => {
   }, []);
 
   //console.log("contactData=>", contactData);
-  console.log("enquiryData=>", enquiryData);
+  //console.log("enquiryData=>", enquiryData);
 
   const generateFilename = (prefix: string) => {
     const date = new Date();
@@ -121,7 +123,12 @@ const Admin = () => {
   const { onDownload: contactDownload } = useDownloadExcel({
     currentTableRef: conatctTableRef.current,
     filename: generateFilename("Contact-sheet"),
-    sheet: "Orders",
+    sheet: "Contact",
+  });
+  const { onDownload: enquiriesDownload } = useDownloadExcel({
+    currentTableRef: enquiriesTableRef.current,
+    filename: generateFilename("Enquiry-sheet"),
+    sheet: "Enquiry",
   });
 
   return (
@@ -156,40 +163,86 @@ const Admin = () => {
           </div>
         </div>
         <div className="tabs">
-          {activeTab === "contact" && (
-            <div className="table-title">
-              <h3>Contact Form Data</h3>
-              <button onClick={contactDownload}>
-                <IoMdDownload />
-              </button>
-            </div>
-          )}
+          <>
+            {activeTab === "contact" && (
+              <div className="table-title">
+                <h3>Contact Form Data</h3>
+                <button onClick={contactDownload}>
+                  <IoMdDownload />
+                </button>
+              </div>
+            )}
+          </>
+          <>
+            {activeTab === "enquiries" && (
+              <div className="table-title">
+                <h3>Enquiries Form Data</h3>
+                <button onClick={enquiriesDownload}>
+                  <IoMdDownload />
+                </button>
+              </div>
+            )}
+          </>
           {loading ? (
             <p>Loading Data...</p>
           ) : (
             <div className="table-container">
-              {activeTab === "contact" && (
-                <table ref={conatctTableRef}>
-                  <thead>
-                    <tr>
-                      <th>Sr/No</th>
-                      <th>Name</th>
-                      <th>Phone Number</th>
-                      <th>Submitted at</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {contactData.map((data, index) => (
-                      <tr key={index}>
-                        <td>{data.id}</td>
-                        <td>{data.name}</td>
-                        <td>{data.phone_number}</td>
-                        <td>{data.createAt}</td>
+              <>
+                {activeTab === "contact" && (
+                  <table ref={conatctTableRef}>
+                    <thead>
+                      <tr>
+                        <th>Sr/No</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Submitted at</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
+                    </thead>
+                    <tbody>
+                      {contactData.map((data, index) => (
+                        <tr key={index}>
+                          <td>{data.id}</td>
+                          <td>{data.name}</td>
+                          <td>{data.phone_number}</td>
+                          <td>{data.createAt}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </>
+              <>
+                {activeTab === "enquiries" && (
+                  <table ref={enquiriesTableRef}>
+                    <thead>
+                      <tr>
+                        <th>Sr/No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Travel Date</th>
+                        <th>Guest</th>
+                        <th>Message</th>
+                        <th>Submitted at</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {enquiryData.map((data, index) => (
+                        <tr key={index}>
+                          <td>{data.id}</td>
+                          <td>{data.name}</td>
+                          <td>{data.email}</td>
+                          <td>{data.phone}</td>
+                          <td>{data.date}</td>
+                          <td>{data.guest}</td>
+                          <td>{data.message}</td>
+                          <td>{data.createAt}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </>
             </div>
           )}
         </div>

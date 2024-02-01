@@ -139,12 +139,13 @@
       }
 
       table {
-        width: 500px;
+        width: 100%;
 
         th,
         td {
           text-align: left;
           padding: 5px;
+          width: min-content;
         }
       }
     }
