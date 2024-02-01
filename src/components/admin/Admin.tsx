@@ -37,7 +37,7 @@ const Admin = () => {
     console.log("Fetching..");
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=getData",
+      "https://script.google.com/macros/s/AKfycbzOKOIGA8gjND4d30LJ99C66dGOSUkbKHvZsclGqmuKZct_QNi-5Xm8s9BMgyz9A6U4/exec?action=getData",
       {
         method: "GET",
       }
@@ -70,7 +70,7 @@ const Admin = () => {
     console.log("Fetching..");
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=getEnquiries",
+      "https://script.google.com/macros/s/AKfycbzOKOIGA8gjND4d30LJ99C66dGOSUkbKHvZsclGqmuKZct_QNi-5Xm8s9BMgyz9A6U4/exec?action=getEnquiries",
       {
         method: "GET",
       }
