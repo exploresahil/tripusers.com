@@ -10,7 +10,8 @@ const page = () => {
   return (
     <>
       {userId === process.env.DEVELOPER_ID_SAHIL ||
-      userId === process.env.DEVELOPER_ID_PARAG ? (
+      userId === process.env.DEVELOPER_ID_PARAG ||
+      userId === process.env.ADMIN_ID_TRIPUSERS ? (
         <Admin />
       ) : (
         <NotAdmin />

@@ -53,6 +53,7 @@ const page = ({ params }: Props) => {
 
   return (
     <>
+      {mobileForm && <CustomiseForm onClick={() => setMobileForm(false)} />}
       <section id="internationalSlugHero">
         <Swiper
           effect={"fade"}
@@ -158,9 +159,6 @@ const page = ({ params }: Props) => {
                         Quick Enquiry
                       </button>
                     </div>
-                    {mobileForm && (
-                      <CustomiseForm onClick={() => setMobileForm(false)} />
-                    )}
                   </div>
                 </div>
               ))}
