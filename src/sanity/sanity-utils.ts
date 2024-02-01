@@ -5,7 +5,7 @@ import { hero } from "@/src/types/hero";
 import { heroInfo } from "@/src/types/heroInfo";
 
 import { Domestic } from "../types/domestic";
-import { international } from "../types/international";
+import { international, internationalPackages } from "../types/international";
 
 //*------------------> Brand
 
@@ -139,6 +139,43 @@ export async function getInternationalSlug(
       },
     }`,
     { slug } // Pass parameters here if needed
+  );
+}
+
+export async function getInternationalPackagesSlug(
+  slug: string
+): Promise<internationalPackages> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "internationalPackages" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      place->{name, slug},
+      "packageImages": packageImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      timeline,
+      deal,
+      price,
+      priceSubtitle,
+      aboutTheTour,
+      "itinerary": itinerary[] {
+        "title": title,
+        "day": day,
+        "description": description,
+        "content": content[] {
+          "title": title,
+          "description": description,
+          "images": images[] {
+            "_id": asset->_id,
+            "url": asset->url,
+          }
+        }
+      },
+    }`,
+    { slug }
   );
 }
 

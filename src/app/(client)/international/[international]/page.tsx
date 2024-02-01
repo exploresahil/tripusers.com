@@ -34,7 +34,7 @@ const page = ({ params }: Props) => {
   const slug = params.international;
 
   useEffect(() => {
-    async function fetchCountrySlug() {
+    async function fetchInternationalSlug() {
       try {
         const data = await getInternationalSlug(slug);
         setData(data);
@@ -42,7 +42,7 @@ const page = ({ params }: Props) => {
         console.error("Error fetching data:", error);
       }
     }
-    fetchCountrySlug();
+    fetchInternationalSlug();
   }, [slug]);
 
   //console.log("internationalSlugData->", data);

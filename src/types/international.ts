@@ -6,6 +6,7 @@ export type internationalPackages = {
   slug: {
     current: string;
   };
+  place: international;
   packageImages: {
     _id: string;
     url: string;
@@ -18,7 +19,7 @@ export type internationalPackages = {
   itinerary: {
     title: string;
     day: number;
-    description: string;
+    description: PortableTextBlock[];
     content: {
       title: string;
       description: PortableTextBlock[];
