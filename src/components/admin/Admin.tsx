@@ -14,9 +14,19 @@ interface dataTypes {
   phone_number: number;
   createAt: string;
 }
+interface enquiryDataTypes {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+  guest: number;
+  message: string;
+}
+
 const Admin = () => {
   const [contactData, setContactData] = useState<dataTypes[]>([]);
-  const [enquiryData, setEnquiryData] = useState<dataTypes[]>([]);
+  const [enquiryData, setEnquiryData] = useState<enquiryDataTypes[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<"contact" | "enquiries">(
     "contact"
@@ -61,7 +71,7 @@ const Admin = () => {
     console.log("Fetching..");
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=getEnquiry",
+      "https://script.google.com/macros/s/AKfycbxHcaZh6-x7IUNlJ8eeBDVjlz-l0Top-8TedYapjv96t0Ue_QMChhTLW_2iUUsnQyK-/exec?action=getEnquiries",
       {
         method: "GET",
       }
