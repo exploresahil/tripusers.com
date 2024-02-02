@@ -457,7 +457,11 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
         "_id": asset->_id,
         "url": asset->url,
       },
+<<<<<<< HEAD
       "wildlifePackage": *[_type == "WildLifePackage" && references(^._id)] {
+=======
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
+>>>>>>> 45a8591c3eca4645421b8a160dc2a5c2f33f864b
         _id,
         _createdAt,
         title,
@@ -540,7 +544,7 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
         "url": asset->url,
       },
       isTrending,
-      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,

@@ -1,7 +1,7 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
 const wildlifePackage = {
-  name: "WildLifePackage",
+  name: "wildLifePackage",
   title: "Wild Life Packages",
   type: "document",
   fields: [

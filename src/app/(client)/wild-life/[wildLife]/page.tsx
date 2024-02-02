@@ -48,7 +48,7 @@ const page = ({ params }: Props) => {
     fetchWildLifeSlug();
   }, [slug]);
 
-  console.log("wildLifeSlugData->", data);
+  //console.log("wildLifeSlugData->", data);
 
   if (!data) {
     return <PageLoading />;

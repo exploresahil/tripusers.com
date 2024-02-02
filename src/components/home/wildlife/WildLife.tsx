@@ -1,7 +1,7 @@
 import { getTrendingWildLife } from "@/src/sanity/sanity-utils";
 import "@/src/components/home/domestic/style.scss";
 import { HiLocationMarker } from "react-icons/hi";
-import SwiperContainer from "@/src/components/home/domestic/Swiper";
+import SwiperContainer from "@/src/components/home/wildlife/Swiper";
 import Link from "next/link";
 
 const WildLife = async () => {
