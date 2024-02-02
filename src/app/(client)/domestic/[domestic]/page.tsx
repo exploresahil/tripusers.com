@@ -46,7 +46,7 @@ const page = ({ params }: Props) => {
     fetchDomesticSlug();
   }, [slug]);
 
-  console.log("domesticSlugData->", data);
+  // console.log("domesticSlugData->", data);
 
   if (!data) {
     return <PageLoading />;

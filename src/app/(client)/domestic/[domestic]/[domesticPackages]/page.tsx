@@ -67,7 +67,7 @@ const page = ({ params }: Props) => {
     return <PageLoading />;
   }
 
-  console.log("internationalPackagesSlugData->", data);
+  // console.log("internationalPackagesSlugData->", data);
 
   return (
     <>

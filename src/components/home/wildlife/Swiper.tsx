@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import { wildLife } from "@/src/types/wildlife";
 
 const SwiperContainer = ({ data }: { data: wildLife[] }) => {
-  console.log("data->", data[0].wildlifePackage);
+  // console.log("data->", data[0].wildlifePackage);
 
   return (
     <div className="india-swiper">
@@ -53,14 +53,14 @@ const SwiperContainer = ({ data }: { data: wildLife[] }) => {
 
               <div className="text-container">
                 <h3>{item.name}</h3>
-                {/* {item.wildlifePackage && (
+                {item.wildlifePackage && (
                   <p>
                     Starts from{" "}
                     {item.wildlifePackage.length == 0
                       ? 1500
                       : item.wildlifePackage[0].price.toLocaleString("en-IN")}
                   </p>
-                )} */}
+                )}
               </div>
             </Link>
           </SwiperSlide>
