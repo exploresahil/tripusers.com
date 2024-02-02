@@ -70,118 +70,122 @@ const page = ({ params }: Props) => {
     return <PageLoading />;
   }
 
-  //console.log("internationalPackagesSlugData->", data);
+  console.log("internationalPackagesSlugData->", data);
 
   return (
-    <>
-      <section id="internationalPackagesSlugHero">
-        <Swiper
-          effect={"fade"}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          //navigation={true}
-          //onSlideChange={onSildeChange}
-          loop={true}
-          modules={[EffectFade, Navigation, Autoplay]}
-          className="mySwiper"
-          speed={500}
-          allowTouchMove={false}
-          slidesPerView={1}
-        >
-          {data.packageImages.map((item, index) => (
-            <SwiperSlide key={index} className="swiperSlide-card">
-              <div className="bg-container">
-                <div className="bg" />
-                <Image
-                  src={item.url}
-                  alt="hero background"
-                  fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-        <div className="text-container">
-          <p>Your unforgettable trip</p>
-          <h2>{data?.place.name}</h2>
-        </div>
-      </section>
-
-      <section id="packageSection">
-        <div className="title-container">
+    data && (
+      <>
+        <section id="internationalPackagesSlugHero">
+          <Swiper
+            effect={"fade"}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            //navigation={true}
+            //onSlideChange={onSildeChange}
+            loop={true}
+            modules={[EffectFade, Navigation, Autoplay]}
+            className="mySwiper"
+            speed={500}
+            allowTouchMove={false}
+            slidesPerView={1}
+          >
+            {data.packageImages.map((item, index) => (
+              <SwiperSlide key={index} className="swiperSlide-card">
+                <div className="bg-container">
+                  <div className="bg" />
+                  {item.url && (
+                    <Image
+                      src={item.url}
+                      alt="hero background"
+                      fill
+                      sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    />
+                  )}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
           <div className="text-container">
-            <div className="title">
-              <h2>{data?.title}</h2>
-              <div className="tags">
-                <p>{data?.timeline}</p>
-                <Link href={`/wild-life/${data?.place.slug.current}`}>
-                  #{data?.place.name}
-                </Link>
+            <p>Your unforgettable trip</p>
+            <h2>{data?.place.name}</h2>
+          </div>
+        </section>
+
+        <section id="packageSection">
+          <div className="title-container">
+            <div className="text-container">
+              <div className="title">
+                <h2>{data?.title}</h2>
+                <div className="tags">
+                  <p>{data?.timeline}</p>
+                  <Link href={`/wild-life/${data?.place.slug.current}`}>
+                    #{data?.place.name}
+                  </Link>
+                </div>
+              </div>
+              <div className="icons">
+                <RiHotelFill />
+                <ImSpoonKnife />
+                <FaBus />
+                <FaPlane />
+                <AiFillCamera />
+                <FaPassport />
               </div>
             </div>
-            <div className="icons">
-              <RiHotelFill />
-              <ImSpoonKnife />
-              <FaBus />
-              <FaPlane />
-              <AiFillCamera />
-              <FaPassport />
+            <div className="cta-container">
+              <p className="deal">{data?.deal}</p>
+              <h4>₹ {data?.price.toLocaleString("en-in")}</h4>
+              <p>per Adult</p>
+              <button>Send Enquiry</button>
             </div>
           </div>
-          <div className="cta-container">
-            <p className="deal">{data?.deal}</p>
-            <h4>₹ {data?.price.toLocaleString("en-in")}</h4>
-            <p>per Adult</p>
-            <button>Send Enquiry</button>
-          </div>
-        </div>
-        <div className="package-container">
-          <div className="about-package">
-            <PortableText value={data.aboutTheTour} />
-          </div>
-          <div className="itinerary">
-            <h3 className="itinerary-title">Itinerary</h3>
-            <Accordion className="itinerary-accordion">
-              {data.itinerary.map((item, index) => (
-                <AccordionItem
-                  key={index}
-                  header={`Day ${item.day} `}
-                  title={item.title}
-                  initialEntered={index === 0}
-                >
-                  <div className="desc">
-                    <PortableText value={item.description} />
-                  </div>
-                  {item.content.map((content, index) => (
-                    <div key={index} className="content">
-                      <h4>{content.title}</h4>
-                      <PortableText value={content.description} />
-                      {content.images && (
-                        <div className="images-container">
-                          {content.images.map((img, index) => (
-                            <div key={index} className="img-container">
-                              <Image
-                                src={img.url}
-                                alt="hero background"
-                                fill
-                                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                              />
-                            </div>
-                          ))}
-                        </div>
-                      )}
+          <div className="package-container">
+            <div className="about-package">
+              <PortableText value={data.aboutTheTour} />
+            </div>
+            <div className="itinerary">
+              <h3 className="itinerary-title">Itinerary</h3>
+              <Accordion className="itinerary-accordion">
+                {data.itinerary.map((item, index) => (
+                  <AccordionItem
+                    key={index}
+                    header={`Day ${item.day} `}
+                    title={item.title}
+                    initialEntered={index === 0}
+                  >
+                    <div className="desc">
+                      <PortableText value={item.description} />
                     </div>
-                  ))}
-                </AccordionItem>
-              ))}
-            </Accordion>
+                    {item.content.map((content, index) => (
+                      <div key={index} className="content">
+                        <h4>{content.title}</h4>
+                        <PortableText value={content.description} />
+                        {content.images && (
+                          <div className="images-container">
+                            {content.images.map((img, index) => (
+                              <div key={index} className="img-container">
+                                <Image
+                                  src={img.url}
+                                  alt="hero background"
+                                  fill
+                                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+      </>
+    )
   );
 };
 
