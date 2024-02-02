@@ -1,7 +1,6 @@
 "use client";
 
 import { CgArrowTopRight } from "react-icons/cg";
-import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
 import { BiMenu } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -13,8 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Search from "./Search";
-import { getInternational } from "@/src/sanity/sanity-utils";
-import { international } from "@/src/types/international";
+import { getDomestic, getInternational } from "@/src/sanity/sanity-utils";
 import CustomiseForm from "../../forms/CustomiseForm";
 
 interface props {
@@ -44,7 +42,7 @@ const Menu = (logo: props) => {
   const linksRef = useRef<HTMLDivElement | null>(null);
   const linkRef = useRef<HTMLAnchorElement | null>(null);
   const logoMarkRef = useRef<HTMLAnchorElement | null>(null);
-  const [data, setData] = useState<international[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [mobileForm, setMobileForm] = useState(false);
   const handleCloseMenu = () => {
     gsap.to(navRef.current, {
@@ -111,7 +109,7 @@ const Menu = (logo: props) => {
   });
   useEffect(() => {
     (async () => {
-      setData(await getInternational());
+      setData([...(await getInternational()), ...(await getDomestic())]);
     })();
   }, []);
   return (
