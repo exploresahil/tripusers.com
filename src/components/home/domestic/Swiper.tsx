@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { wildLife } from "@/src/types/wildlife";
 
-const SwiperContainer = ({ data }: { data: wildLife[] }) => {
+const SwiperContainer = ({ data }: { data: any[] }) => {
   //console.log("data->", data[5].wildlifePackage);
 
   return (
