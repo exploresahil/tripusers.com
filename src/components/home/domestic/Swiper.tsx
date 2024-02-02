@@ -8,9 +8,10 @@ import Link from "next/link";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { wildLife } from "@/src/types/wildlife";
 
-const SwiperContainer = ({ data }: { data: Domestic[] }) => {
-  console.log("data->", data[5].domesticPackages);
+const SwiperContainer = ({ data }: { data: wildLife[] }) => {
+  //console.log("data->", data[5].wildlifePackage);
 
   return (
     <div className="india-swiper">
@@ -40,7 +41,7 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="swiperSlide-card">
-            <Link href={`/domestic/${item.slug}`} key={index}>
+            <Link href={`/wild-life/${item.slug}`} key={index}>
               {item.cardImage && (
                 <Image
                   src={item.cardImage}
@@ -52,12 +53,14 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
 
               <div className="text-container">
                 <h3>{item.name}</h3>
-                <p>
-                  Starts from{" "}
-                  {item.domesticPackages.length == 0
-                    ? 1500
-                    : item.domesticPackages[0].price.toLocaleString("en-IN")}
-                </p>
+                {item.wildlifePackage && (
+                  <p>
+                    Starts from{" "}
+                    {item.wildlifePackage.length == 0
+                      ? 1500
+                      : item.wildlifePackage[0].price.toLocaleString("en-IN")}
+                  </p>
+                )}
               </div>
             </Link>
           </SwiperSlide>

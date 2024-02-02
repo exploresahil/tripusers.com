@@ -18,7 +18,7 @@ export type wildlifePackage = {
   itinerary: {
     title: string;
     day: number;
-    description: string;
+    description: PortableTextBlock[];
     content: {
       title: string;
       description: PortableTextBlock[];

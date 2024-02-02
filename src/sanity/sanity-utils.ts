@@ -6,6 +6,7 @@ import { heroInfo } from "@/src/types/heroInfo";
 
 import { Domestic, DomesticPackages } from "../types/domestic";
 import { international, internationalPackages } from "../types/international";
+import { wildLife } from "../types/wildlife";
 
 //*------------------> Brand
 
@@ -367,6 +368,97 @@ export async function getTrendingDomestic(): Promise<Domestic[]> {
         "url": asset->url,
       },
       "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`
+  );
+}
+
+//*------------------> Wild Life
+
+export async function getWildLife(): Promise<wildLife[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "wildlife"] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`
+  );
+}
+
+export async function getTrendingWildLife(): Promise<wildLife[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "wildlife" && isTrending == true] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      isTrending,
+      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,

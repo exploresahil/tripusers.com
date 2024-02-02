@@ -9,12 +9,13 @@ import "swiper/css/effect-fade";
 import { international } from "@/src/types/international";
 import Image from "next/image";
 import { Domestic } from "@/src/types/domestic";
+import { wildLife } from "@/src/types/wildlife";
 
 const SwiperHero = ({
   data,
   title,
 }: {
-  data: international[] | Domestic[];
+  data: international[] | Domestic[] | wildLife[];
   title: string;
 }) => {
   return (

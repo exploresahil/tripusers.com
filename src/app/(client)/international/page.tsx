@@ -32,14 +32,16 @@ const page = async () => {
               <div className="cta-container">
                 <div className="text-container">
                   <h3>{data.name}</h3>
-                  <p>
-                    Starts from{" "}
-                    {data.internationalPackages.length == 0
-                      ? 1500
-                      : data?.internationalPackages[0].price.toLocaleString(
-                          "en-IN"
-                        )}
-                  </p>
+                  {data.internationalPackages && (
+                    <p>
+                      Starts from{" "}
+                      {data.internationalPackages.length == 0
+                        ? 1500
+                        : data?.internationalPackages[0].price.toLocaleString(
+                            "en-IN"
+                          )}
+                    </p>
+                  )}
                 </div>
                 <button>View Details</button>
               </div>

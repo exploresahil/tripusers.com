@@ -33,7 +33,7 @@ const wildlife = {
     },
     {
       name: "bannerImages",
-      title: "Country Images",
+      title: "Banner Images",
       type: "array",
       of: [
         {

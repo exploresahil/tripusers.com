@@ -11,6 +11,8 @@ export default authMiddleware({
     "/international",
     /^\/domestic\/.*/,
     "/domestic",
+    /^\/wild-life\/.*/,
+    "/wild-life",
   ],
 });
 

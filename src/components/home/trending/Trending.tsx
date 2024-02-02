@@ -34,12 +34,16 @@ const Trending = async () => {
             )}
             <div className="text-container">
               <h3>{item.name}</h3>
-              <p>
-                Starts from{" "}
-                {item.internationalPackages.length == 0
-                  ? 1500
-                  : item.internationalPackages[0].price.toLocaleString("en-IN")}
-              </p>
+              {item.internationalPackages && (
+                <p>
+                  Starts from{" "}
+                  {item.internationalPackages.length == 0
+                    ? 1500
+                    : item.internationalPackages[0].price.toLocaleString(
+                        "en-IN"
+                      )}
+                </p>
+              )}
             </div>
           </Link>
         ))}

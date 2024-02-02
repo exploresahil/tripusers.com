@@ -1,21 +1,21 @@
 import SwiperHero from "@/src/components/international/Swiper";
-import { getDomestic, getInternational } from "@/src/sanity/sanity-utils";
+import { getWildLife } from "@/src/sanity/sanity-utils";
 import "@/src/app/(client)/international/style.scss";
 import Image from "next/image";
 import Link from "next/link";
 
 const page = async () => {
-  const domesticData = await getDomestic();
+  const wildLifeData = await getWildLife();
   //console.log("InternationalData->", InternationalData);
 
   return (
     <>
-      <SwiperHero title="India" data={domesticData} />
+      <SwiperHero title="India" data={wildLifeData} />
       <section id="internationalPage">
         <div className="grid">
-          {domesticData.map((data, index) => (
+          {wildLifeData.map((data, index) => (
             <Link
-              href={`/domestic/${data.slug}`}
+              href={`/wild-life/${data.slug}`}
               key={index}
               className="child-container"
             >
@@ -32,12 +32,12 @@ const page = async () => {
               <div className="cta-container">
                 <div className="text-container">
                   <h3>{data.name}</h3>
-                  {data.domesticPackages && (
+                  {data.wildlifePackage && (
                     <p>
                       Starts from{" "}
-                      {data.domesticPackages.length == 0
+                      {data.wildlifePackage.length == 0
                         ? 1500
-                        : data?.domesticPackages[0].price.toLocaleString(
+                        : data?.wildlifePackage[0].price.toLocaleString(
                             "en-IN"
                           )}
                     </p>
