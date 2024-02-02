@@ -15,7 +15,7 @@ const page = async () => {
         <div className="grid">
           {domesticData.map((data, index) => (
             <Link
-              href={`/international/${data.slug}`}
+              href={`/domestic/${data.slug}`}
               key={index}
               className="child-container"
             >
