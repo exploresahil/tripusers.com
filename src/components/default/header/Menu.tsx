@@ -1,7 +1,6 @@
 "use client";
 
 import { CgArrowTopRight } from "react-icons/cg";
-import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
 import { BiMenu } from "react-icons/bi";
 import { AiFillCloseCircle } from "react-icons/ai";
