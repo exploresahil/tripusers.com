@@ -35,6 +35,8 @@ const page = ({ params }: Props) => {
   const slug = params.wildLife;
 
   useEffect(() => {
+    console.log(slug);
+
     async function fetchWildLifeSlug() {
       try {
         const data = await getWildLifeSlug(slug);
@@ -46,7 +48,7 @@ const page = ({ params }: Props) => {
     fetchWildLifeSlug();
   }, [slug]);
 
-  //console.log("wildLifeSlugData->", data);
+  console.log("wildLifeSlugData->", data);
 
   if (!data) {
     return <PageLoading />;

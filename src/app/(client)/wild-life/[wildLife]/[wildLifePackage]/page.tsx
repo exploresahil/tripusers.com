@@ -3,7 +3,10 @@
 import { BiChevronDown } from "react-icons/bi";
 import "@/src/app/(client)/international/[international]/[internationalPackages]/style.scss";
 import PageLoading from "@/src/components/default/loader/PageLoading";
-import { getDomesticPackagesSlug } from "@/src/sanity/sanity-utils";
+import {
+  getDomesticPackagesSlug,
+  getWildlifePackagesSlug,
+} from "@/src/sanity/sanity-utils";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
@@ -54,7 +57,7 @@ const page = ({ params }: Props) => {
   useEffect(() => {
     async function fetchDomesticPackageSlug() {
       try {
-        const data = await getDomesticPackagesSlug(slug);
+        const data = await getWildlifePackagesSlug(slug);
         setData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
