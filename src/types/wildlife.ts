@@ -6,6 +6,7 @@ export type wildlifePackage = {
   slug: {
     current: string;
   };
+  place: wildLife;
   packageImages: {
     _id: string;
     url: string;

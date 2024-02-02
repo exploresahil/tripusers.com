@@ -6,7 +6,7 @@ import { heroInfo } from "@/src/types/heroInfo";
 
 import { Domestic, DomesticPackages } from "../types/domestic";
 import { international, internationalPackages } from "../types/international";
-import { wildLife } from "../types/wildlife";
+import { wildLife, wildlifePackage } from "../types/wildlife";
 
 //*------------------> Brand
 
@@ -442,6 +442,88 @@ export async function getWildLife(): Promise<wildLife[]> {
         }
       },
     }`
+  );
+}
+
+export async function getWildLifeSlug(slug: string): Promise<wildLife> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "wildlife" && slug.current == $slug][0]  {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`,
+    { slug }
+  );
+}
+
+export async function getWildlifePackagesSlug(
+  slug: string
+): Promise<wildlifePackage> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "wildlifePackage" && slug.current == $slug][0]  {
+     _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      place->{name, slug},
+      "packageImages": packageImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      timeline,
+      deal,
+      price,
+      priceSubtitle,
+      aboutTheTour,
+      "itinerary": itinerary[] {
+        "title": title,
+        "day": day,
+        "description": description,
+        "content": content[] {
+          "title": title,
+          "description": description,
+          "images": images[] {
+            "_id": asset->_id,
+            "url": asset->url,
+          }
+        }
+      },
+    }`,
+    { slug }
   );
 }
 

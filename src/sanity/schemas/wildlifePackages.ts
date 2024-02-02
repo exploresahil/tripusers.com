@@ -19,8 +19,8 @@ const wildlifePackage = {
       },
     },
     {
-      name: "wildLife",
-      title: "Wild Life",
+      name: "place",
+      title: "Place",
       type: "reference",
       to: [{ type: "wildlife" }],
     },
