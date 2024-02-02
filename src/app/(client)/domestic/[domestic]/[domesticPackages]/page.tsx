@@ -114,7 +114,7 @@ const page = ({ params }: Props) => {
               <h2>{data?.title}</h2>
               <div className="tags">
                 <p>{data?.timeline}</p>
-                <Link href={`/international/${data?.place.slug.current}`}>
+                <Link href={`/domestic/${data?.place.slug.current}`}>
                   #{data?.place.name}
                 </Link>
               </div>
