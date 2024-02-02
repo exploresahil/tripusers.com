@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const page = async () => {
   const wildLifeData = await getWildLife();
-  //console.log("InternationalData->", InternationalData);
+  //console.log("wildLifelData->", wildLifeData[0].wildlifePackage);
 
   return (
     <>
@@ -32,7 +32,7 @@ const page = async () => {
               <div className="cta-container">
                 <div className="text-container">
                   <h3>{data.name}</h3>
-                  {data.wildlifePackage && (
+                  {/*  {data.wildlifePackage && (
                     <p>
                       Starts from{" "}
                       {data.wildlifePackage.length == 0
@@ -41,7 +41,7 @@ const page = async () => {
                             "en-IN"
                           )}
                     </p>
-                  )}
+                  )} */}
                 </div>
                 <button>View Details</button>
               </div>

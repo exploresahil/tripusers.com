@@ -413,7 +413,7 @@ export async function getWildLife(): Promise<wildLife[]> {
         "_id": asset->_id,
         "url": asset->url,
       },
-      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,
@@ -457,7 +457,7 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
         "_id": asset->_id,
         "url": asset->url,
       },
-      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,
@@ -494,7 +494,7 @@ export async function getWildlifePackagesSlug(
   slug: string
 ): Promise<wildlifePackage> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "wildlifePackage" && slug.current == $slug][0]  {
+    groq`*[_type == "WildlifePackage" && slug.current == $slug][0]  {
      _id,
       _createdAt,
       title,
@@ -540,7 +540,7 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
         "url": asset->url,
       },
       isTrending,
-      "wildlifePackage": *[_type == "wildlifePackage" && references(^._id)] {
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,
