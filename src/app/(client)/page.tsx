@@ -1,5 +1,5 @@
 import Loader from "@/src/components/default/loader/Loader";
-import CustomiseForm from "@/src/components/forms/CustomiseForm";
+import Domestic from "@/src/components/home/domestic/Domestic";
 import HeroSection from "@/src/components/home/hero/HeroSection";
 import Trending from "@/src/components/home/trending/Trending";
 
@@ -9,6 +9,7 @@ export default function Home() {
       <Loader />
       <HeroSection />
       <Trending />
+      <Domestic />
     </>
   );
 }

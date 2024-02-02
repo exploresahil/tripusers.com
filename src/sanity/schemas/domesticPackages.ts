@@ -1,7 +1,7 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
 const domesticPackage = {
-  name: "domesticPackage",
+  name: "domesticPackages",
   title: "Domestic Packages",
   type: "document",
   fields: [

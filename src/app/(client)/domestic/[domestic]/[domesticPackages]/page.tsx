@@ -1,10 +1,9 @@
 "use client";
 
 import { BiChevronDown } from "react-icons/bi";
-import "./style.scss";
+import "@/src/app/(client)/international/[international]/[internationalPackages]/style.scss";
 import PageLoading from "@/src/components/default/loader/PageLoading";
-import { getInternationalPackagesSlug } from "@/src/sanity/sanity-utils";
-import { internationalPackages } from "@/src/types/international";
+import { getDomesticPackagesSlug } from "@/src/sanity/sanity-utils";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
@@ -22,10 +21,11 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import Image from "next/image";
 import Link from "next/link";
+import { DomesticPackages } from "@/src/types/domestic";
 
 type Props = {
   params: {
-    internationalPackages: string;
+    domesticPackages: string;
   };
 };
 
@@ -47,27 +47,27 @@ const AccordionItem = ({ title, header, ...rest }: any) => (
 );
 
 const page = ({ params }: Props) => {
-  const [data, setData] = useState<internationalPackages>();
+  const [data, setData] = useState<DomesticPackages>();
 
-  const slug = params.internationalPackages;
+  const slug = params.domesticPackages;
 
   useEffect(() => {
-    async function fetchInternationalPackageSlug() {
+    async function fetchDomesticPackageSlug() {
       try {
-        const data = await getInternationalPackagesSlug(slug);
+        const data = await getDomesticPackagesSlug(slug);
         setData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
-    fetchInternationalPackageSlug();
+    fetchDomesticPackageSlug();
   }, [slug]);
 
   if (!data) {
     return <PageLoading />;
   }
 
-  //console.log("internationalPackagesSlugData->", data);
+  console.log("internationalPackagesSlugData->", data);
 
   return (
     <>

@@ -4,7 +4,7 @@ import { brand } from "@/src/types/brand";
 import { hero } from "@/src/types/hero";
 import { heroInfo } from "@/src/types/heroInfo";
 
-import { Domestic } from "../types/domestic";
+import { Domestic, DomesticPackages } from "../types/domestic";
 import { international, internationalPackages } from "../types/international";
 
 //*------------------> Brand
@@ -63,12 +63,12 @@ export async function getInternational(): Promise<international[]> {
         "_id": asset->_id,
         "url": asset->url,
       },
-      "InternationalPackages": *[_type == "InternationalPackages" && references(^._id)] {
+      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
         _createdAt,
         title,
         "slug": slug.current,
-        "packageImages" : packageImages[] {
+        "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
         },
@@ -138,7 +138,7 @@ export async function getInternationalSlug(
         }
       },
     }`,
-    { slug } // Pass parameters here if needed
+    { slug }
   );
 }
 
@@ -192,12 +192,12 @@ export async function getTrendingInternational(): Promise<international[]> {
         "url": asset->url,
       },
       isTrending,
-      "InternationalPackages": *[_type == "InternationalPackages" && references(^._id)] | order(price asc){
+      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
         _createdAt,
         title,
         "slug": slug.current,
-        "packageImages" : packageImages[] {
+        "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
         },
@@ -228,10 +228,10 @@ export async function getTrendingInternational(): Promise<international[]> {
 
 export async function getDomestic(): Promise<Domestic[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "domestic"] | order(_createdAt asc) {
+    groq`*[_type == "domestic" ] | order(_createdAt asc) {
       _id,
       _createdAt,
-      stateName,
+      name,
       isTrending,
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
@@ -244,7 +244,134 @@ export async function getDomestic(): Promise<Domestic[]> {
         _createdAt,
         title,
         "slug": slug.current,
-        "packageImages" : packageImages[] {
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`
+  );
+}
+
+export async function getDomesticSlug(slug: string): Promise<Domestic> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "domestic" && slug.current == $slug][0]  {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      },
+    }`,
+    { slug }
+  );
+}
+
+export async function getDomesticPackagesSlug(
+  slug: string
+): Promise<DomesticPackages> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "domesticPackages" && slug.current == $slug][0]  {
+     _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      place->{name, slug},
+      "packageImages": packageImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      timeline,
+      deal,
+      price,
+      priceSubtitle,
+      aboutTheTour,
+      "itinerary": itinerary[] {
+        "title": title,
+        "day": day,
+        "description": description,
+        "content": content[] {
+          "title": title,
+          "description": description,
+          "images": images[] {
+            "_id": asset->_id,
+            "url": asset->url,
+          }
+        }
+      },
+    }`,
+    { slug }
+  );
+}
+
+export async function getTrendingDomestic(): Promise<Domestic[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "domestic" && isTrending == true] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      name,
+      isTrending,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        "packageImages": packageImages[] {
           "_id": asset->_id,
           "url": asset->url,
         },

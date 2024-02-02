@@ -20,9 +20,7 @@ const HeroSection = () => {
   const [dataInfo, setDataInfo] = useState<heroInfo[]>([]);
   const container = useRef<HTMLElement | null>(null);
   const swiperRef = useRef<any>(null);
-  const { contextSafe } = useGSAP({ scope: container });
-  //const activeIndex = swiperRef.current;
-  //const h2Elements = document.querySelectorAll("#heroSec .swiperSlide-card h2");
+  const { contextSafe } = useGSAP({ scope: swiperRef });
 
   useEffect(() => {
     async function fetchHero() {
@@ -32,8 +30,6 @@ const HeroSection = () => {
 
     fetchHero();
   }, []);
-
-  //console.log("link->", data);
 
   useEffect(() => {
     async function fetchHeroInfo() {

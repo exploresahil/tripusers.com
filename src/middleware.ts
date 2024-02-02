@@ -5,10 +5,12 @@ export default authMiddleware({
     "/",
     "/studio",
     "/auth",
-    /^\/international\/.*/,
-    "/international",
     "/contact",
     "/about",
+    /^\/international\/.*/,
+    "/international",
+    /^\/domestic\/.*/,
+    "/domestic",
   ],
 });
 

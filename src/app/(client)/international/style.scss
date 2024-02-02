@@ -1,0 +1,203 @@
+@use "@/src/app/(client)/scss/variables" as *;
+
+#internationalSlugHero {
+  max-width: 100vw;
+  width: 100%;
+  height: 60vh;
+  height: 60dvh;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 20px 20px;
+
+  .text-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    color: $light;
+    margin-top: 20px;
+
+    p {
+      font-family: $cookie;
+      font-size: 1.6rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+    }
+  }
+
+  .mySwiper {
+    width: 100%;
+    height: 100%;
+    background-color: $dark;
+    background: linear-gradient(90deg, $yellow, $red, $yellow);
+    background-size: 200%;
+    animation: skeleton 1s infinite linear;
+
+    @keyframes skeleton {
+      from {
+        background-position: -100% 0;
+      }
+      to {
+        background-position: 100% 0;
+      }
+    }
+
+    .swiperSlide-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .bg-container {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+
+        display: grid;
+        place-content: center;
+
+        .bg {
+          position: absolute;
+          z-index: 2;
+          background-color: $dark;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0.5;
+        }
+
+        img {
+          object-fit: cover;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}
+
+#internationalPage {
+  max-width: 100vw;
+  width: 100%;
+  padding: 20px 4vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+
+    .child-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .img-container {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        position: relative;
+
+        img {
+          object-fit: cover;
+          border-radius: 5px;
+
+          background-color: $dark;
+          background: linear-gradient(90deg, $yellow, $red, $yellow);
+          background-size: 200%;
+          animation: skeleton 1s infinite linear;
+
+          @keyframes skeleton {
+            from {
+              background-position: -100% 0;
+            }
+            to {
+              background-position: 100% 0;
+            }
+          }
+        }
+      }
+      .cta-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .text-container {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          font-size: 1.2rem;
+
+          p {
+            font-size: 1rem;
+            opacity: 0.75;
+          }
+        }
+
+        button {
+          height: fit-content;
+          background-color: $yellow;
+          color: $light;
+          padding: 10px 20px;
+          border-radius: 5px;
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+//*---------->> Tablet
+
+@media screen and (min-width: 820px) {
+  #internationalSlugHero {
+    .text-container {
+      p {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 4rem;
+      }
+    }
+  }
+  #internationalPage {
+    padding: 40px 4vw;
+
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+//*---------->> desktop
+
+@media screen and (min-width: 1025px) {
+  #internationalSlugHero {
+    height: 60vh;
+    height: 60dvh;
+  }
+  #internationalPage {
+    padding: 60px 16vw;
+
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr;
+
+      .child-container {
+        .cta-container {
+          button {
+            padding: 5px 10px;
+          }
+        }
+      }
+    }
+  }
+}

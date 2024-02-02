@@ -20,21 +20,13 @@ const Header = () => {
     fetchBrand();
   }, []);
 
-  // const logo = brandData[0]?.headerImage;
-  // const logoMark = brandData[0]?.logoMark;
-  // const darkLogo = brandData[0]?.darkImage;
-
   const handleScroll = () => {
-    // Check if the user has scrolled down enough to trigger the change
     const scrolled = window.scrollY > 0;
     setIsScrolled(scrolled);
   };
 
   useEffect(() => {
-    // Add scroll event listener when the component mounts
     window.addEventListener("scroll", handleScroll);
-
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
