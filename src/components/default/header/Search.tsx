@@ -23,7 +23,11 @@ const Popover = ({
 }) => {
   return (
     <Link
-      href={`/international/${data.slug}`}
+      href={
+        Object.keys(data).indexOf("domesticPackages") == -1
+          ? `/international/${data.slug}`
+          : `/domestic/${data.slug}`
+      }
       onClick={() => {
         closeFunction();
         menuCloseFunction();
