@@ -1,4 +1,5 @@
 import brand from "./brand";
+import ContactPage from "./contact-page";
 import domestic from "./domestic";
 import domesticPackage from "./domesticPackages";
 import hero from "./hero";
@@ -18,6 +19,7 @@ const schemas = [
   domesticPackage,
   wildlife,
   wildlifePackage,
+  ContactPage,
 ];
 
 export default schemas;
