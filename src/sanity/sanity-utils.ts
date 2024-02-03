@@ -539,7 +539,6 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
         "_id": asset->_id,
         "url": asset->url,
       },
-      isTrending,
       "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,

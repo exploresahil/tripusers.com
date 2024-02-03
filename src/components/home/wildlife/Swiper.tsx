@@ -11,7 +11,7 @@ import "swiper/css/navigation";
 import { wildLife } from "@/src/types/wildlife";
 
 const SwiperContainer = ({ data }: { data: wildLife[] }) => {
-  // console.log("data->", data[0].wildlifePackage);
+  //console.log("data->", data[0].wildlifePackage);
 
   return (
     <div className="india-swiper">

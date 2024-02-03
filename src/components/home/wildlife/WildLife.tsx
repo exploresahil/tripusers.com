@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const WildLife = async () => {
   const wildLifeData = await getTrendingWildLife();
-  //console.log("domesticData->", domesticData);
+  //console.log("domesticData->", wildLifeData[0].wildlifePackage);
 
   return (
     <section id="trendingDomestic">

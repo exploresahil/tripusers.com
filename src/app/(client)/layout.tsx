@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./scss/globals.scss";
 import Header from "@/src/components/default/header/Header";
 import type { Viewport } from "next";
+import Footer from "@/src/components/default/footer/Footer";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <body>
           <Header />
           <main>{children}</main>
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
