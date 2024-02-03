@@ -173,7 +173,7 @@ const Menu = (logo: props) => {
           <button onClick={() => setMobileForm(true)} className="formButton">
             Customise your trip
           </button>
-          <button ref={menuOpenButtonRef}>
+          <button className="menu-button" ref={menuOpenButtonRef}>
             <BiMenu size={40} />
           </button>
 
@@ -187,7 +187,7 @@ const Menu = (logo: props) => {
                   sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
                 />
               </Link>
-              <button ref={menuCloseButtonRef}>
+              <button className="menu-close-button" ref={menuCloseButtonRef}>
                 <AiFillCloseCircle size={40} />
               </button>
             </div>

@@ -260,6 +260,13 @@ header {
       .ipad-menu {
         gap: 2vw;
 
+        .menu-button {
+          transition: color 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+          &:hover {
+            color: $red;
+          }
+        }
+
         .search-container {
           position: relative;
 
@@ -310,6 +317,13 @@ header {
 
         .logo-container {
           padding: 0;
+
+          .menu-close-button {
+            transition: color 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+            &:hover {
+              color: $red;
+            }
+          }
         }
 
         .links {
