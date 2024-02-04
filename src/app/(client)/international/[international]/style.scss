@@ -84,7 +84,7 @@
 #packages {
   max-width: 100vw;
   width: 100%;
-  padding: 20px 4vw;
+  padding: 20px 4vw 40px 4vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -369,7 +369,8 @@
   }
 
   #packages {
-    padding: 20px 16vw;
+    padding: 20px 16vw 40px 16vw;
+    gap: 40px;
 
     .packages-container {
       .package {
