@@ -54,7 +54,7 @@ export async function getHeroInfo(): Promise<heroInfo[]> {
 
 //*------------------> trending
 
-export async function getTrending(): Promise<trending[]> {
+export async function getTrending(): Promise<trending> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "trending"][0]  {
       _id,
