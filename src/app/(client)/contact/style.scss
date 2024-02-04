@@ -92,6 +92,7 @@
         background-color: $yellow;
         height: 40px;
         border-radius: 5px;
+        color: $offLight;
       }
     }
 
@@ -225,6 +226,15 @@
 
     .form-container {
       width: 80%;
+
+      form {
+        button {
+          transition: background 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+          &:hover {
+            background-color: $dark;
+          }
+        }
+      }
     }
 
     .offices-container {

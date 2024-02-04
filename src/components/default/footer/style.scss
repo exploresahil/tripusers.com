@@ -183,6 +183,14 @@ footer {
         .form-item {
           grid-template-columns: 1fr 1fr;
         }
+
+        button {
+          transition: background 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
+          &:hover {
+            background-color: $offLight;
+            color: $dark;
+          }
+        }
       }
 
       .links-container {
