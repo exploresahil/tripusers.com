@@ -218,6 +218,26 @@
       gap: 20px;
     }
 
+    .inclusion-exclusion {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .inclusion,
+      .exclusion {
+        background-color: rgba(6, 255, 155, 0.1);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 5px;
+      }
+
+      .exclusion {
+        background-color: rgba(255, 0, 0, 0.05);
+      }
+    }
+
     .itinerary {
       display: flex;
       flex-direction: column;
@@ -361,6 +381,18 @@
             width: 60%;
             font-size: 1.6rem;
           }
+        }
+      }
+    }
+
+    .package-container {
+      .inclusion-exclusion {
+        flex-direction: row;
+
+        .inclusion,
+        .exclusion {
+          width: 50%;
+          padding: 15px;
         }
       }
     }

@@ -139,6 +139,23 @@ const page = ({ params }: Props) => {
           <div className="about-package">
             <PortableText value={data.aboutTheTour} />
           </div>
+          {data.inclusion && data.exclusion && (
+            <div className="inclusion-exclusion">
+              {data.inclusion && (
+                <div className="inclusion">
+                  <h3>Inclusion</h3>
+                  <PortableText value={data.inclusion} />
+                </div>
+              )}
+              {data.exclusion && (
+                <div className="exclusion">
+                  <h3>Exclusion</h3>
+                  <PortableText value={data.exclusion} />
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="itinerary">
             <h3 className="itinerary-title">Itinerary</h3>
             <Accordion className="itinerary-accordion">
