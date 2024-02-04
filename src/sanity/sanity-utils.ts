@@ -8,6 +8,7 @@ import { Domestic, DomesticPackages } from "../types/domestic";
 import { international, internationalPackages } from "../types/international";
 import { wildLife, wildlifePackage } from "../types/wildlife";
 import { contactUs } from "../types/contact";
+import { trending } from "../types/trending";
 
 //*------------------> Brand
 
@@ -51,6 +52,24 @@ export async function getHeroInfo(): Promise<heroInfo[]> {
   );
 }
 
+//*------------------> trending
+
+export async function getTrending(): Promise<trending[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "trending"][0]  {
+      _id,
+      _createdAt,
+      title,
+      internationalName,
+      internationalSubtitle,
+      domesticName,
+      domesticSubtitle,
+      wildlifeName,
+      wildlifeSubtitle,
+    }`
+  );
+}
+
 //*------------------> International
 
 export async function getInternational(): Promise<international[]> {
@@ -79,6 +98,8 @@ export async function getInternational(): Promise<international[]> {
         price,
         priceSubtitle,
         aboutTheTour,
+        inclusion,
+        exclusion,
         "itinerary": itinerary[] {
           "title": title,
           "day": day,
@@ -125,6 +146,8 @@ export async function getInternationalSlug(
         price,
         priceSubtitle,
         aboutTheTour,
+        inclusion,
+        exclusion,
         "itinerary": itinerary[] {
           "title": title,
           "day": day,
@@ -163,6 +186,8 @@ export async function getInternationalPackagesSlug(
       price,
       priceSubtitle,
       aboutTheTour,
+      inclusion,
+      exclusion,
       "itinerary": itinerary[] {
         "title": title,
         "day": day,
@@ -189,38 +214,12 @@ export async function getTrendingInternational(): Promise<international[]> {
       name,
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
-      "bannerImages": countryImages[] {
-        "_id": asset->_id,
-        "url": asset->url,
-      },
       isTrending,
       "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
         _createdAt,
         title,
-        "slug": slug.current,
-        "packageImages": packageImages[] {
-          "_id": asset->_id,
-          "url": asset->url,
-        },
-        timeline,
-        deal,
         price,
-        priceSubtitle,
-        aboutTheTour,
-        "itinerary": itinerary[] {
-          "title": title,
-          "day": day,
-          "description": description,
-          "content": content[] {
-            "title": title,
-            "description": description,
-            "images": images[] {
-              "_id": asset->_id,
-              "url": asset->url,
-            }
-          }
-        }
       },
     }`
   );
@@ -255,6 +254,8 @@ export async function getDomestic(): Promise<Domestic[]> {
         price,
         priceSubtitle,
         aboutTheTour,
+        inclusion,
+        exclusion,
         "itinerary": itinerary[] {
           "title": title,
           "day": day,
@@ -299,6 +300,8 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
         price,
         priceSubtitle,
         aboutTheTour,
+        inclusion,
+        exclusion,
         "itinerary": itinerary[] {
           "title": title,
           "day": day,
@@ -337,6 +340,8 @@ export async function getDomesticPackagesSlug(
       price,
       priceSubtitle,
       aboutTheTour,
+      inclusion,
+      exclusion,
       "itinerary": itinerary[] {
         "title": title,
         "day": day,
@@ -364,37 +369,11 @@ export async function getTrendingDomestic(): Promise<Domestic[]> {
       isTrending,
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
-      "bannerImages": bannerImages[] {
-        "_id": asset->_id,
-        "url": asset->url,
-      },
       "domesticPackages": *[_type == "domesticPackages" && references(^._id)] {
         _id,
         _createdAt,
         title,
-        "slug": slug.current,
-        "packageImages": packageImages[] {
-          "_id": asset->_id,
-          "url": asset->url,
-        },
-        timeline,
-        deal,
         price,
-        priceSubtitle,
-        aboutTheTour,
-        "itinerary": itinerary[] {
-          "title": title,
-          "day": day,
-          "description": description,
-          "content": content[] {
-            "title": title,
-            "description": description,
-            "images": images[] {
-              "_id": asset->_id,
-              "url": asset->url,
-            }
-          }
-        }
       },
     }`
   );
@@ -428,6 +407,8 @@ export async function getWildLife(): Promise<wildLife[]> {
         price,
         priceSubtitle,
         aboutTheTour,
+        inclusion,
+        exclusion,
         "itinerary": itinerary[] {
           "title": title,
           "day": day,
@@ -472,6 +453,8 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
         price,
         priceSubtitle,
         aboutTheTour,
+        inclusion,
+        exclusion,
         "itinerary": itinerary[] {
           "title": title,
           "day": day,
@@ -510,6 +493,8 @@ export async function getWildlifePackagesSlug(
       price,
       priceSubtitle,
       aboutTheTour,
+      inclusion,
+      exclusion,
       "itinerary": itinerary[] {
         "title": title,
         "day": day,
@@ -536,37 +521,11 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
       name,
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
-      "bannerImages": bannerImages[] {
-        "_id": asset->_id,
-        "url": asset->url,
-      },
       "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,
-        "slug": slug.current,
-        "packageImages": packageImages[] {
-          "_id": asset->_id,
-          "url": asset->url,
-        },
-        timeline,
-        deal,
         price,
-        priceSubtitle,
-        aboutTheTour,
-        "itinerary": itinerary[] {
-          "title": title,
-          "day": day,
-          "description": description,
-          "content": content[] {
-            "title": title,
-            "description": description,
-            "images": images[] {
-              "_id": asset->_id,
-              "url": asset->url,
-            }
-          }
-        }
       },
     }`
   );
@@ -577,20 +536,20 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
 export async function getContactUsInfo(): Promise<contactUs> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "contactUs"][0]{
-      _id,
+     _id,
       _createdAt,
+      title,
+      subtitle,
       "bannerImage":bannerImage.asset->url,
-
-      bannerInfoSubtitle,
-      fromInfo,
+      formInfo,
       Address,
-      Email,
-      Phone,
+      email,
+      phone,
       ourOfficesSubtitle,
       "offices":offices[]{
         "Address":Address,
-        "location":location
+        "place":place
       }
-}`
+    }`
   );
 }

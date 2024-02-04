@@ -16,6 +16,8 @@ export type internationalPackages = {
   price: number;
   priceSubtitle: string;
   aboutTheTour: PortableTextBlock[];
+  inclusion: PortableTextBlock[];
+  exclusion: PortableTextBlock[];
   itinerary: {
     title: string;
     day: number;

@@ -4,18 +4,15 @@ export type contactUs = {
   _id: string;
   _createdAt: Date;
   title: string;
-  bannerImage: {
-    _id: string;
-    url: string;
-  };
-  bannerInfoSubtitle: string;
+  subtitle: string;
+  bannerImage: string;
   formInfo: string;
   Address: PortableTextBlock[];
-  Email: string;
-  Phone: string;
+  email: string;
+  phone: string;
   ourOfficesSubtitle: string;
   offices: {
-    location: string;
+    place: string;
     Address: PortableTextBlock[];
   }[];
 };

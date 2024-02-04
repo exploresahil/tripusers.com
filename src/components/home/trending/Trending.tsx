@@ -1,4 +1,7 @@
-import { getTrendingInternational } from "@/src/sanity/sanity-utils";
+import {
+  getTrending,
+  getTrendingInternational,
+} from "@/src/sanity/sanity-utils";
 import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
@@ -6,6 +9,7 @@ import Link from "next/link";
 
 const Trending = async () => {
   const trendingData = await getTrendingInternational();
+  const trending = await getTrending();
 
   //console.log(trendingData[5].internationalPackages.length);
 
@@ -13,8 +17,8 @@ const Trending = async () => {
     <section id="trending">
       <div className="title-container">
         <HiLocationMarker size={40} />
-        <h2>Trending Destination</h2>
-        <p>These popular destination have a lot to offer</p>
+        <h2>{trending.internationalName}</h2>
+        <p>{trending.internationalSubtitle}</p>
         <Link href="/international">View All</Link>
       </div>
       <div className="trending-grid">

@@ -15,7 +15,9 @@ export type wildlifePackage = {
   deal: string;
   price: number;
   priceSubtitle: string;
+  inclusion: PortableTextBlock[];
   aboutTheTour: PortableTextBlock[];
+  exclusion: PortableTextBlock[];
   itinerary: {
     title: string;
     day: number;

@@ -6,19 +6,24 @@ const ContactPage = {
   type: "document",
   fields: [
     {
+      name: "title",
+      title: "Title",
+      type: "string",
+    },
+    {
+      name: "subtitle",
+      title: "Subtitle",
+      type: "string",
+    },
+    {
       name: "bannerImage",
       title: "Banner image",
       type: "image",
       options: { hotspot: true, sources: [unsplashAssetSource] },
     },
     {
-      name: "bannerInfoSubtitle",
-      title: "banner subtitle",
-      type: "string",
-    },
-    {
-      name: "fromInfo",
-      title: "Promise to client",
+      name: "formInfo",
+      title: "Form Title",
       type: "string",
     },
     {
@@ -28,12 +33,12 @@ const ContactPage = {
       of: [{ type: "block" }],
     },
     {
-      name: "Email",
+      name: "email",
       title: "Email",
       type: "string",
     },
     {
-      name: "Phone",
+      name: "phone",
       title: "Phone",
       type: "string",
     },
@@ -51,8 +56,8 @@ const ContactPage = {
           type: "object",
           fields: [
             {
-              name: "location",
-              title: "Location",
+              name: "place",
+              title: "Place",
               type: "string",
             },
             {

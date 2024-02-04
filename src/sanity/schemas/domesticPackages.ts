@@ -66,6 +66,18 @@ const domesticPackage = {
       of: [{ type: "block" }],
     },
     {
+      name: "inclusion",
+      title: "Inclusion",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "exclusion",
+      title: "Exclusion",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "itinerary",
       title: "Itinerary",
       type: "array",
