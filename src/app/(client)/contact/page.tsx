@@ -6,8 +6,6 @@ import { MdEmail } from "react-icons/md";
 import "./style.scss";
 import Image from "next/image";
 import BGImage from "@/src/public/assets/contact-us-bg.svg";
-import { BiPhoneCall } from "react-icons/bi";
-import { useState } from "react";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 const schema = z.object({
