@@ -6,7 +6,7 @@ import { PortableText } from "@portabletext/react";
 
 const Contact = async () => {
   const contactData = await getContactUsInfo();
-  console.log("contactData-->", contactData.offices);
+  // console.log("contactData-->", contactData.offices);
 
   return (
     <>

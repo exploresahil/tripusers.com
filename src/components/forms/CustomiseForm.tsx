@@ -66,7 +66,7 @@ const CustomiseForm = ({ onClick }: props) => {
     } else {
       setIsSubmit(true);
       fetch(
-        "https://script.google.com/macros/s/AKfycbzOKOIGA8gjND4d30LJ99C66dGOSUkbKHvZsclGqmuKZct_QNi-5Xm8s9BMgyz9A6U4/exec?action=addEnquiries",
+        `${process.env.NEXT_PUBLIC_SANITY_APP_SCRIPT_URL}?action=addEnquiries`,
         {
           method: "POST",
           body: JSON.stringify({

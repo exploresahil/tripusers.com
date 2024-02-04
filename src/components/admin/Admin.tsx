@@ -38,12 +38,9 @@ const Admin = () => {
     setLoading(true);
     console.log("Fetching..");
 
-    fetch(
-      "https://script.google.com/macros/s/AKfycbzOKOIGA8gjND4d30LJ99C66dGOSUkbKHvZsclGqmuKZct_QNi-5Xm8s9BMgyz9A6U4/exec?action=getData",
-      {
-        method: "GET",
-      }
-    )
+    fetch(`${process.env.NEXT_PUBLIC_SANITY_APP_SCRIPT_URL}?action=getData`, {
+      method: "GET",
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -72,7 +69,7 @@ const Admin = () => {
     console.log("Fetching..");
 
     fetch(
-      "https://script.google.com/macros/s/AKfycbzOKOIGA8gjND4d30LJ99C66dGOSUkbKHvZsclGqmuKZct_QNi-5Xm8s9BMgyz9A6U4/exec?action=getEnquiries",
+      `${process.env.NEXT_PUBLIC_SANITY_APP_SCRIPT_URL}?action=getEnquiries`,
       {
         method: "GET",
       }
