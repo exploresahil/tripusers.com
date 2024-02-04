@@ -162,7 +162,7 @@ footer {
 
 @media screen and (min-width: 1025px) {
   footer {
-    padding: 40px 10vw 30px 10vw;
+    padding: 40px 10vw 10px 10vw;
 
     .logo-container {
       width: 15%;
@@ -176,6 +176,7 @@ footer {
       justify-content: space-between;
       border-bottom: 1px solid $yellow;
       margin-bottom: 10px;
+      padding-bottom: 50px;
 
       form {
         width: auto;
@@ -213,6 +214,7 @@ footer {
     }
 
     .footer-footer {
+      padding: 10px 0;
       p {
         span {
           a {
