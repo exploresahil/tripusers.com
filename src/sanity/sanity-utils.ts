@@ -7,6 +7,7 @@ import { heroInfo } from "@/src/types/heroInfo";
 import { Domestic, DomesticPackages } from "../types/domestic";
 import { international, internationalPackages } from "../types/international";
 import { wildLife, wildlifePackage } from "../types/wildlife";
+import { contactUs } from "../types/contact";
 
 //*------------------> Brand
 
@@ -568,5 +569,28 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
         }
       },
     }`
+  );
+}
+
+//* ---------------------> contact us
+
+export async function getContactUsInfo(): Promise<contactUs> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "contactUs"][0]{
+      _id,
+      _createdAt,
+      "bannerImage":bannerImage.asset->url,
+
+      bannerInfoSubtitle,
+      fromInfo,
+      Address,
+      Email,
+      Phone,
+      ourOfficesSubtitle,
+      "offices":offices[]{
+        "Address":Address,
+        "location":location
+      }
+}`
   );
 }
