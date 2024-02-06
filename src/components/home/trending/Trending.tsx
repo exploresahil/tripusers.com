@@ -1,6 +1,6 @@
 import {
   getTrending,
-  getTrendingInternational,
+  getTrendingHomeInternational,
 } from "@/src/sanity/sanity-utils";
 import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Trending = async () => {
-  const trendingData = await getTrendingInternational();
+  const trendingData = await getTrendingHomeInternational();
   const trending = await getTrending();
 
   //console.log("Trending->", trendingData);
@@ -19,7 +19,7 @@ const Trending = async () => {
         <HiLocationMarker size={40} />
         <h2>{trending.internationalName}</h2>
         <p>{trending.internationalSubtitle}</p>
-        <Link href="/international">View All</Link>
+        <Link href="/international/trending">View All</Link>
       </div>
       <div className="trending-grid">
         {trendingData.map((item, index) => (

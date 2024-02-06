@@ -206,6 +206,28 @@ export async function getInternationalPackagesSlug(
   );
 }
 
+export async function getTrendingHomeInternational(): Promise<international[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "international" && isTrendingHome == true] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      isTrending,
+      isTrendingHome,
+      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        price,
+      },
+    }`,
+    {
+      cache: "no-store",
+    }
+  );
+}
 export async function getTrendingInternational(): Promise<international[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "international" && isTrending == true] | order(_createdAt asc) {

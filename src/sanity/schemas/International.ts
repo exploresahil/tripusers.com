@@ -32,6 +32,14 @@ const international = {
       initialValue: false,
     },
     {
+      name: "isTrendingHome",
+      title: "Is trending on Home",
+      type: "boolean",
+      description:
+        "Select true if this country is Trending and show it in home page, false otherwise",
+      initialValue: false,
+    },
+    {
       name: "bannerImages",
       title: "Country Images",
       type: "array",

@@ -42,6 +42,7 @@ export type international = {
   };
   cardImage: string;
   isTrending: boolean;
+  isTrendingHome: boolean;
   bannerImages: {
     _id: string;
     url: string;
