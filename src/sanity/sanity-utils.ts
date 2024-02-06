@@ -223,7 +223,6 @@ export async function getTrendingInternational(): Promise<international[]> {
       },
     }`,
     {
-      next: { revalidate: 60 },
       cache: "no-store",
     }
   );
