@@ -57,3 +57,5 @@ const Trending = async () => {
 };
 
 export default Trending;
+
+export const dynamic = "force-dynamic";
