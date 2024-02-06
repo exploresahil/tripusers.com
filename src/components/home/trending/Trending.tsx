@@ -1,3 +1,4 @@
+"use client";
 import {
   getTrending,
   getTrendingHomeInternational,
@@ -6,23 +7,41 @@ import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { international } from "@/src/types/international";
+import { trending } from "@/src/types/trending";
 
-const Trending = async () => {
-  const trendingData = await getTrendingHomeInternational();
-  const trending = await getTrending();
+const Trending = () => {
+  const [TrendingData, setTrendingData] = useState<international[]>([]);
+  const [Trending, setTrending] = useState<trending>();
 
-  //console.log("Trending->", trendingData);
+  useEffect(() => {
+    const fetchTrendingHero = async () => {
+      const trendingData = await getTrendingHomeInternational();
+      setTrendingData(trendingData);
+    };
+    fetchTrendingHero();
+
+    const fetchTrending = async () => {
+      const trending = await getTrending();
+      setTrending(trending);
+    };
+
+    fetchTrending();
+  }, []);
+
+  console.log("Trending->", TrendingData);
 
   return (
     <section id="trending">
       <div className="title-container">
         <HiLocationMarker size={40} />
-        <h2>{trending.internationalName}</h2>
-        <p>{trending.internationalSubtitle}</p>
+        <h2>{Trending?.internationalName}</h2>
+        <p>{Trending?.internationalSubtitle}</p>
         <Link href="/international/trending">View All</Link>
       </div>
       <div className="trending-grid">
-        {trendingData.map((item, index) => (
+        {TrendingData.map((item, index) => (
           <Link
             href={`/international/${item.slug}`}
             key={index}

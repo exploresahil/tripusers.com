@@ -1,19 +1,32 @@
+"use client";
+
 import SwiperHero from "@/src/components/international/Swiper";
 import { getDomestic, getInternational } from "@/src/sanity/sanity-utils";
 import "@/src/app/(client)/international/style.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Domestic } from "@/src/types/domestic";
 
-const page = async () => {
-  const domesticData = await getDomestic();
+const page = () => {
+  const [domestic, setDomestic] = useState<Domestic[]>();
+
+  useEffect(() => {
+    const fetchDomestic = async () => {
+      const domesticData = await getDomestic();
+      setDomestic(domesticData);
+    };
+    fetchDomestic();
+  }, []);
+
   //console.log("InternationalData->", InternationalData);
 
   return (
     <>
-      <SwiperHero title="India" data={domesticData} />
+      {domestic && <SwiperHero title="India" data={domestic} />}
       <section id="internationalPage">
         <div className="grid">
-          {domesticData.map((data, index) => (
+          {domestic?.map((data, index) => (
             <Link
               href={`/domestic/${data.slug}`}
               key={index}

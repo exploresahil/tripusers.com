@@ -222,12 +222,10 @@ export async function getTrendingHomeInternational(): Promise<international[]> {
         title,
         price,
       },
-    }`,
-    {
-      cache: "no-store",
-    }
+    }`
   );
 }
+
 export async function getTrendingInternational(): Promise<international[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "international" && isTrending == true] | order(_createdAt asc) {

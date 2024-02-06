@@ -1,25 +1,37 @@
+"use client";
+
 import Image from "next/image";
 import "./style.scss";
 import { getContactUsInfo } from "@/src/sanity/sanity-utils";
 import Form from "@/src/components/contact/Form";
 import { PortableText } from "@portabletext/react";
+import { useEffect, useState } from "react";
+import { contactUs } from "@/src/types/contact";
 
-const Contact = async () => {
-  const contactData = await getContactUsInfo();
+const Contact = () => {
+  const [contact, setContacts] = useState<contactUs>();
+
+  useEffect(() => {
+    const fetchContact = async () => {
+      const contactData = await getContactUsInfo();
+      setContacts(contactData);
+    };
+    fetchContact();
+  }, []);
   // console.log("contactData-->", contactData.offices);
 
   return (
     <>
       <section id="contactHero">
         <div className="titel-container">
-          <h2>{contactData.title}</h2>
-          <p>{contactData.subtitle}</p>
+          <h2>{contact?.title}</h2>
+          <p>{contact?.subtitle}</p>
         </div>
         <div className="img-container">
-          {contactData.bannerImage && (
+          {contact?.bannerImage && (
             <>
               <Image
-                src={contactData?.bannerImage}
+                src={contact?.bannerImage}
                 alt="contact hero image"
                 fill
                 sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
@@ -30,31 +42,31 @@ const Contact = async () => {
         </div>
       </section>
       <section id="contact">
-        <h4>{contactData.formInfo}</h4>
+        <h4>{contact?.formInfo}</h4>
         <div className="form-container">
           <Form />
           <div className="info">
             <div className="address">
               <h5>Address</h5>
-              <PortableText value={contactData?.Address} />
+              {contact && <PortableText value={contact?.Address} />}
             </div>
             <div className="email">
               <h5>Email</h5>
-              <p>{contactData.email}</p>
+              <p>{contact?.email}</p>
             </div>
             <div className="phone">
               <h5>Phone</h5>
-              <p>{contactData.phone}</p>
+              <p>{contact?.phone}</p>
             </div>
           </div>
         </div>
         <div className="offices-container">
           <div className="title">
             <h3>Our Offices</h3>
-            <p>{contactData.ourOfficesSubtitle}</p>
+            <p>{contact?.ourOfficesSubtitle}</p>
           </div>
           <div className="grid">
-            {contactData.offices.map((data, index) => (
+            {contact?.offices.map((data, index) => (
               <div key={index} className="item">
                 <h5>{data.place}</h5>
                 <PortableText value={data.Address} />
