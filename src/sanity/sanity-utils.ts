@@ -250,9 +250,12 @@ export async function getTrendingInternational(): Promise<international[]> {
 
 //*------------------> Domestic
 
-export async function getDomestic(): Promise<Domestic[]> {
+export async function getDomestic(
+  start: number = 1,
+  end: number = 8
+): Promise<Domestic[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "domestic" ] | order(_createdAt asc) {
+    groq`*[_type == "domestic" ] | order(_createdAt asc)[$start...$end] {
       _id,
       _createdAt,
       name,
@@ -293,7 +296,8 @@ export async function getDomestic(): Promise<Domestic[]> {
           }
         }
       },
-    }`
+    }`,
+    { start, end }
   );
 }
 

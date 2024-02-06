@@ -10,17 +10,51 @@ import { Domestic } from "@/src/types/domestic";
 import PageLoading from "@/src/components/default/loader/PageLoading";
 
 const page = () => {
-  const [domestic, setDomestic] = useState<Domestic[]>();
-
+  const [domestic, setDomestic] = useState<Domestic[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [isLast, setIsLast] = useState(false);
+  const [page, setPage] = useState<number[]>([1, 6]);
+  const fetchDomestic = async () => {
+    setLoading(true);
+    const domesticData = await getDomestic(page[0], page[1]);
+    // console.log(domesticData);
+    setIsLast(domestic.length == 0);
+    setLoading(false);
+    setDomestic([...domestic, ...domesticData]);
+  };
   useEffect(() => {
-    const fetchDomestic = async () => {
-      const domesticData = await getDomestic();
-      setDomestic(domesticData);
-    };
     fetchDomestic();
   }, []);
+  useEffect(() => {
+    // Function to add event listener for scroll
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  useEffect(() => {
+    // Fetch more posts when page state changes
+    if (!loading) {
+      fetchDomestic();
+    }
+  }, [page]);
+  const handleScroll = () => {
+    // Calculate scroll position
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+    const scrolledToBottom =
+      Math.ceil(scrollTop + clientHeight) >= scrollHeight;
 
-  //console.log("InternationalData->", InternationalData);
+    // Load more posts if scrolled to bottom and not already loading
+    if (scrolledToBottom && !loading && !isLast) {
+      setPage((prevPage) => [prevPage[1], prevPage[1] + 6]);
+    }
+  };
+  console.log("InternationalData->", domestic);
 
   if (!domestic) {
     return <PageLoading />;
@@ -66,6 +100,7 @@ const page = () => {
             </Link>
           ))}
         </div>
+        {loading && <p>Loading</p>}
       </section>
     </>
   );
