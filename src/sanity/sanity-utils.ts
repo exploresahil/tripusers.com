@@ -72,9 +72,12 @@ export async function getTrending(): Promise<trending> {
 
 //*------------------> International
 
-export async function getInternational(): Promise<international[]> {
+export async function getInternational(
+  start: number = 1,
+  end: number = 8
+): Promise<international[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "international"] | order(_createdAt asc) {
+    groq`*[_type == "international"] | order(_createdAt asc)[$start...$end] {
       _id,
       _createdAt,
       name,
@@ -114,7 +117,8 @@ export async function getInternational(): Promise<international[]> {
           }
         }
       },
-    }`
+    }`,
+    { start, end }
   );
 }
 

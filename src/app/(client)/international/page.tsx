@@ -10,15 +10,48 @@ import { international } from "@/src/types/international";
 import PageLoading from "@/src/components/default/loader/PageLoading";
 
 const page = () => {
-  const [international, setInternational] = useState<international[]>();
-
+  const [international, setInternational] = useState<international[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [isLast, setIsLast] = useState(false);
+  const [page, setPage] = useState<number[]>([1, 6]);
+  const fetchInternational = async () => {
+    const InternationalData = await getInternational(page[0], page[1]);
+    setIsLast(international.length == 0);
+    setLoading(false);
+    setInternational(InternationalData);
+  };
   useEffect(() => {
-    const fetchInternational = async () => {
-      const InternationalData = await getInternational();
-      setInternational(InternationalData);
-    };
     fetchInternational();
   }, []);
+  useEffect(() => {
+    // Function to add event listener for scroll
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  useEffect(() => {
+    // Fetch more posts when page state changes
+    if (!loading) {
+      fetchInternational();
+    }
+  }, [page]);
+  const handleScroll = () => {
+    // Calculate scroll position
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+    const scrolledToBottom =
+      Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+    // Load more posts if scrolled to bottom and not already loading
+    if (scrolledToBottom && !loading && !isLast) {
+      setPage((prevPage) => [prevPage[1], prevPage[1] + 6]);
+    }
+  };
   //console.log("InternationalData->", InternationalData);
 
   if (!international) {
