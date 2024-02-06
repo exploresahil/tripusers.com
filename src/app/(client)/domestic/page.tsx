@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Domestic } from "@/src/types/domestic";
+import PageLoading from "@/src/components/default/loader/PageLoading";
 
 const page = () => {
   const [domestic, setDomestic] = useState<Domestic[]>();
@@ -20,6 +21,10 @@ const page = () => {
   }, []);
 
   //console.log("InternationalData->", InternationalData);
+
+  if (!domestic) {
+    return <PageLoading />;
+  }
 
   return (
     <>

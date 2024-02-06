@@ -31,7 +31,7 @@ const Trending = () => {
     fetchTrending();
   }, []);
 
-  console.log("Trending->", TrendingData);
+  //console.log("Trending->", TrendingData);
 
   return (
     <section id="trending">

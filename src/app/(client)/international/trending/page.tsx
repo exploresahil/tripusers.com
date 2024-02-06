@@ -1,19 +1,39 @@
+"use client";
+
 import SwiperHero from "@/src/components/international/trending/Swiper";
 import { getTrendingInternational } from "@/src/sanity/sanity-utils";
 import "../style.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { international } from "@/src/types/international";
+import PageLoading from "@/src/components/default/loader/PageLoading";
 
-const page = async () => {
-  const InternationalData = await getTrendingInternational();
+const page = () => {
+  const [internationalTrending, setInternationalTrending] =
+    useState<international[]>();
+
+  useEffect(() => {
+    const fetchInternationalTrending = async () => {
+      const InternationalData = await getTrendingInternational();
+      setInternationalTrending(InternationalData);
+    };
+    fetchInternationalTrending();
+  }, []);
+
+  if (!internationalTrending) {
+    return <PageLoading />;
+  }
   //console.log("InternationalData->", InternationalData);
 
   return (
     <>
-      <SwiperHero title="International" data={InternationalData} />
+      {internationalTrending && (
+        <SwiperHero title="International" data={internationalTrending} />
+      )}
       <section id="internationalPage">
         <div className="grid">
-          {InternationalData.map((data, index) => (
+          {internationalTrending?.map((data, index) => (
             <Link
               href={`/international/${data.slug}`}
               key={index}

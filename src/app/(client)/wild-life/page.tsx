@@ -1,19 +1,36 @@
+"use client";
+
 import SwiperHero from "@/src/components/international/Swiper";
 import { getWildLife } from "@/src/sanity/sanity-utils";
 import "@/src/app/(client)/international/style.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { wildLife } from "@/src/types/wildlife";
+import PageLoading from "@/src/components/default/loader/PageLoading";
 
-const page = async () => {
-  const wildLifeData = await getWildLife();
+const page = () => {
+  const [wildlife, setWildlife] = useState<wildLife[]>();
+
+  useEffect(() => {
+    const fetchWildlife = async () => {
+      const wildLifeData = await getWildLife();
+      setWildlife(wildLifeData);
+    };
+    fetchWildlife();
+  }, []);
   //console.log("wildLifelData->", wildLifeData[0].wildlifePackage);
+
+  if (!wildlife) {
+    return <PageLoading />;
+  }
 
   return (
     <>
-      <SwiperHero title="India" data={wildLifeData} />
+      {wildlife && <SwiperHero title="India" data={wildlife} />}
       <section id="internationalPage">
         <div className="grid">
-          {wildLifeData.map((data, index) => (
+          {wildlife?.map((data, index) => (
             <Link
               href={`/wild-life/${data.slug}`}
               key={index}
@@ -32,7 +49,7 @@ const page = async () => {
               <div className="cta-container">
                 <div className="text-container">
                   <h3>{data.name}</h3>
-                  {/*  {data.wildlifePackage && (
+                  {data.wildlifePackage && (
                     <p>
                       Starts from{" "}
                       {data.wildlifePackage.length == 0
@@ -41,7 +58,7 @@ const page = async () => {
                             "en-IN"
                           )}
                     </p>
-                  )} */}
+                  )}
                 </div>
                 <button>View Details</button>
               </div>

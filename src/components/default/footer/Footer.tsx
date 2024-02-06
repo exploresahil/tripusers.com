@@ -1,19 +1,34 @@
+"use client";
+
 import { getBrand } from "@/src/sanity/sanity-utils";
 import "./style.scss";
 import Image from "next/image";
 import Form from "./Form";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { brand } from "@/src/types/brand";
+import PageLoading from "../loader/PageLoading";
 
-const Footer = async () => {
-  const logoData = await getBrand();
+const Footer = () => {
+  const [brand, setBrand] = useState<brand[]>();
+
+  useEffect(() => {
+    const fetchBrand = async () => {
+      const logoData = await getBrand();
+      setBrand(logoData);
+    };
+
+    fetchBrand();
+  }, []);
+
   //console.log("logoData->", logoData);
 
   return (
     <footer>
       <div className="logo-container">
-        {logoData[0].lightImage && (
+        {brand && brand[0].lightImage && (
           <Image
-            src={logoData[0].lightImage}
+            src={brand[0].lightImage}
             alt="logo"
             fill
             sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"

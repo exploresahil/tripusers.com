@@ -7,6 +7,7 @@ import Form from "@/src/components/contact/Form";
 import { PortableText } from "@portabletext/react";
 import { useEffect, useState } from "react";
 import { contactUs } from "@/src/types/contact";
+import PageLoading from "@/src/components/default/loader/PageLoading";
 
 const Contact = () => {
   const [contact, setContacts] = useState<contactUs>();
@@ -19,6 +20,10 @@ const Contact = () => {
     fetchContact();
   }, []);
   // console.log("contactData-->", contactData.offices);
+
+  if (!contact) {
+    return <PageLoading />;
+  }
 
   return (
     <>
