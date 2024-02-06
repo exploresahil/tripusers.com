@@ -6,11 +6,12 @@ import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
+import { revalidateTag } from "next/cache";
 
 const Trending = async () => {
   const trendingData = await getTrendingHomeInternational();
   const trending = await getTrending();
-
+  revalidateTag("Trending");
   //console.log("Trending->", trendingData);
 
   return (
