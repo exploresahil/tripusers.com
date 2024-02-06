@@ -7,6 +7,7 @@ import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
+
 import { useEffect, useState } from "react";
 import { international } from "@/src/types/international";
 import { trending } from "@/src/types/trending";
