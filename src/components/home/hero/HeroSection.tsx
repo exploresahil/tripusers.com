@@ -133,60 +133,106 @@ const HeroSection = () => {
           slidesPerView={1}
           ref={swiperRef}
         >
-          <SwiperSlide className="swiperSlide-card">
-            <div className="bg-container">
-              <div className="bg" />
-              <Image
-                src={data[0]?.heroImage}
-                alt="hero background"
-                fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-              />
-            </div>
-            <div className="text-container">
-              <p>{data[0]?.title}</p>
-              <h2>{data[0]?.place.name}</h2>
-              <Link href={`/international/${data[0]?.place.slug.current}`}>
-                Read More
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="swiperSlide-card">
-            <div className="bg-container">
-              <div className="bg" />
-              <Image
-                src={data[1]?.heroImage}
-                alt="hero background"
-                fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-              />
-            </div>
-            <div className="text-container">
-              <p>{data[1]?.title}</p>
-              <h2>{data[1]?.place.name}</h2>
-              <Link href={`/international/${data[1]?.place.slug.current}`}>
-                Read More
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className="swiperSlide-card">
-            <div className="bg-container">
-              <div className="bg" />
-              <Image
-                src={data[2]?.heroImage}
-                alt="hero background"
-                fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-              />
-            </div>
-            <div className="text-container">
-              <p>{data[2]?.title}</p>
-              <h2>{data[2]?.place.name}</h2>
-              <Link href={`/international/${data[2]?.place.slug.current}`}>
-                Read More
-              </Link>
-            </div>
-          </SwiperSlide>
+          {data[0] && (
+            <SwiperSlide className="swiperSlide-card">
+              <div className="bg-container">
+                <div className="bg" />
+                <Image
+                  src={data[0]?.heroImage}
+                  alt="hero background"
+                  fill
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                />
+              </div>
+              <div className="text-container">
+                <p>{data[0]?.title}</p>
+                <h2>{data[0]?.place.name}</h2>
+                <Link href={`/international/${data[0]?.place.slug.current}`}>
+                  Read More
+                </Link>
+              </div>
+            </SwiperSlide>
+          )}
+          {data[1] && (
+            <SwiperSlide className="swiperSlide-card">
+              <div className="bg-container">
+                <div className="bg" />
+                <Image
+                  src={data[1]?.heroImage}
+                  alt="hero background"
+                  fill
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                />
+              </div>
+              <div className="text-container">
+                <p>{data[1]?.title}</p>
+                <h2>{data[1]?.place.name}</h2>
+                <Link href={`/international/${data[1]?.place.slug.current}`}>
+                  Read More
+                </Link>
+              </div>
+            </SwiperSlide>
+          )}
+          {data[2] && (
+            <SwiperSlide className="swiperSlide-card">
+              <div className="bg-container">
+                <div className="bg" />
+                <Image
+                  src={data[2]?.heroImage}
+                  alt="hero background"
+                  fill
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                />
+              </div>
+              <div className="text-container">
+                <p>{data[2]?.title}</p>
+                <h2>{data[2]?.place.name}</h2>
+                <Link href={`/international/${data[2]?.place.slug.current}`}>
+                  Read More
+                </Link>
+              </div>
+            </SwiperSlide>
+          )}
+          {data[3] && (
+            <SwiperSlide className="swiperSlide-card">
+              <div className="bg-container">
+                <div className="bg" />
+                <Image
+                  src={data[3]?.heroImage}
+                  alt="hero background"
+                  fill
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                />
+              </div>
+              <div className="text-container">
+                <p>{data[3]?.title}</p>
+                <h2>{data[3]?.place.name}</h2>
+                <Link href={`/international/${data[3]?.place.slug.current}`}>
+                  Read More
+                </Link>
+              </div>
+            </SwiperSlide>
+          )}
+          {data[4] && (
+            <SwiperSlide className="swiperSlide-card">
+              <div className="bg-container">
+                <div className="bg" />
+                <Image
+                  src={data[4]?.heroImage}
+                  alt="hero background"
+                  fill
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                />
+              </div>
+              <div className="text-container">
+                <p>{data[4]?.title}</p>
+                <h2>{data[4]?.place.name}</h2>
+                <Link href={`/international/${data[3]?.place.slug.current}`}>
+                  Read More
+                </Link>
+              </div>
+            </SwiperSlide>
+          )}
         </Swiper>
       )}
 
