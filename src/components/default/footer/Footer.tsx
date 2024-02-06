@@ -7,7 +7,6 @@ import Form from "./Form";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { brand } from "@/src/types/brand";
-import PageLoading from "../loader/PageLoading";
 
 const Footer = () => {
   const [brand, setBrand] = useState<brand[]>();
