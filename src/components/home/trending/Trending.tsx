@@ -23,7 +23,7 @@ const Trending = async () => {
   const trendingData = await getTrendingHomeInternational();
   const trending = await getTrending();
 
-  //console.log("Trending->", trendingData);
+  // console.log("Trending->", trendingData);
 
   return (
     <section id="trending">
@@ -34,7 +34,7 @@ const Trending = async () => {
         <Link href="/international/trending">View All</Link>
       </div>
       <div className="trending-grid">
-        {trendingData.map((item: any, index: any) => (
+        {trendingData.result.map((item: any, index: any) => (
           <Link
             href={`/international/${item.slug}`}
             key={index}
