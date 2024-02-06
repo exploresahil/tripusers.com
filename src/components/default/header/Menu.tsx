@@ -12,7 +12,11 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Search from "./Search";
-import { getDomestic, getInternational } from "@/src/sanity/sanity-utils";
+import {
+  getDomestic,
+  getInternational,
+  getWildLife,
+} from "@/src/sanity/sanity-utils";
 import CustomiseForm from "../../forms/CustomiseForm";
 
 interface props {
@@ -109,7 +113,11 @@ const Menu = (logo: props) => {
   });
   useEffect(() => {
     (async () => {
-      setData([...(await getInternational()), ...(await getDomestic())]);
+      setData([
+        ...(await getInternational()),
+        ...(await getDomestic()),
+        ...(await getWildLife()),
+      ]);
     })();
   }, []);
   return (
