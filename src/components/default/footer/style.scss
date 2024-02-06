@@ -37,6 +37,17 @@ footer {
       grid-template-columns: 1fr;
       gap: 10px;
 
+      .input-item {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        p {
+          font-size: 0.9rem;
+          opacity: 0.5;
+        }
+      }
+
       input {
         background: none;
         border: 1px solid $offLight;

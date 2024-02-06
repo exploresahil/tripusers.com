@@ -73,36 +73,42 @@ const Form = () => {
         Subscribe to our newsletter to find travel inspiration in your inbox.
       </p>
       <div className="form-item">
-        <input
-          {...register("name", {
-            required: "Name is required",
-          })}
-          type="text"
-          placeholder="Full Name"
-        />
-        {errors.name && (
-          <p style={{ color: "tomato" }}>{errors.name.message}</p>
-        )}
-        <input
-          {...register("email", {
-            required: "email is required",
-          })}
-          type="email"
-          placeholder="Email ID"
-        />
-        {errors.email && (
-          <p style={{ color: "tomato" }}>{errors.email.message}</p>
-        )}
-        <input
-          {...register("phone", {
-            required: "Phone is required",
-          })}
-          type="text"
-          placeholder="Phone No"
-        />
-        {errors.phone && (
-          <p style={{ color: "tomato" }}>{errors.phone.message}</p>
-        )}
+        <div className="input-item">
+          <input
+            {...register("name", {
+              required: "Name is required",
+            })}
+            type="text"
+            placeholder="Full Name"
+          />
+          {errors.name && (
+            <p style={{ color: "tomato" }}>{errors.name.message}</p>
+          )}
+        </div>
+        <div className="input-item">
+          <input
+            {...register("email", {
+              required: "email is required",
+            })}
+            type="email"
+            placeholder="Email ID"
+          />
+          {errors.email && (
+            <p style={{ color: "tomato" }}>{errors.email.message}</p>
+          )}
+        </div>
+        <div className="input-item">
+          <input
+            {...register("phone", {
+              required: "Phone is required",
+            })}
+            type="text"
+            placeholder="Phone No"
+          />
+          {errors.phone && (
+            <p style={{ color: "tomato" }}>{errors.phone.message}</p>
+          )}
+        </div>
         <button type="submit">Subscribe</button>
       </div>
     </form>
