@@ -11,7 +11,7 @@ const Trending = async () => {
   const trendingData = await getTrendingInternational();
   const trending = await getTrending();
 
-  //console.log(trendingData[5].internationalPackages.length);
+  //console.log("Trending->", trendingData);
 
   return (
     <section id="trending">

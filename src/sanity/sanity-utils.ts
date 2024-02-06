@@ -221,7 +221,10 @@ export async function getTrendingInternational(): Promise<international[]> {
         title,
         price,
       },
-    }`
+    }`,
+    {
+      next: { revalidate: 300 },
+    }
   );
 }
 
