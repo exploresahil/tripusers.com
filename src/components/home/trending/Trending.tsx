@@ -1,12 +1,36 @@
-import {
-  getTrending,
-  getTrendingHomeInternational,
-} from "@/src/sanity/sanity-utils";
+import { getTrending } from "@/src/sanity/sanity-utils";
+
 import "./style.scss";
 import { HiLocationMarker } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
-
+import { createClient, groq } from "next-sanity";
+import clientConfig from "@/src/sanity/config/client-config";
+import { international } from "@/src/types/international";
+function getTrendingHomeInternational(): Promise<international[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "international" && isTrendingHome == true] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      isTrending,
+      isTrendingHome,
+      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        price,
+      },
+    }`,
+    {
+      next: {
+        revalidate: 60, // look for updates to revalidate cache every hour
+      },
+    }
+  );
+}
 const Trending = async () => {
   const trendingData = await getTrendingHomeInternational();
   const trending = await getTrending();
