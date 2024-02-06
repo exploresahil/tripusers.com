@@ -7,31 +7,32 @@ import Link from "next/link";
 import { createClient, groq } from "next-sanity";
 import clientConfig from "@/src/sanity/config/client-config";
 import { international } from "@/src/types/international";
-function getTrendingHomeInternational(): Promise<international[]> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "international" && isTrendingHome == true] | order(_createdAt asc) {
-      _id,
-      _createdAt,
-      name,
-      "slug": slug.current,
-      "cardImage": cardImage.asset->url,
-      isTrending,
-      isTrendingHome,
-      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
+
+const Trending = async () => {
+  async function getTrendingHomeInternational(): Promise<international[]> {
+    return await createClient(clientConfig).fetch(
+      groq`*[_type == "international" && isTrendingHome == true] | order(_createdAt asc) {
         _id,
         _createdAt,
-        title,
-        price,
-      },
-    }`,
-    {
-      next: {
-        revalidate: 60, // look for updates to revalidate cache every hour
-      },
-    }
-  );
-}
-const Trending = async () => {
+        name,
+        "slug": slug.current,
+        "cardImage": cardImage.asset->url,
+        isTrending,
+        isTrendingHome,
+        "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
+          _id,
+          _createdAt,
+          title,
+          price,
+        },
+      }`,
+      {
+        next: {
+          revalidate: 60, // look for updates to revalidate cache every hour
+        },
+      }
+    );
+  }
   const trendingData = await getTrendingHomeInternational();
   const trending = await getTrending();
 
