@@ -126,7 +126,6 @@ export async function getInternational(
     { start, end }
   );
 
-  // Fetch total count
   const totalCount = await createClient(clientConfig).fetch(
     groq`count(*[_type == "international"])`
   );
@@ -459,8 +458,14 @@ export async function getTrendingDomestic(): Promise<Domestic[]> {
 
 //*------------------> Wild Life
 
-export async function getWildLife(): Promise<wildLife[]> {
-  return createClient(clientConfig).fetch(
+export async function getWildLife(
+  page: number = 1,
+  pageSize: number = 9
+): Promise<{ data: wildLife[]; totalPages: number }> {
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+
+  const data = await createClient(clientConfig).fetch(
     groq`*[_type == "wildlife"] | order(_createdAt asc) {
       _id,
       _createdAt,
@@ -501,8 +506,17 @@ export async function getWildLife(): Promise<wildLife[]> {
           }
         }
       },
-    }`
+    }`,
+    { start, end }
   );
+
+  const totalCount = await createClient(clientConfig).fetch(
+    groq`count(*[_type == "wildlife"])`
+  );
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  return { data, totalPages };
 }
 
 export async function getWildLifeSlug(slug: string): Promise<wildLife> {
