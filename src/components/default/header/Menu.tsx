@@ -114,9 +114,9 @@ const Menu = (logo: props) => {
   useEffect(() => {
     (async () => {
       setData([
-        ...(await getInternational()),
-        ...(await getDomestic()),
-        ...(await getWildLife()),
+        ...(await getInternational()).data,
+        ...(await getDomestic()).data,
+        ...(await getWildLife()).data,
       ]);
     })();
   }, []);
