@@ -1,60 +1,64 @@
 "use client";
 
-import SwiperHero from "@/src/components/international/Swiper";
-import { getDomestic, getInternational } from "@/src/sanity/sanity-utils";
+import { getDomestic } from "@/src/sanity/sanity-utils";
 import "@/src/app/(client)/international/style.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Domestic } from "@/src/types/domestic";
 import PageLoading from "@/src/components/default/loader/PageLoading";
+import SwiperHero from "@/src/components/domestic/Swiper";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [domestic, setDomestic] = useState<Domestic[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [isLast, setIsLast] = useState(false);
-  const [page, setPage] = useState<number[]>([1, 6]);
-  const fetchDomestic = async () => {
-    setLoading(true);
-    const domesticData = await getDomestic(page[0], page[1]);
-    // console.log(domesticData);
-    setIsLast(domestic.length == 0);
-    setLoading(false);
-    setDomestic([...domestic, ...domesticData]);
-  };
-  useEffect(() => {
-    fetchDomestic();
-  }, []);
-  useEffect(() => {
-    // Function to add event listener for scroll
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-  useEffect(() => {
-    // Fetch more posts when page state changes
-    if (!loading) {
-      fetchDomestic();
-    }
-  }, [page]);
-  const handleScroll = () => {
-    // Calculate scroll position
-    const scrollTop =
-      (document.documentElement && document.documentElement.scrollTop) ||
-      document.body.scrollTop;
-    const scrollHeight =
-      (document.documentElement && document.documentElement.scrollHeight) ||
-      document.body.scrollHeight;
-    const clientHeight =
-      document.documentElement.clientHeight || window.innerHeight;
-    const scrolledToBottom =
-      Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [lastPage, setLastPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
 
-    // Load more posts if scrolled to bottom and not already loading
-    if (scrolledToBottom && !loading && !isLast) {
-      setPage((prevPage) => [prevPage[1], prevPage[1] + 6]);
+  const router = useRouter();
+
+  const fetchDomestic = async (page: number) => {
+    setLoading(true);
+    try {
+      const { data, totalPages } = await getDomestic(page);
+      setDomestic(data);
+      setLastPage(data.length > 0 ? page : lastPage);
+      setTotalPages(totalPages);
+    } catch (error) {
+      console.error("Error fetching domestic data:", error);
+    } finally {
+      setLoading(false);
     }
   };
-  console.log("InternationalData->", domestic);
+
+  useEffect(() => {
+    fetchDomestic(currentPage);
+  }, [currentPage]);
+
+  const handleNextPage = async () => {
+    const nextPage = currentPage + 1;
+
+    try {
+      const { data } = await getDomestic(nextPage);
+
+      if (data.length > 0) {
+        setCurrentPage(nextPage);
+      }
+
+      router.push("/domestic/#internationalSlugHero");
+    } catch (error) {
+      console.error("Error fetching international data:", error);
+    }
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    router.push("/domestic/#internationalSlugHero");
+  };
+
+  //console.log("domesticData->", domestic);
 
   if (!domestic) {
     return <PageLoading />;
@@ -64,6 +68,9 @@ const page = () => {
     <>
       {domestic && <SwiperHero title="India" data={domestic} />}
       <section id="internationalPage">
+        <p className="pageNo">
+          Page {currentPage} / {totalPages}
+        </p>
         <div className="grid">
           {domestic?.map((data, index) => (
             <Link
@@ -100,7 +107,26 @@ const page = () => {
             </Link>
           ))}
         </div>
-        {loading && <p>Loading</p>}
+        <div className="pagination">
+          {loading && <p className="pagination-loading">Loading...</p>}
+          <div className="buttons">
+            <button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              aria-label="Previous Page"
+            >
+              Previous
+            </button>
+            <span aria-live="polite">{currentPage}</span>
+            <button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              aria-label="Next Page"
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </section>
     </>
   );

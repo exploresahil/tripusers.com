@@ -35,7 +35,7 @@ const page = ({ params }: Props) => {
   const slug = params.wildLife;
 
   useEffect(() => {
-    console.log(slug);
+    //console.log(slug);
 
     async function fetchWildLifeSlug() {
       try {

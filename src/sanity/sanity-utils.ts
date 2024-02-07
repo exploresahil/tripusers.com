@@ -62,6 +62,8 @@ export async function getTrending(): Promise<trending> {
       title,
       internationalName,
       internationalSubtitle,
+      internationalSliderName,
+      internationalSliderSubtitle,
       domesticName,
       domesticSubtitle,
       wildlifeName,
@@ -73,11 +75,14 @@ export async function getTrending(): Promise<trending> {
 //*------------------> International
 
 export async function getInternational(
-  start: number = 1,
-  end: number = 8
-): Promise<international[]> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "international"] | order(_createdAt asc)[$start...$end] {
+  page: number = 1,
+  pageSize: number = 9
+): Promise<{ data: international[]; totalPages: number }> {
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+
+  const data = await createClient(clientConfig).fetch(
+    groq`*[_type == "international"] | order(_createdAt asc) [$start...$end] {
       _id,
       _createdAt,
       name,
@@ -120,6 +125,15 @@ export async function getInternational(
     }`,
     { start, end }
   );
+
+  // Fetch total count
+  const totalCount = await createClient(clientConfig).fetch(
+    groq`count(*[_type == "international"])`
+  );
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  return { data, totalPages };
 }
 
 export async function getInternationalSlug(
@@ -220,6 +234,28 @@ export async function getTrendingHomeInternational(): Promise<international[]> {
       "cardImage": cardImage.asset->url,
       isTrending,
       isTrendingHome,
+      isTrendingSlider,
+      "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        price,
+      },
+    }`
+  );
+}
+
+export async function getSliderHomeInternational(): Promise<international[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "international" && isTrendingSlider == true] | order(_createdAt asc) {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      isTrending,
+      isTrendingHome,
+      isTrendingSlider,
       "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
         _createdAt,
@@ -255,10 +291,13 @@ export async function getTrendingInternational(): Promise<international[]> {
 //*------------------> Domestic
 
 export async function getDomestic(
-  start: number = 1,
-  end: number = 8
-): Promise<Domestic[]> {
-  return createClient(clientConfig).fetch(
+  page: number = 1,
+  pageSize: number = 9
+): Promise<{ data: Domestic[]; totalPages: number }> {
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+
+  const data = await createClient(clientConfig).fetch(
     groq`*[_type == "domestic" ] | order(_createdAt asc)[$start...$end] {
       _id,
       _createdAt,
@@ -303,6 +342,14 @@ export async function getDomestic(
     }`,
     { start, end }
   );
+
+  const totalCount = await createClient(clientConfig).fetch(
+    groq`count(*[_type == "domestic"])`
+  );
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  return { data, totalPages };
 }
 
 export async function getDomesticSlug(slug: string): Promise<Domestic> {

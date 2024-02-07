@@ -19,6 +19,16 @@ const trending = {
       type: "string",
     },
     {
+      name: "internationalSliderName",
+      title: "International Slider Name",
+      type: "string",
+    },
+    {
+      name: "internationalSliderSubtitle",
+      title: "International Slider Subtitle",
+      type: "string",
+    },
+    {
       name: "domesticName",
       title: "Domestic Trending Name",
       type: "string",

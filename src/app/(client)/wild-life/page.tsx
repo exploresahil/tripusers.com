@@ -1,6 +1,5 @@
 "use client";
 
-import SwiperHero from "@/src/components/international/Swiper";
 import { getWildLife } from "@/src/sanity/sanity-utils";
 import "@/src/app/(client)/international/style.scss";
 import Image from "next/image";
@@ -8,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { wildLife } from "@/src/types/wildlife";
 import PageLoading from "@/src/components/default/loader/PageLoading";
+import SwiperHero from "@/src/components/wildlife/Swiper";
 
 const page = () => {
   const [wildlife, setWildlife] = useState<wildLife[]>();
@@ -19,7 +19,8 @@ const page = () => {
     };
     fetchWildlife();
   }, []);
-  //console.log("wildLifelData->", wildLifeData[0].wildlifePackage);
+
+  //console.log("wildLifelData->", wildlife);
 
   if (!wildlife) {
     return <PageLoading />;
@@ -27,7 +28,7 @@ const page = () => {
 
   return (
     <>
-      {wildlife && <SwiperHero title="India" data={wildlife} />}
+      {wildlife && <SwiperHero title="Wildlife" data={wildlife} />}
       <section id="internationalPage">
         <div className="grid">
           {wildlife?.map((data, index) => (

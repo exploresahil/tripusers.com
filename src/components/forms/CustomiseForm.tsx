@@ -53,7 +53,7 @@ const CustomiseForm = ({ onClick }: props) => {
     setError,
     reset,
   } = useForm<formFields>();
-  console.log(errors);
+  //console.log(errors);
   const [isSubmit, setIsSubmit] = useState(false);
   const onSubmitForm: SubmitHandler<formFields> = (data) => {
     const error = schema.safeParse(data);

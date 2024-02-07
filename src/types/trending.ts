@@ -4,6 +4,8 @@ export type trending = {
   title: string;
   internationalName: string;
   internationalSubtitle: string;
+  internationalSliderName: string;
+  internationalSliderSubtitle: string;
   domesticName: string;
   domesticSubtitle: string;
   wildlifeName: string;

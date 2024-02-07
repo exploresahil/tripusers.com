@@ -3,14 +3,14 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
-import { Domestic } from "@/src/types/domestic";
 import Link from "next/link";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { international } from "@/src/types/international";
 
-const SwiperContainer = ({ data }: { data: Domestic[] }) => {
-  //console.log("data->", data[5].wildlifePackage);
+const SwiperContainer = ({ data }: { data: international[] }) => {
+  //console.log("data->", data[0].wildlifePackage);
 
   return (
     <div className="india-swiper">
@@ -40,7 +40,7 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="swiperSlide-card">
-            <Link href={`/domestic/${item.slug}`} key={index}>
+            <Link href={`/wild-life/${item.slug}`} key={index}>
               {item.cardImage && (
                 <Image
                   src={item.cardImage}
@@ -52,12 +52,14 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
 
               <div className="text-container">
                 <h3>{item.name}</h3>
-                {item.domesticPackages && (
+                {item.internationalPackages && (
                   <p>
                     Starts from{" "}
-                    {item.domesticPackages.length == 0
+                    {item.internationalPackages.length == 0
                       ? 1500
-                      : item.domesticPackages[0].price.toLocaleString("en-IN")}
+                      : item.internationalPackages[0].price.toLocaleString(
+                          "en-IN"
+                        )}
                   </p>
                 )}
               </div>

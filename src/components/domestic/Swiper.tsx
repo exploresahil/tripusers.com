@@ -6,10 +6,10 @@ import { Navigation, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
-import { international as inter } from "@/src/types/international";
 import Image from "next/image";
+import { Domestic } from "@/src/types/domestic";
 
-const SwiperHero = ({ data, title }: { data: inter[]; title: string }) => {
+const SwiperHero = ({ data, title }: { data: Domestic[]; title: string }) => {
   return (
     <section id="internationalSlugHero">
       <Swiper
@@ -43,9 +43,7 @@ const SwiperHero = ({ data, title }: { data: inter[]; title: string }) => {
       </Swiper>
       <div className="text-container">
         <p>Your unforgettable trip</p>
-        <h2>
-          {title} <span>Trending</span>
-        </h2>
+        <h2>{title}</h2>
       </div>
     </section>
   );

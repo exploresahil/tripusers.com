@@ -40,6 +40,14 @@ const international = {
       initialValue: false,
     },
     {
+      name: "isTrendingSlider",
+      title: "Is trending on Slider",
+      type: "boolean",
+      description:
+        "Select true if this country is Trending on home slider, false otherwise",
+      initialValue: false,
+    },
+    {
       name: "bannerImages",
       title: "Country Images",
       type: "array",
