@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { Domestic } from "@/src/types/domestic";
 import Link from "next/link";
 
@@ -22,7 +22,7 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
         spaceBetween={10}
         navigation={true}
         loop={true}
-        modules={[EffectFade, Navigation, Autoplay]}
+        modules={[Navigation, Autoplay]}
         className="mySwiper"
         speed={500}
         allowTouchMove={false}

@@ -9,6 +9,7 @@ import { international, internationalPackages } from "../types/international";
 import { wildLife, wildlifePackage } from "../types/wildlife";
 import { contactUs } from "../types/contact";
 import { trending } from "../types/trending";
+import { special } from "../types/special";
 
 //*------------------> Brand
 
@@ -68,6 +69,7 @@ export async function getTrending(): Promise<trending> {
       domesticSubtitle,
       wildlifeName,
       wildlifeSubtitle,
+      specialName,
     }`
   );
 }
@@ -623,6 +625,114 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
   );
 }
 
+//*---------------------> special
+
+export async function getSpecial(): Promise<special[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "special"] {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      cardTitle,
+      cardSubtitle,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+    }`
+  );
+}
+
+export async function getSpecialSlug(slug: string): Promise<special> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "special" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      cardTitle,
+      cardSubtitle,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "specialPackages": *[_type == "specialPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        place,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        inclusion,
+        exclusion,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      }
+    }`,
+    { slug }
+  );
+}
+
+export async function getSpecialPackagesSlug(slug: string): Promise<special> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "specialPackages" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      place,
+      category->{name, slug},
+      "packageImages": packageImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      timeline,
+      deal,
+      price,
+      priceSubtitle,
+      aboutTheTour,
+      inclusion,
+      exclusion,
+      "itinerary": itinerary[] {
+        "title": title,
+        "day": day,
+        "description": description,
+        "content": content[] {
+          "title": title,
+          "description": description,
+          "images": images[] {
+            "_id": asset->_id,
+            "url": asset->url,
+          }
+        }
+      }
+    }`,
+    { slug }
+  );
+}
+
 //* ---------------------> contact us
 
 export async function getContactUsInfo(): Promise<contactUs> {
@@ -637,6 +747,9 @@ export async function getContactUsInfo(): Promise<contactUs> {
       Address,
       email,
       phone,
+      facebook,
+      instagram,
+      twitter,
       ourOfficesSubtitle,
       "offices":offices[]{
         "Address":Address,

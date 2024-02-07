@@ -26,6 +26,17 @@ const SwiperHero = ({ data, title }: { data: Domestic[]; title: string }) => {
         speed={500}
         allowTouchMove={false}
         slidesPerView={1}
+        spaceBetween={10}
+        breakpoints={{
+          820: {
+            slidesPerView: 3,
+            spaceBetween: 10,
+          },
+          1025: {
+            slidesPerView: 4,
+            spaceBetween: 10,
+          },
+        }}
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="swiperSlide-card">

@@ -10,4 +10,5 @@ export type trending = {
   domesticSubtitle: string;
   wildlifeName: string;
   wildlifeSubtitle: string;
+  specialName: string;
 };

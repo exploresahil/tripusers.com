@@ -43,10 +43,26 @@ const ContactPage = {
       type: "string",
     },
     {
+      name: "facebook",
+      title: "Facebook Link",
+      type: "string",
+    },
+    {
+      name: "instagram",
+      title: "Instagram Link",
+      type: "string",
+    },
+    {
+      name: "twitter",
+      title: "Twitter Link",
+      type: "string",
+    },
+    {
       name: "ourOfficesSubtitle",
       title: "Subtitle in our office section",
       type: "string",
     },
+
     {
       name: "offices",
       title: "Offices Address",
