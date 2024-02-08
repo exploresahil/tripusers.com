@@ -12,6 +12,14 @@ export type wildlifePackage = {
     url: string;
   }[];
   timeline: string;
+  addOns: {
+    isHotels: boolean;
+    isFood: boolean;
+    isTransport: boolean;
+    isFlight: boolean;
+    isSightseeing: boolean;
+    isVisa: boolean;
+  };
   deal: string;
   price: number;
   priceSubtitle: string;

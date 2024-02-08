@@ -2,10 +2,9 @@
 
 import { FaPlane } from "react-icons/fa";
 import { FaPassport } from "react-icons/fa";
-import { AiFillCamera } from "react-icons/ai";
 import { FaBus } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
-import { RiHotelFill } from "react-icons/ri";
+import { RiHotelFill, RiLandscapeFill } from "react-icons/ri";
 
 import { getInternationalSlug } from "@/src/sanity/sanity-utils";
 import { international } from "@/src/types/international";
@@ -45,7 +44,7 @@ const page = ({ params }: Props) => {
     fetchInternationalSlug();
   }, [slug]);
 
-  //console.log("internationalSlugData->", data);
+  console.log("internationalSlugData->", data);
 
   if (!data) {
     return <PageLoading />;
@@ -133,12 +132,16 @@ const page = ({ params }: Props) => {
                       <p>{item.timeline}</p>
                     </div>
                     <div className="icons">
-                      <RiHotelFill />
-                      <ImSpoonKnife />
-                      <FaBus />
-                      <FaPlane />
-                      <AiFillCamera />
-                      <FaPassport />
+                      {item.addOns != null && (
+                        <>
+                          {item.addOns.isHotels && <RiHotelFill />}
+                          {item.addOns.isFood && <ImSpoonKnife />}
+                          {item.addOns.isTransport && <FaBus />}
+                          {item.addOns.isFlight && <FaPlane />}
+                          {item.addOns.isSightseeing && <RiLandscapeFill />}
+                          {item.addOns.isVisa && <FaPassport />}
+                        </>
+                      )}
                     </div>
                   </div>
                   <div className="line" />

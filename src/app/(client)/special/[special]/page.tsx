@@ -1,14 +1,12 @@
 "use client";
 
-import { RiLandscapeFill } from "react-icons/ri";
 import { FaPlane } from "react-icons/fa";
 import { FaPassport } from "react-icons/fa";
 import { FaBus } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
-import { RiHotelFill } from "react-icons/ri";
+import { RiHotelFill, RiLandscapeFill } from "react-icons/ri";
 
-import { getDomesticSlug } from "@/src/sanity/sanity-utils";
-
+import { getSpecialSlug } from "@/src/sanity/sanity-utils";
 import { useEffect, useState } from "react";
 import "@/src/app/(client)/international/[international]/style.scss";
 import PageLoading from "@/src/components/default/loader/PageLoading";
@@ -22,31 +20,31 @@ import "swiper/css/effect-fade";
 import Image from "next/image";
 import Link from "next/link";
 import CustomiseForm from "@/src/components/forms/CustomiseForm";
-import { Domestic } from "@/src/types/domestic";
+import { special } from "@/src/types/special";
 
 type Props = {
-  params: { domestic: string };
+  params: { special: string };
 };
 
 const page = ({ params }: Props) => {
-  const [data, setData] = useState<Domestic>();
+  const [data, setData] = useState<special>();
   const [mobileForm, setMobileForm] = useState(false);
 
-  const slug = params.domestic;
+  const slug = params.special;
 
   useEffect(() => {
-    async function fetchDomesticSlug() {
+    async function fetchSpecialSlug() {
       try {
-        const data = await getDomesticSlug(slug);
+        const data = await getSpecialSlug(slug);
         setData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
-    fetchDomesticSlug();
+    fetchSpecialSlug();
   }, [slug]);
 
-  //console.log("domesticSlugData->", data);
+  //console.log("SpecialSlugData->", data);
 
   if (!data) {
     return <PageLoading />;
@@ -71,7 +69,7 @@ const page = ({ params }: Props) => {
           allowTouchMove={false}
           slidesPerView={1}
         >
-          {data.bannerImages.map((item, index) => (
+          {data?.bannerImages.map((item, index) => (
             <SwiperSlide key={index} className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
@@ -91,11 +89,11 @@ const page = ({ params }: Props) => {
         </div>
       </section>
       <section id="packages">
-        <h2 className="place-title">{data.name} Packages</h2>
+        <h2 className="place-title">{data?.name} Packages</h2>
         <div className="packages-container">
-          {data.domesticPackages.length != 0 ? (
+          {data?.specialPackages.length != 0 ? (
             <>
-              {data.domesticPackages.map((item, index) => (
+              {data?.specialPackages.map((item, index) => (
                 <div key={index} className="package">
                   <div className="package-swiper-container">
                     <Swiper
@@ -128,7 +126,7 @@ const page = ({ params }: Props) => {
                   </div>
                   <div className="text-container">
                     <div className="title">
-                      <Link href={`/domestic/${data.slug}/${item.slug}`}>
+                      <Link href={`/special/${data.slug}/${item.slug}`}>
                         <h3>{item.title}</h3>
                       </Link>
                       <p>{item.timeline}</p>
@@ -157,7 +155,7 @@ const page = ({ params }: Props) => {
                       </div>
                     </div>
                     <div className="links">
-                      <Link href={`/domestic/${data.slug}/${item.slug}`}>
+                      <Link href={`/special/${data.slug}/${item.slug}`}>
                         View Details
                       </Link>
                       <button onClick={() => setMobileForm(true)}>

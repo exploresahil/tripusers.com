@@ -9,10 +9,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
 import { FaPlane } from "react-icons/fa";
 import { FaPassport } from "react-icons/fa";
-import { AiFillCamera } from "react-icons/ai";
 import { FaBus } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
-import { RiHotelFill } from "react-icons/ri";
+import { RiHotelFill, RiLandscapeFill } from "react-icons/ri";
 import { PortableText } from "@portabletext/react";
 import { Accordion, AccordionItem as Item } from "@szhsin/react-accordion";
 
@@ -123,12 +122,16 @@ const page = ({ params }: Props) => {
                 </div>
               </div>
               <div className="icons">
-                <RiHotelFill />
-                <ImSpoonKnife />
-                <FaBus />
-                <FaPlane />
-                <AiFillCamera />
-                <FaPassport />
+                {data.addOns != null && (
+                  <>
+                    {data.addOns.isHotels && <RiHotelFill />}
+                    {data.addOns.isFood && <ImSpoonKnife />}
+                    {data.addOns.isTransport && <FaBus />}
+                    {data.addOns.isFlight && <FaPlane />}
+                    {data.addOns.isSightseeing && <RiLandscapeFill />}
+                    {data.addOns.isVisa && <FaPassport />}
+                  </>
+                )}
               </div>
             </div>
             <div className="cta-container">

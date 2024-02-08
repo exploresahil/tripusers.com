@@ -3,7 +3,7 @@
 import { BsBookmarkStarFill } from "react-icons/bs";
 import "./style.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, EffectCards } from "swiper/modules";
+import { Navigation, Autoplay, EffectCoverflow } from "swiper/modules";
 
 import { useEffect, useState } from "react";
 import { special } from "@/src/types/special";
@@ -13,7 +13,7 @@ import Link from "next/link";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/effect-cards";
+import "swiper/css/effect-coverflow";
 import { trending } from "@/src/types/trending";
 
 const SpecialPackages = () => {
@@ -45,21 +45,24 @@ const SpecialPackages = () => {
             <h2>{trending?.specialName}</h2>
           </div>
           <Swiper
-            effect={"cards"}
+            effect={"coverflow"}
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
             }}
             navigation={true}
             loop={true}
-            modules={[Navigation, Autoplay, EffectCards]}
+            modules={[Navigation, Autoplay, EffectCoverflow]}
             className="mySwiper"
-            speed={500}
+            speed={1000}
             allowTouchMove={false}
             slidesPerView={1}
-            cardsEffect={{
-              perSlideRotate: 2,
-              perSlideOffset: 6,
+            coverflowEffect={{
+              rotate: 25,
+              stretch: 0,
+              depth: 5,
+              modifier: 1,
+              slideShadows: true,
             }}
           >
             {specialData.map((item, index) => (

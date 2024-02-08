@@ -9,7 +9,7 @@ import { international, internationalPackages } from "../types/international";
 import { wildLife, wildlifePackage } from "../types/wildlife";
 import { contactUs } from "../types/contact";
 import { trending } from "../types/trending";
-import { special } from "../types/special";
+import { special, specialPackages } from "../types/special";
 
 //*------------------> Brand
 
@@ -161,6 +161,14 @@ export async function getInternationalSlug(
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
         deal,
         price,
         priceSubtitle,
@@ -201,6 +209,14 @@ export async function getInternationalPackagesSlug(
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
@@ -375,6 +391,14 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+          isHotels,
+          isFood,
+          isTransport,
+          isFlight,
+          isSightseeing,
+          isVisa,
+        },
         deal,
         price,
         priceSubtitle,
@@ -415,6 +439,14 @@ export async function getDomesticPackagesSlug(
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
@@ -533,7 +565,7 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
         "_id": asset->_id,
         "url": asset->url,
       },
-      "wildlifePackage": *[_type == "WildLifePackage" && references(^._id)] {
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,
@@ -543,6 +575,14 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
         deal,
         price,
         priceSubtitle,
@@ -583,6 +623,14 @@ export async function getWildlifePackagesSlug(
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
@@ -670,6 +718,14 @@ export async function getSpecialSlug(slug: string): Promise<special> {
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
         deal,
         price,
         priceSubtitle,
@@ -695,7 +751,9 @@ export async function getSpecialSlug(slug: string): Promise<special> {
   );
 }
 
-export async function getSpecialPackagesSlug(slug: string): Promise<special> {
+export async function getSpecialPackagesSlug(
+  slug: string
+): Promise<specialPackages> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "specialPackages" && slug.current == $slug][0] {
       _id,
@@ -709,6 +767,14 @@ export async function getSpecialPackagesSlug(slug: string): Promise<special> {
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
