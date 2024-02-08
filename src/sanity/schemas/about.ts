@@ -22,6 +22,17 @@ const about = {
       options: { hotspot: true, sources: [unsplashAssetSource] },
     },
     {
+      name: "aboutTitle",
+      title: "About Title",
+      type: "string",
+    },
+    {
+      name: "aboutDescription",
+      title: "About Description",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
       name: "vision",
       title: "Vision",
       type: "object",

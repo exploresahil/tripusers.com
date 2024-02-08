@@ -1,9 +1,13 @@
+import { PortableTextBlock } from "sanity";
+
 export type About = {
   _id: string;
   createdAt: Date;
   title: string;
   subtitle: string;
   bannerImage: string;
+  aboutTitle: string;
+  aboutDescription: PortableTextBlock[];
   vision: {
     title: string;
     description: string;

@@ -11,6 +11,7 @@ import { contactUs } from "../types/contact";
 import { trending } from "../types/trending";
 import { special, specialPackages } from "../types/special";
 import { footer } from "../types/footer";
+import { About } from "../types/about";
 
 //*------------------> Brand
 
@@ -797,6 +798,39 @@ export async function getSpecialPackagesSlug(
       }
     }`,
     { slug }
+  );
+}
+
+//* ---------------------> about
+
+export async function getAbout(): Promise<About> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "about"][0]{
+      _id,
+      _createdAt,
+      title,
+      subtitle,
+      "bannerImage":bannerImage.asset->url,
+      aboutTitle,
+      aboutDescription,
+      "vision": vision {
+        title,
+        description,  
+      },
+      "mission": mission {
+        title,
+        description,  
+      },
+      "values": values {
+        title,
+        description,  
+      },
+      "join": join {
+        title,
+        description,  
+      },
+      quote,
+    }`
   );
 }
 
