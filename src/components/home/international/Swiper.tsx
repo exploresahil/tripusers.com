@@ -40,7 +40,7 @@ const SwiperContainer = ({ data }: { data: international[] }) => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="swiperSlide-card">
-            <Link href={`/wild-life/${item.slug}`} key={index}>
+            <Link href={`/international/${item.slug}`} key={index}>
               {item.cardImage && (
                 <Image
                   src={item.cardImage}
