@@ -1,12 +1,17 @@
 "use client";
 
+import { AiFillMail } from "react-icons/ai";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { BsInstagram } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { CgShare } from "react-icons/cg";
 import { BiPhoneCall } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
-import { getBrand, getContactUsInfo } from "@/src/sanity/sanity-utils";
+import {
+  getBrand,
+  getContactUsInfo,
+  getFooter,
+} from "@/src/sanity/sanity-utils";
 import "./style.scss";
 import Image from "next/image";
 import Form from "./Form";
@@ -14,10 +19,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { brand } from "@/src/types/brand";
 import { contactUs } from "@/src/types/contact";
+import { footer } from "@/src/types/footer";
 
 const Footer = () => {
   const [brand, setBrand] = useState<brand[]>();
   const [contact, setContacts] = useState<contactUs>();
+  const [footerData, setFooterData] = useState<footer>();
 
   useEffect(() => {
     const fetchBrand = async () => {
@@ -33,10 +40,17 @@ const Footer = () => {
       const contactData = await getContactUsInfo();
       setContacts(contactData);
     };
+    const fetchFooter = async () => {
+      const footer = await getFooter();
+      setFooterData(footer);
+    };
     fetchContact();
+    fetchFooter();
   }, []);
 
   //console.log("logoData->", logoData);
+
+  //console.log("footerData->", footerData);
 
   return (
     <>
@@ -44,12 +58,9 @@ const Footer = () => {
         <div className="location">
           <Link href="/contact" className="title">
             <MdLocationOn />
-            <h4>Locate Us</h4>
+            <h4>{footerData?.location}</h4>
           </Link>
-          <p>
-            Located across the country, ready to assist in planning & booking
-            your perfect vacation.
-          </p>
+          <p>{footerData?.locationSubtitle}</p>
         </div>
         <div className="call">
           <Link
@@ -58,12 +69,9 @@ const Footer = () => {
             className="title"
           >
             <BiPhoneCall />
-            <h4>{contact?.phone}</h4>
+            <h4>{footerData?.phone}</h4>
           </Link>
-          <p>
-            Located across the country, ready to assist in planning & booking
-            your perfect vacation.
-          </p>
+          <p>{footerData?.phoneSubtitle}</p>
         </div>
         <div className="email">
           <Link
@@ -71,10 +79,10 @@ const Footer = () => {
             target="_blank"
             className="title"
           >
-            <BiPhoneCall />
-            <h4>{contact?.email}</h4>
+            <AiFillMail />
+            <h4>{footerData?.email}</h4>
           </Link>
-          <p>Be it an enquiry, feedback or a simple suggestion, write to us.</p>
+          <p>{footerData?.emailSubtitle}</p>
         </div>
         <div className="social">
           <div className="title">
@@ -83,19 +91,19 @@ const Footer = () => {
           </div>
           <div className="social-icons">
             <Link
-              href={contact?.facebook ? contact.facebook : ""}
+              href={footerData?.facebook ? footerData.facebook : ""}
               target="_blank"
             >
               <BsFacebook />
             </Link>
             <Link
-              href={contact?.instagram ? contact.instagram : ""}
+              href={footerData?.instagram ? footerData.instagram : ""}
               target="_blank"
             >
               <BsInstagram />
             </Link>
             <Link
-              href={contact?.twitter ? contact.twitter : ""}
+              href={footerData?.twitter ? footerData.twitter : ""}
               target="_blank"
             >
               <AiFillTwitterCircle />

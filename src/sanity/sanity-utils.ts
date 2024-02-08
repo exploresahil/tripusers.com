@@ -10,6 +10,7 @@ import { wildLife, wildlifePackage } from "../types/wildlife";
 import { contactUs } from "../types/contact";
 import { trending } from "../types/trending";
 import { special, specialPackages } from "../types/special";
+import { footer } from "../types/footer";
 
 //*------------------> Brand
 
@@ -813,14 +814,32 @@ export async function getContactUsInfo(): Promise<contactUs> {
       Address,
       email,
       phone,
-      facebook,
-      instagram,
-      twitter,
       ourOfficesSubtitle,
       "offices":offices[]{
         "Address":Address,
         "place":place
       }
+    }`
+  );
+}
+
+//* ---------------------> footer
+
+export async function getFooter(): Promise<footer> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'footer'][0]{
+      _id,
+      _createdAt,
+      title,
+      location,
+      locationSubtitle,
+      phone,
+      phoneSubtitle,
+      email,
+      emailSubtitle,
+      facebook,
+      instagram,
+      twitter,
     }`
   );
 }

@@ -16,11 +16,15 @@ import specialPackages from "./specialPackages";
 import trending from "./trending";
 import wildlife from "./wildlife";
 import wildlifePackage from "./wildlifePackages";
+import footer from "./footer";
+import about from "./about";
 
 const schemas = [
   brand,
   hero,
   heroInfo,
+  about,
+  ContactPage,
   trending,
   international,
   InternationalPackages,
@@ -30,10 +34,10 @@ const schemas = [
   wildlifePackage,
   special,
   specialPackages,
-  ContactPage,
   HomeHappyTravelers,
   Profile,
   HappyTravelerStory,
+  footer,
 ];
 
 export default schemas;
