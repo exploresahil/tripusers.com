@@ -15,6 +15,8 @@ export default authMiddleware({
     "/wild-life",
     /^\/special\/.*/,
     "/special",
+    /^\/privacy-policy\/.*/,
+    "/privacy-policy",
   ],
 });
 
