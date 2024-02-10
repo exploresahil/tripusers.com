@@ -4,5 +4,20 @@ export type hero = {
   createdAt: Date;
   title: string;
   place: international;
-  heroImage: string;
+  heroImage: {
+    asset: {
+      url: string;
+    };
+    hotspot?: {
+      height: number;
+      width: number;
+      x: number;
+      y: number;
+    };
+    crop: {
+      right: number;
+      top: number;
+      left: number;
+    };
+  };
 };
