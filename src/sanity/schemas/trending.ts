@@ -48,6 +48,11 @@ const trending = {
       title: "Wildlife Trending Subtitle",
       type: "string",
     },
+    {
+      name: "specialName",
+      title: "Special Name",
+      type: "string",
+    },
   ],
 };
 

@@ -1,8 +1,8 @@
 import { unsplashAssetSource } from "sanity-plugin-asset-source-unsplash";
 
-const domesticPackage = {
-  name: "domesticPackages",
-  title: "Domestic Packages",
+const specialPackages = {
+  name: "specialPackages",
+  title: "Special Packages",
   type: "document",
   fields: [
     {
@@ -19,10 +19,15 @@ const domesticPackage = {
       },
     },
     {
-      name: "place",
-      title: "place",
+      name: "category",
+      title: "Category",
       type: "reference",
-      to: [{ type: "domestic" }],
+      to: [{ type: "special" }],
+    },
+    {
+      name: "place",
+      title: "Place",
+      type: "string",
     },
     {
       name: "packageImages",
@@ -195,4 +200,4 @@ const domesticPackage = {
   ],
 };
 
-export default domesticPackage;
+export default specialPackages;

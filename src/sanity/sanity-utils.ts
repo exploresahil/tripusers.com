@@ -9,6 +9,9 @@ import { international, internationalPackages } from "../types/international";
 import { wildLife, wildlifePackage } from "../types/wildlife";
 import { contactUs } from "../types/contact";
 import { trending } from "../types/trending";
+import { special, specialPackages } from "../types/special";
+import { footer } from "../types/footer";
+import { About } from "../types/about";
 
 //*------------------> Brand
 
@@ -68,6 +71,7 @@ export async function getTrending(): Promise<trending> {
       domesticSubtitle,
       wildlifeName,
       wildlifeSubtitle,
+      specialName,
     }`
   );
 }
@@ -159,6 +163,14 @@ export async function getInternationalSlug(
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
         deal,
         price,
         priceSubtitle,
@@ -199,6 +211,14 @@ export async function getInternationalPackagesSlug(
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
@@ -373,6 +393,14 @@ export async function getDomesticSlug(slug: string): Promise<Domestic> {
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+          isHotels,
+          isFood,
+          isTransport,
+          isFlight,
+          isSightseeing,
+          isVisa,
+        },
         deal,
         price,
         priceSubtitle,
@@ -413,6 +441,14 @@ export async function getDomesticPackagesSlug(
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
@@ -531,7 +567,7 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
         "_id": asset->_id,
         "url": asset->url,
       },
-      "wildlifePackage": *[_type == "WildLifePackage" && references(^._id)] {
+      "wildlifePackage": *[_type == "wildLifePackage" && references(^._id)] {
         _id,
         _createdAt,
         title,
@@ -541,6 +577,14 @@ export async function getWildLifeSlug(slug: string): Promise<wildLife> {
           "url": asset->url,
         },
         timeline,
+        "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
         deal,
         price,
         priceSubtitle,
@@ -581,6 +625,14 @@ export async function getWildlifePackagesSlug(
         "url": asset->url,
       },
       timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
       deal,
       price,
       priceSubtitle,
@@ -623,6 +675,168 @@ export async function getTrendingWildLife(): Promise<wildLife[]> {
   );
 }
 
+//*---------------------> special
+
+export async function getSpecial(): Promise<special[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "special"] {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      cardTitle,
+      cardSubtitle,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+    }`
+  );
+}
+
+export async function getSpecialSlug(slug: string): Promise<special> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "special" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      name,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      cardTitle,
+      cardSubtitle,
+      "bannerImages": bannerImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      "specialPackages": *[_type == "specialPackages" && references(^._id)] {
+        _id,
+        _createdAt,
+        title,
+        "slug": slug.current,
+        place,
+        "packageImages": packageImages[] {
+          "_id": asset->_id,
+          "url": asset->url,
+        },
+        timeline,
+        "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
+        deal,
+        price,
+        priceSubtitle,
+        aboutTheTour,
+        inclusion,
+        exclusion,
+        "itinerary": itinerary[] {
+          "title": title,
+          "day": day,
+          "description": description,
+          "content": content[] {
+            "title": title,
+            "description": description,
+            "images": images[] {
+              "_id": asset->_id,
+              "url": asset->url,
+            }
+          }
+        }
+      }
+    }`,
+    { slug }
+  );
+}
+
+export async function getSpecialPackagesSlug(
+  slug: string
+): Promise<specialPackages> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "specialPackages" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      place,
+      category->{name, slug},
+      "packageImages": packageImages[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      timeline,
+      "addOns": addOns {
+         isHotels,
+         isFood,
+         isTransport,
+         isFlight,
+         isSightseeing,
+         isVisa,
+       },
+      deal,
+      price,
+      priceSubtitle,
+      aboutTheTour,
+      inclusion,
+      exclusion,
+      "itinerary": itinerary[] {
+        "title": title,
+        "day": day,
+        "description": description,
+        "content": content[] {
+          "title": title,
+          "description": description,
+          "images": images[] {
+            "_id": asset->_id,
+            "url": asset->url,
+          }
+        }
+      }
+    }`,
+    { slug }
+  );
+}
+
+//* ---------------------> about
+
+export async function getAbout(): Promise<About> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "about"][0]{
+      _id,
+      _createdAt,
+      title,
+      subtitle,
+      "bannerImage":bannerImage.asset->url,
+      aboutTitle,
+      aboutDescription,
+      "imageOne": imageOne.asset->url,
+      "imageTwo": imageTwo.asset->url,
+      "imageThree": imageThree.asset->url,
+      "vision": vision {
+        title,
+        description,  
+      },
+      "mission": mission {
+        title,
+        description,  
+      },
+      "values": values {
+        title,
+        description,  
+      },
+      "join": join {
+        title,
+        description,  
+      },
+      quote,
+    }`
+  );
+}
+
 //* ---------------------> contact us
 
 export async function getContactUsInfo(): Promise<contactUs> {
@@ -642,6 +856,27 @@ export async function getContactUsInfo(): Promise<contactUs> {
         "Address":Address,
         "place":place
       }
+    }`
+  );
+}
+
+//* ---------------------> footer
+
+export async function getFooter(): Promise<footer> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'footer'][0]{
+      _id,
+      _createdAt,
+      title,
+      location,
+      locationSubtitle,
+      phone,
+      phoneSubtitle,
+      email,
+      emailSubtitle,
+      facebook,
+      instagram,
+      twitter,
     }`
   );
 }

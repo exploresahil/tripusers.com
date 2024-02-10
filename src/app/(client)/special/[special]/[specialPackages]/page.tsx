@@ -1,10 +1,9 @@
 "use client";
 
 import { BiChevronDown } from "react-icons/bi";
-import "./style.scss";
+import "@/src/app/(client)/international/[international]/[internationalPackages]/style.scss";
 import PageLoading from "@/src/components/default/loader/PageLoading";
-import { getInternationalPackagesSlug } from "@/src/sanity/sanity-utils";
-import { internationalPackages } from "@/src/types/international";
+import { getSpecialPackagesSlug } from "@/src/sanity/sanity-utils";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
@@ -21,10 +20,11 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import Image from "next/image";
 import Link from "next/link";
+import { specialPackages } from "@/src/types/special";
 
 type Props = {
   params: {
-    internationalPackages: string;
+    specialPackages: string;
   };
 };
 
@@ -46,14 +46,14 @@ const AccordionItem = ({ title, header, ...rest }: any) => (
 );
 
 const page = ({ params }: Props) => {
-  const [data, setData] = useState<internationalPackages>();
+  const [data, setData] = useState<specialPackages>();
 
-  const slug = params.internationalPackages;
+  const slug = params.specialPackages;
 
   useEffect(() => {
     async function fetchInternationalPackageSlug() {
       try {
-        const data = await getInternationalPackagesSlug(slug);
+        const data = await getSpecialPackagesSlug(slug);
         setData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -66,7 +66,7 @@ const page = ({ params }: Props) => {
     return <PageLoading />;
   }
 
-  //console.log("internationalPackagesSlugData->", data);
+  //console.log("specialPackagesSlugData->", data);
 
   return (
     <>
@@ -86,7 +86,7 @@ const page = ({ params }: Props) => {
           allowTouchMove={false}
           slidesPerView={1}
         >
-          {data.packageImages.map((item, index) => (
+          {data?.packageImages.map((item, index) => (
             <SwiperSlide key={index} className="swiperSlide-card">
               <div className="bg-container">
                 <div className="bg" />
@@ -102,7 +102,7 @@ const page = ({ params }: Props) => {
         </Swiper>
         <div className="text-container">
           <p>Your unforgettable trip</p>
-          <h2>{data?.place.name}</h2>
+          <h2>{data?.place}</h2>
         </div>
       </section>
 
@@ -113,9 +113,7 @@ const page = ({ params }: Props) => {
               <h2>{data?.title}</h2>
               <div className="tags">
                 <p>{data?.timeline}</p>
-                <Link href={`/international/${data?.place.slug.current}`}>
-                  #{data?.place.name}
-                </Link>
+                <Link href={`/special/${data?.place}`}>#{data?.place}</Link>
               </div>
             </div>
             <div className="icons">
@@ -140,9 +138,9 @@ const page = ({ params }: Props) => {
         </div>
         <div className="package-container">
           <div className="about-package">
-            <PortableText value={data.aboutTheTour} />
+            {data && <PortableText value={data?.aboutTheTour} />}
           </div>
-          {data.inclusion && data.exclusion && (
+          {data?.inclusion && data.exclusion && (
             <div className="inclusion-exclusion">
               {data.inclusion && (
                 <div className="inclusion">
@@ -162,7 +160,7 @@ const page = ({ params }: Props) => {
           <div className="itinerary">
             <h3 className="itinerary-title">Itinerary</h3>
             <Accordion className="itinerary-accordion">
-              {data.itinerary.map((item, index) => (
+              {data?.itinerary.map((item, index) => (
                 <AccordionItem
                   key={index}
                   header={`Day ${item.day} `}

@@ -39,6 +39,18 @@
 
     img {
       object-fit: cover;
+      background: linear-gradient(90deg, $yellow, $red, $yellow);
+      background-size: 200%;
+      animation: skeleton 1s infinite linear;
+
+      @keyframes skeleton {
+        from {
+          background-position: -100% 0;
+        }
+        to {
+          background-position: 100% 0;
+        }
+      }
     }
 
     .bg {

@@ -42,11 +42,13 @@ const ContactPage = {
       title: "Phone",
       type: "string",
     },
+
     {
       name: "ourOfficesSubtitle",
       title: "Subtitle in our office section",
       type: "string",
     },
+
     {
       name: "offices",
       title: "Offices Address",

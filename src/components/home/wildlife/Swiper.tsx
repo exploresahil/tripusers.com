@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
-import { Domestic } from "@/src/types/domestic";
 import Link from "next/link";
 
 import "swiper/css";
@@ -11,7 +10,7 @@ import "swiper/css/navigation";
 import { wildLife } from "@/src/types/wildlife";
 
 const SwiperContainer = ({ data }: { data: wildLife[] }) => {
-  //console.log("data->", data[0].wildlifePackage);
+  console.log("data->", data[0].wildlifePackage);
 
   return (
     <div className="india-swiper">
@@ -56,7 +55,8 @@ const SwiperContainer = ({ data }: { data: wildLife[] }) => {
                 {item.wildlifePackage && (
                   <p>
                     Starts from{" "}
-                    {item.wildlifePackage.length == 0
+                    {item.wildlifePackage.length == 0 ||
+                    item.wildlifePackage[0].price == null
                       ? 1500
                       : item.wildlifePackage[0].price.toLocaleString("en-IN")}
                   </p>

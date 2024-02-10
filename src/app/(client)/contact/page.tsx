@@ -65,7 +65,7 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className="offices-container">
+        <div className="offices-container" id="OurOffices">
           <div className="title">
             <h3>Our Offices</h3>
             <p>{contact?.ourOfficesSubtitle}</p>

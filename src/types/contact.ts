@@ -10,6 +10,7 @@ export type contactUs = {
   Address: PortableTextBlock[];
   email: string;
   phone: string;
+
   ourOfficesSubtitle: string;
   offices: {
     place: string;

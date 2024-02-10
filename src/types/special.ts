@@ -1,12 +1,14 @@
 import { PortableTextBlock } from "sanity";
-export type wildlifePackage = {
+
+export type specialPackages = {
   _id: string;
   _createdAt: Date;
   title: string;
   slug: {
     current: string;
   };
-  place: wildLife;
+  category: special;
+  place: string;
   packageImages: {
     _id: string;
     url: string;
@@ -23,8 +25,8 @@ export type wildlifePackage = {
   deal: string;
   price: number;
   priceSubtitle: string;
-  inclusion: PortableTextBlock[];
   aboutTheTour: PortableTextBlock[];
+  inclusion: PortableTextBlock[];
   exclusion: PortableTextBlock[];
   itinerary: {
     title: string;
@@ -41,7 +43,7 @@ export type wildlifePackage = {
   }[];
 };
 
-export type wildLife = {
+export type special = {
   _id: string;
   _createdAt: Date;
   name: string;
@@ -49,10 +51,11 @@ export type wildLife = {
     current: string;
   };
   cardImage: string;
-  isTrending: boolean;
+  cardTitle: string;
+  cardSubtitle: string;
   bannerImages: {
     _id: string;
     url: string;
   }[];
-  wildlifePackage: wildlifePackage[];
+  specialPackages: specialPackages[];
 };
