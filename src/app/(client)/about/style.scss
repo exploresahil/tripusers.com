@@ -86,46 +86,88 @@
     }
   }
 
-  .grid {
-    padding-top: 40px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .vision-container {
+    width: 100%;
+    margin: 40px 0;
 
-    &-item {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      padding: 10px;
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+      $size: 20px;
+      width: $size;
+      height: $size;
+      border-radius: 100px;
+      font-size: 10px;
+      color: $dark;
+      background-color: $yellow;
+      font-weight: bold;
+
+      display: grid;
+      place-content: center;
+    }
+
+    .mySwiper {
+      width: 100%;
       border-radius: 5px;
+      overflow: hidden;
 
-      .title {
-        display: flex;
-        flex-direction: column;
+      .swiperSlide-card {
+        .img-container {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 2 / 1.2;
 
-        svg {
-          align-self: center;
-          $size: 140px;
-          width: $size;
-          height: $size;
-          margin: 40px 0;
-          color: $yellow;
-        }
-
-        .text {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-
-          h3 {
-            font-size: 1.4rem;
-            color: $red;
+          img {
+            object-fit: cover;
           }
         }
       }
-      p {
-        font-size: 0.9rem;
-        opacity: 0.9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      .grid-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+
+        .title-container {
+          display: flex;
+          flex-direction: column;
+
+          svg {
+            align-self: center;
+            $size: 100px;
+            width: $size;
+            height: $size;
+            margin: 50px 0;
+            color: $yellow;
+          }
+
+          .title {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            h3 {
+              font-size: 1.4rem;
+              color: $red;
+            }
+
+            h4 {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        p {
+          font-size: 0.9rem;
+          opacity: 0.9;
+        }
       }
     }
   }
@@ -133,7 +175,6 @@
   .quote {
     display: grid;
     place-content: center;
-    padding: 30px 0 0 0;
 
     h5 {
       font-size: 1.6rem;
@@ -158,29 +199,85 @@
   }
 
   #about {
-    padding: 40px 10vw;
-    .grid {
+    padding: 40px 6vw;
+
+    .about-container {
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .vision-container {
+      display: flex;
+      flex-direction: row-reverse;
+      margin: 20px 0 0 0;
       gap: 40px;
 
-      &-item {
-        padding: 20px 0;
+      .images-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        height: 760px;
 
-        .title {
-          flex-direction: row;
-          gap: 20px;
+        .img-container {
+          position: relative;
+          width: 60%;
+          aspect-ratio: 4 / 5;
 
-          svg {
-            $size: 50px;
-            width: $size;
-            height: $size;
-            margin: 0 0;
+          img {
+            object-fit: cover;
+          }
+
+          &:nth-of-type(2) {
+            top: -40px;
+            right: 100px;
+          }
+
+          &:nth-of-type(3) {
+            top: -80px;
+            right: 0;
+          }
+        }
+      }
+
+      .grid {
+        width: 50%;
+        gap: 0px;
+
+        .grid-item {
+          padding: 0;
+          height: fit-content;
+
+          .title-container {
+            flex-direction: row;
+            gap: 20px;
+
+            svg {
+              margin: 0;
+              $size: 40px;
+              width: $size;
+              height: $size;
+            }
+
+            .title {
+              gap: 2px;
+
+              h3 {
+                font-size: 1.2rem;
+              }
+            }
+          }
+
+          p {
+            font-size: 0.85rem;
           }
         }
       }
     }
 
     .quote {
-      padding: 40px 0 0 0;
       h5 {
         font-size: 1.4rem;
       }
@@ -192,21 +289,60 @@
 
 @media screen and (min-width: 1025px) {
   #aboutHero {
-    height: 80vh;
-    height: 80dvh;
+    height: 60vh;
+    height: 60dvh;
   }
 
   #about {
-    padding: 40px 14vw;
+    padding: 0 14vw;
 
     .about-container {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 300px;
+      height: 80vh;
 
       p {
         font-size: 1.2rem;
+      }
+    }
+
+    .vision-container {
+      .images-container {
+        height: auto;
+      }
+      .grid {
+        width: 60%;
+        gap: 0px;
+
+        .grid-item {
+          padding: 0;
+          height: fit-content;
+
+          .title-container {
+            flex-direction: row;
+            gap: 20px;
+
+            svg {
+              margin: 0;
+              $size: 50px;
+              width: $size;
+              height: $size;
+            }
+
+            .title {
+              gap: 2px;
+
+              h3 {
+                font-size: 1.4rem;
+              }
+            }
+          }
+
+          p {
+            font-size: 1rem;
+          }
+        }
       }
     }
 

@@ -813,6 +813,9 @@ export async function getAbout(): Promise<About> {
       "bannerImage":bannerImage.asset->url,
       aboutTitle,
       aboutDescription,
+      "imageOne": imageOne.asset->url,
+      "imageTwo": imageTwo.asset->url,
+      "imageThree": imageThree.asset->url,
       "vision": vision {
         title,
         description,  

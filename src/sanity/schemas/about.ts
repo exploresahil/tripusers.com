@@ -33,6 +33,24 @@ const about = {
       of: [{ type: "block" }],
     },
     {
+      name: "imageOne",
+      title: "About Image One",
+      type: "image",
+      options: { hotspot: true, sources: [unsplashAssetSource] },
+    },
+    {
+      name: "imageTwo",
+      title: "About Image Two",
+      type: "image",
+      options: { hotspot: true, sources: [unsplashAssetSource] },
+    },
+    {
+      name: "imageThree",
+      title: "About Image Three",
+      type: "image",
+      options: { hotspot: true, sources: [unsplashAssetSource] },
+    },
+    {
       name: "vision",
       title: "Vision",
       type: "object",

@@ -8,6 +8,9 @@ export type About = {
   bannerImage: string;
   aboutTitle: string;
   aboutDescription: PortableTextBlock[];
+  imageOne: string;
+  imageTwo: string;
+  imageThree: string;
   vision: {
     title: string;
     description: string;
