@@ -18,39 +18,14 @@ export const HomeHappyTravelers = {
   ],
 };
 
-export const Profile = {
-  name: "profile",
-  title: "profile of happy traveler",
-  type: "document",
-  fields: [
-    {
-      name: "name",
-      title: "Name",
-      type: "string",
-    },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "name",
-      },
-    },
-    {
-      name: "bio",
-      title: "Bio",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
-      name: "profilePic",
-      title: "profile pic",
-      type: "image",
-      options: { hotspot: true },
-      sources: [unsplashAssetSource],
-    },
-  ],
-};
+// export const Profile = {
+//   name: "profile",
+//   title: "profile of happy traveler",
+//   type: "document",
+//   fields: [
+
+//   ],
+// };
 
 export const HappyTravelerStory = {
   name: "stroy",
@@ -99,10 +74,23 @@ export const HappyTravelerStory = {
       ],
     },
     {
-      name: "profile",
-      title: "Profile",
-      type: "reference",
-      to: [{ type: "profile" }],
+      name: "profileName",
+      title: "Profile Name",
+      type: "string",
+    },
+
+    {
+      name: "bio",
+      title: "Bio",
+      type: "array",
+      of: [{ type: "block" }],
+    },
+    {
+      name: "profilePic",
+      title: "profile pic",
+      type: "image",
+      options: { hotspot: true },
+      sources: [unsplashAssetSource],
     },
     {
       name: "trip",

@@ -25,7 +25,9 @@ const Popover = ({
     <Link
       href={
         Object.keys(data).indexOf("domesticPackages") == -1
-          ? `/international/${data.slug}`
+          ? Object.keys(data).indexOf("wildlifePackage") == -1
+            ? `/international/${data.slug}`
+            : `/wild-life/${data.slug}`
           : `/domestic/${data.slug}`
       }
       onClick={() => {
