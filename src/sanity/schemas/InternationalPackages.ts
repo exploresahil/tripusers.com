@@ -9,6 +9,7 @@ const InternationalPackages = {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
@@ -17,12 +18,14 @@ const InternationalPackages = {
       options: {
         source: "title",
       },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "place",
       title: "place",
       type: "reference",
       to: [{ type: "international" }],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "packageImages",
@@ -38,11 +41,13 @@ const InternationalPackages = {
       options: {
         layout: "grid",
       },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "timeline",
       title: "Timeline",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "addOns",
@@ -97,22 +102,26 @@ const InternationalPackages = {
       name: "deal",
       title: "Deal",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "price",
       title: "Price",
       type: "number",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "priceSubtitle",
       title: "Price Subtitle",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "aboutTheTour",
       title: "About The Tour",
       type: "array",
       of: [{ type: "block" }],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "inclusion",
@@ -138,11 +147,13 @@ const InternationalPackages = {
               name: "title",
               title: "Title",
               type: "string",
+              validation: (Rule: any) => Rule.required(),
             },
             {
               name: "day",
               title: "Day",
               type: "number",
+              validation: (Rule: any) => Rule.required(),
             },
             {
               name: "description",
@@ -162,6 +173,7 @@ const InternationalPackages = {
                       name: "title",
                       title: "Title",
                       type: "string",
+                      validation: (Rule: any) => Rule.required(),
                     },
                     {
                       name: "description",
