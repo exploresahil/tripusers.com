@@ -38,7 +38,7 @@ export async function getHero(): Promise<hero[]> {
       _createdAt,
       title,
       place->{name, slug},
-      "heroImage": heroImage.asset->url,
+      "heroImage":heroImage{asset->{url},hotspot,crop},
     }`
   );
 }
