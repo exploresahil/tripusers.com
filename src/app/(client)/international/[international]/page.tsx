@@ -110,18 +110,19 @@ const page = ({ params }: Props) => {
                       allowTouchMove={false}
                       slidesPerView={1}
                     >
-                      {item.packageImages.map((item, index) => (
-                        <SwiperSlide key={index} className="swiperSlide-card">
-                          <div className="bg-container">
-                            <Image
-                              src={item.url}
-                              alt="hero background"
-                              fill
-                              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                            />
-                          </div>
-                        </SwiperSlide>
-                      ))}
+                      {item.packageImages &&
+                        item.packageImages.map((item, index) => (
+                          <SwiperSlide key={index} className="swiperSlide-card">
+                            <div className="bg-container">
+                              <Image
+                                src={item.url}
+                                alt="hero background"
+                                fill
+                                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                              />
+                            </div>
+                          </SwiperSlide>
+                        ))}
                     </Swiper>
                   </div>
                   <div className="text-container">
