@@ -2,11 +2,7 @@ import brand from "./brand";
 import ContactPage from "./contact-page";
 import domestic from "./domestic";
 import domesticPackage from "./domesticPackages";
-import {
-  HappyTravelerStory,
-  HomeHappyTravelers,
-  Profile,
-} from "./happytravelers";
+import { HappyTravelerStory, HomeHappyTravelers } from "./happytravelers";
 import hero from "./hero";
 import heroInfo from "./heroInfo";
 import international from "./International";
@@ -35,7 +31,6 @@ const schemas = [
   special,
   specialPackages,
   HomeHappyTravelers,
-  Profile,
   HappyTravelerStory,
   footer,
 ];
