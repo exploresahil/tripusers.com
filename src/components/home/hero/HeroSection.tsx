@@ -40,6 +40,8 @@ const HeroSection = () => {
     fetchHeroInfo();
   }, []);
 
+  console.log("heroData -> ", data);
+
   const onSildeChange = contextSafe(() => {
     //------> Title Animation
 
@@ -73,11 +75,11 @@ const HeroSection = () => {
     gsap.fromTo(
       ".swiper-slide-next div img",
       {
-        scale: 1,
+        scale: 1.2,
       },
       {
-        scale: 1.2,
-        duration: 2,
+        scale: 1,
+        duration: 3,
       }
     );
 
@@ -138,10 +140,15 @@ const HeroSection = () => {
               <div className="bg-container">
                 <div className="bg" />
                 <Image
-                  src={data[0]?.heroImage}
+                  src={data[0]?.heroImage.asset.url}
                   alt="hero background"
                   fill
                   sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  style={{
+                    objectPosition: `${data[0].heroImage.hotspot?.x * 100}% ${
+                      data[0].heroImage.hotspot?.y * 100
+                    }%`,
+                  }}
                 />
               </div>
               <div className="text-container">
@@ -158,10 +165,15 @@ const HeroSection = () => {
               <div className="bg-container">
                 <div className="bg" />
                 <Image
-                  src={data[1]?.heroImage}
+                  src={data[1]?.heroImage.asset.url}
                   alt="hero background"
                   fill
                   sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  style={{
+                    objectPosition: `${data[1].heroImage.hotspot?.x * 100}% ${
+                      data[1].heroImage.hotspot?.y * 100
+                    }%`,
+                  }}
                 />
               </div>
               <div className="text-container">
@@ -178,10 +190,15 @@ const HeroSection = () => {
               <div className="bg-container">
                 <div className="bg" />
                 <Image
-                  src={data[2]?.heroImage}
+                  src={data[2]?.heroImage.asset.url}
                   alt="hero background"
                   fill
                   sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  style={{
+                    objectPosition: `${data[2].heroImage.hotspot?.x * 100}% ${
+                      data[2].heroImage.hotspot?.y * 100
+                    }%`,
+                  }}
                 />
               </div>
               <div className="text-container">
@@ -198,10 +215,15 @@ const HeroSection = () => {
               <div className="bg-container">
                 <div className="bg" />
                 <Image
-                  src={data[3]?.heroImage}
+                  src={data[3]?.heroImage.asset.url}
                   alt="hero background"
                   fill
                   sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  style={{
+                    objectPosition: `${data[3].heroImage.hotspot?.x * 100}% ${
+                      data[3].heroImage.hotspot?.y * 100
+                    }%`,
+                  }}
                 />
               </div>
               <div className="text-container">
@@ -218,10 +240,15 @@ const HeroSection = () => {
               <div className="bg-container">
                 <div className="bg" />
                 <Image
-                  src={data[4]?.heroImage}
+                  src={data[4]?.heroImage.asset.url}
                   alt="hero background"
                   fill
                   sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  style={{
+                    objectPosition: `${data[4].heroImage.hotspot?.x * 100}% ${
+                      data[4].heroImage.hotspot?.y * 100
+                    }%`,
+                  }}
                 />
               </div>
               <div className="text-container">

@@ -8,7 +8,7 @@ export type hero = {
     asset: {
       url: string;
     };
-    hotspot?: {
+    hotspot: {
       height: number;
       width: number;
       x: number;
@@ -18,6 +18,7 @@ export type hero = {
       right: number;
       top: number;
       left: number;
+      bottom: number;
     };
   };
 };
