@@ -9,6 +9,7 @@ const international = {
       name: "name",
       title: "Name",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
@@ -17,12 +18,14 @@ const international = {
       options: {
         source: "name",
       },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "cardImage",
       title: "Card Image",
       type: "image",
       options: { hotspot: true, sources: [unsplashAssetSource] },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "isTrending",
@@ -61,6 +64,7 @@ const international = {
       options: {
         layout: "grid",
       },
+      validation: (Rule: any) => Rule.required(),
     },
   ],
 };

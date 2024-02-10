@@ -9,6 +9,7 @@ const specialPackages = {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
@@ -17,17 +18,20 @@ const specialPackages = {
       options: {
         source: "title",
       },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "category",
       title: "Category",
       type: "reference",
       to: [{ type: "special" }],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "place",
       title: "Place",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "packageImages",
@@ -43,11 +47,13 @@ const specialPackages = {
       options: {
         layout: "grid",
       },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "timeline",
       title: "Timeline",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "addOns",
@@ -102,22 +108,26 @@ const specialPackages = {
       name: "deal",
       title: "Deal",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "price",
       title: "Price",
       type: "number",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "priceSubtitle",
       title: "Price Subtitle",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "aboutTheTour",
       title: "About The Tour",
       type: "array",
       of: [{ type: "block" }],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "inclusion",
@@ -143,11 +153,13 @@ const specialPackages = {
               name: "title",
               title: "Title",
               type: "string",
+              validation: (Rule: any) => Rule.required(),
             },
             {
               name: "day",
               title: "Day",
               type: "number",
+              validation: (Rule: any) => Rule.required(),
             },
             {
               name: "description",
@@ -167,6 +179,7 @@ const specialPackages = {
                       name: "title",
                       title: "Title",
                       type: "string",
+                      validation: (Rule: any) => Rule.required(),
                     },
                     {
                       name: "description",

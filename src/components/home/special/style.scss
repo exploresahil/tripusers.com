@@ -57,8 +57,9 @@
         padding: 20px;
         position: relative;
         display: flex;
-        align-items: flex-end;
-        aspect-ratio: 4 / 5;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 3.2 / 1;
 
         &::after {
           position: absolute;
@@ -101,17 +102,20 @@
           display: flex;
           flex-direction: column;
           gap: 20px;
+          align-items: center;
 
           .title {
             width: 100%;
             font-size: 2rem;
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 5px;
 
             h2 {
               font-family: $cookie;
               line-height: 1;
+              font-size: 1.8rem;
             }
 
             p {
@@ -145,7 +149,7 @@
       .swiperSlide-card {
         .bg-container {
           padding: 80px 100px;
-          aspect-ratio: 2 / 1;
+          aspect-ratio: 3.2 / 1;
           align-items: center;
           justify-content: center;
 

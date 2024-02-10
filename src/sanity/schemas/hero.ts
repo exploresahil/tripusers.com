@@ -9,18 +9,21 @@ const hero = {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "place",
       title: "Place",
       type: "reference",
       to: [{ type: "international" }],
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "heroImage",
       title: "Background Image",
       type: "image",
       options: { hotspot: true, sources: [unsplashAssetSource] },
+      validation: (Rule: any) => Rule.required(),
     },
   ],
 };

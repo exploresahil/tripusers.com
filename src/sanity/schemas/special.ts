@@ -9,6 +9,7 @@ const special = {
       name: "name",
       title: "Name",
       type: "string",
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
@@ -17,12 +18,14 @@ const special = {
       options: {
         source: "name",
       },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "cardImage",
       title: "Card Image",
       type: "image",
       options: { hotspot: true },
+      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "cardTitle",
@@ -48,6 +51,7 @@ const special = {
       options: {
         layout: "grid",
       },
+      validation: (Rule: any) => Rule.required(),
     },
   ],
 };

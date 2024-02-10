@@ -135,7 +135,7 @@ const page = ({ params }: Props) => {
           <div className="cta-container">
             <p className="deal">{data?.deal}</p>
             <h4>₹ {data?.price.toLocaleString("en-in")}</h4>
-            <p>per Adult</p>
+            <p>{data?.priceSubtitle}</p>
             <button>Send Enquiry</button>
           </div>
         </div>
@@ -171,28 +171,34 @@ const page = ({ params }: Props) => {
                     initialEntered={index === 0}
                   >
                     <div className="desc">
-                      <PortableText value={item.description} />
+                      {item.description && (
+                        <PortableText value={item.description} />
+                      )}
                     </div>
-                    {item.content.map((content, index) => (
-                      <div key={index} className="content">
-                        <h4>{content.title}</h4>
-                        <PortableText value={content.description} />
-                        {content.images && (
-                          <div className="images-container">
-                            {content.images.map((img, index) => (
-                              <div key={index} className="img-container">
-                                <Image
-                                  src={img.url}
-                                  alt="hero background"
-                                  fill
-                                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                    {item.content &&
+                      item.content.map((content, index) => (
+                        <div key={index} className="content">
+                          <h4>{content.title}</h4>
+                          {content.description && (
+                            <PortableText value={content.description} />
+                          )}
+
+                          {content.images && (
+                            <div className="images-container">
+                              {content.images.map((img, index) => (
+                                <div key={index} className="img-container">
+                                  <Image
+                                    src={img.url}
+                                    alt="hero background"
+                                    fill
+                                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
                   </AccordionItem>
                 ))}
             </Accordion>
