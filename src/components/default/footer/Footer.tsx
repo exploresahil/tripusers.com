@@ -133,7 +133,7 @@ const Footer = () => {
               <h4>Support</h4>
               <Link href="/contact">Contact Us</Link>
               <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms-and-conditions">Terms & Conditions</Link>
+              <Link href="/terms-&-conditions">Terms & Conditions</Link>
             </div>
           </div>
         </div>

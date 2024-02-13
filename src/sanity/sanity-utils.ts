@@ -12,6 +12,7 @@ import { trending } from "../types/trending";
 import { special, specialPackages } from "../types/special";
 import { footer } from "../types/footer";
 import { About } from "../types/about";
+import { PrivacyPolicyAndTnc } from "../types/privacyPolicyAndTnc";
 
 //*------------------> Brand
 
@@ -877,6 +878,30 @@ export async function getFooter(): Promise<footer> {
       facebook,
       instagram,
       twitter,
+    }`
+  );
+}
+
+//* ---------------------> Privacy Policy And Tnc
+
+export async function getPrivacyPolicyAndTnc(): Promise<PrivacyPolicyAndTnc> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == 'privacyPolicyAndTnc'][0]{
+      _id,
+      _createdAt,
+      privacyPolicyAndTnc,
+      "privacyPolicy": privacyPolicy {
+        title,
+        updatedAt,
+        "bannerImage":bannerImage.asset->url,
+        content,
+      },
+      "termsAndConditions": termsAndConditions {
+        title,
+        updatedAt,
+        "bannerImage":bannerImage.asset->url,
+        content,
+      },
     }`
   );
 }

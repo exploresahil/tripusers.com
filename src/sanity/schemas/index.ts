@@ -14,6 +14,7 @@ import wildlife from "./wildlife";
 import wildlifePackage from "./wildlifePackages";
 import footer from "./footer";
 import about from "./about";
+import privacyPolicyAndTnc from "./privacyPolicyAndTnc";
 
 const schemas = [
   brand,
@@ -33,6 +34,7 @@ const schemas = [
   HomeHappyTravelers,
   HappyTravelerStory,
   footer,
+  privacyPolicyAndTnc,
 ];
 
 export default schemas;

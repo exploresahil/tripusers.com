@@ -40,7 +40,7 @@ const HeroSection = () => {
     fetchHeroInfo();
   }, []);
 
-  console.log("heroData -> ", data);
+  //console.log("heroData -> ", data);
 
   const onSildeChange = contextSafe(() => {
     //------> Title Animation

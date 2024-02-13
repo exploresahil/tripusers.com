@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import "./style.scss";
+import "@/src/app/(client)/privacy-policy/style.scss";
 import { PrivacyPolicyAndTnc } from "@/src/types/privacyPolicyAndTnc";
 import { getPrivacyPolicyAndTnc } from "@/src/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
@@ -25,14 +25,14 @@ const page = () => {
     <>
       <section id="privacyPolicyHeader">
         <div className="titel-container">
-          <h2>{privacyPolicyAndTnc?.privacyPolicy.title}</h2>
-          <p>{privacyPolicyAndTnc?.privacyPolicy.updatedAt}</p>
+          <h2>{privacyPolicyAndTnc?.termsAndConditions.title}</h2>
+          <p>{privacyPolicyAndTnc?.termsAndConditions.updatedAt}</p>
         </div>
         <div className="img-container">
-          {privacyPolicyAndTnc?.privacyPolicy.bannerImage && (
+          {privacyPolicyAndTnc?.termsAndConditions.bannerImage && (
             <>
               <Image
-                src={privacyPolicyAndTnc?.privacyPolicy.bannerImage}
+                src={privacyPolicyAndTnc?.termsAndConditions.bannerImage}
                 alt="contact hero image"
                 fill
                 sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
@@ -43,12 +43,14 @@ const page = () => {
         </div>
       </section>
       <section id="privacyPolicyContent">
-        <h2>{privacyPolicyAndTnc?.privacyPolicy.title}</h2>
+        <h2>{privacyPolicyAndTnc?.termsAndConditions.title}</h2>
         <span>
-          Last updated: {privacyPolicyAndTnc?.privacyPolicy.updatedAt}
+          Last updated: {privacyPolicyAndTnc?.termsAndConditions.updatedAt}
         </span>
         {privacyPolicyAndTnc?.privacyPolicy.content && (
-          <PortableText value={privacyPolicyAndTnc?.privacyPolicy.content} />
+          <PortableText
+            value={privacyPolicyAndTnc?.termsAndConditions.content}
+          />
         )}
       </section>
     </>

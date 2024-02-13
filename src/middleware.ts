@@ -17,6 +17,8 @@ export default authMiddleware({
     "/special",
     /^\/privacy-policy\/.*/,
     "/privacy-policy",
+    /^\/terms-&-conditions\/.*/,
+    "/terms-&-conditions",
   ],
 });
 
