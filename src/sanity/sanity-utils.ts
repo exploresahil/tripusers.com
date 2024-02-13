@@ -73,6 +73,8 @@ export async function getTrending(): Promise<trending> {
       wildlifeName,
       wildlifeSubtitle,
       specialName,
+      testimonialName,
+      testimonialSubtitle,
     }`
   );
 }

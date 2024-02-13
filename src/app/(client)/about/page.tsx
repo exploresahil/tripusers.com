@@ -8,20 +8,22 @@ import Image from "next/image";
 import "./style.scss";
 import { About } from "@/src/types/about";
 import { useEffect, useState } from "react";
-import { getAbout } from "@/src/sanity/sanity-utils";
+import { getAbout, getHeroInfo } from "@/src/sanity/sanity-utils";
 import PageLoading from "@/src/components/default/loader/PageLoading";
 import { PortableText } from "@portabletext/react";
 import { useMediaQuery } from "react-responsive";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectFade, Autoplay } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import { heroInfo } from "@/src/types/heroInfo";
 
 const page = () => {
   const isMobile = useMediaQuery({ maxWidth: 820 });
 
   const [aboutData, setAboutData] = useState<About>();
+  const [dataInfo, setDataInfo] = useState<heroInfo[]>([]);
 
   const fetchAbout = async () => {
     const about = await getAbout();
@@ -29,8 +31,14 @@ const page = () => {
     setAboutData(about);
   };
 
+  async function fetchHeroInfo() {
+    const dataInfo = await getHeroInfo();
+    setDataInfo(dataInfo);
+  }
+
   useEffect(() => {
     fetchAbout();
+    fetchHeroInfo();
   }, []);
 
   if (!aboutData) {
@@ -183,10 +191,20 @@ const page = () => {
             </div>
           </div>
         </div>
-
         <div className="quote">
           <h5>"{aboutData?.quote}"</h5>
         </div>
+      </section>
+      <section id="infographics">
+        {dataInfo.map((item, index) => (
+          <div key={index} className="info">
+            <Image src={item.icon} alt="icon" width={20} height={20} />
+            <p>
+              {item.title}
+              <span>{item.subtitle}</span>
+            </p>
+          </div>
+        ))}
       </section>
     </>
   );

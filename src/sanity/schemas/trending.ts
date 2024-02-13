@@ -62,6 +62,18 @@ const trending = {
       type: "string",
       validation: (Rule: any) => Rule.required(),
     },
+    {
+      name: "testimonialName",
+      title: "Testimonial Name",
+      type: "string",
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "testimonialSubtitle",
+      title: "Testimonial Subtitle",
+      type: "string",
+      validation: (Rule: any) => Rule.required(),
+    },
   ],
 };
 

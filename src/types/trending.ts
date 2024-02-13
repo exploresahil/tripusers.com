@@ -11,4 +11,6 @@ export type trending = {
   wildlifeName: string;
   wildlifeSubtitle: string;
   specialName: string;
+  testimonialName: "string";
+  testimonialSubtitle: string;
 };

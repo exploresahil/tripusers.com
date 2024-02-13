@@ -184,6 +184,39 @@
   }
 }
 
+#infographics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 0.8rem;
+  padding: 20px 4vw;
+  place-content: end;
+  row-gap: 10px;
+  column-gap: 20px;
+  width: 100%;
+
+  .info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    img {
+      $size: 22px;
+      width: $size;
+      height: $size;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+      font-weight: 300;
+
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
 //*---------->> Tablet
 
 @media screen and (min-width: 820px) {
@@ -283,6 +316,25 @@
       }
     }
   }
+
+  #infographics {
+    row-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 30px 6vw;
+
+    .info {
+      gap: 10px;
+      img {
+        $size: 30px;
+        width: $size;
+        height: $size;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
 //*---------->> desktop
@@ -349,6 +401,28 @@
     .grid {
       grid-template-columns: 1fr 1fr;
       column-gap: 100px;
+    }
+  }
+
+  #infographics {
+    row-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 50px 12vw;
+
+    .info {
+      flex-direction: column;
+      gap: 10px;
+
+      img {
+        $size: 50px;
+        width: $size;
+        height: $size;
+      }
+
+      p {
+        font-size: 1rem;
+        align-items: center;
+      }
     }
   }
 }
