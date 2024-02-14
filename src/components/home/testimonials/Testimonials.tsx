@@ -41,10 +41,10 @@ const Testimonials = () => {
     fetchTrendingData();
     fetchTrendingTestimonialData();
   }, []);
-  const ImageSwiperRef = useRef<SwiperRef>(null);
-  const TextSwiperRef = useRef<SwiperRef>(null);
-  const [SlideIndex, setSlideIndex] = useState(0);
-  console.log("SlideIndex -> ", SlideIndex);
+  // const ImageSwiperRef = useRef<SwiperRef>(null);
+  // const TextSwiperRef = useRef<SwiperRef>(null);
+  // const [SlideIndex, setSlideIndex] = useState(0);
+  // console.log("SlideIndex -> ", SlideIndex);
   // useEffect(() => {
   //   console.log(
   //     ImageSwiperRef.current?.swiper.activeIndex,
@@ -68,85 +68,87 @@ const Testimonials = () => {
       </div>
       <div className="testimonials-container">
         {trendingTestimonial.length > 0 && (
-          <Swiper
-            ref={ImageSwiperRef}
-            effect={"cards"}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            centeredSlides={true}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            loop={true}
-            modules={[Navigation, Autoplay, EffectCards]}
-            className="mySwiper-images"
-            speed={500}
-            allowTouchMove={false}
-            slidesPerView={"auto"}
-            cardsEffect={{
-              rotate: false,
-              slideShadows: false,
-            }}
-            onSlideChange={(swiper) => {
-              setSlideIndex(swiper.realIndex);
-            }}
-          >
-            {trendingTestimonial.map((data, index) => (
-              <SwiperSlide key={index} className="swiperSlide-card">
-                <Link href="#">
-                  <Image
-                    src={data?.cardImage}
-                    alt="hero background"
-                    fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                  />
-                </Link>
-              </SwiperSlide>
-            ))}
-            <div className="prev" ref={prevRef}>
-              prev
-            </div>
-            <div className="next" ref={nextRef}>
-              next
-            </div>
-          </Swiper>
-        )}
-        {trendingTestimonial.length > 0 && (
-          <Swiper
-            ref={TextSwiperRef}
-            effect={"fade"}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            centeredSlides={true}
-            loop={true}
-            modules={[Autoplay, EffectFade, Navigation]}
-            className="mySwiper-content"
-            speed={500}
-            allowTouchMove={false}
-            slidesPerView={1}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-          >
-            {trendingTestimonial.map((data, index) => (
-              <SwiperSlide key={index} className="swiperSlide-card">
-                <Link href="#">
-                  <h3>{data?.title}</h3>
-                </Link>
-                <div className="hashtags">
-                  {data.hashtags?.map((data, index) => (
-                    <p key={index}>#{data.name}</p>
-                  ))}
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <>
+            <Swiper
+              // ref={ImageSwiperRef}
+              initialSlide={0}
+              effect={"cards"}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              centeredSlides={true}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              loop={true}
+              modules={[Navigation, Autoplay, EffectCards]}
+              className="mySwiper-images"
+              speed={500}
+              allowTouchMove={false}
+              slidesPerView={"auto"}
+              cardsEffect={{
+                rotate: false,
+                slideShadows: false,
+              }}
+              // onSlideChange={(swiper) => {
+              //   setSlideIndex(swiper.realIndex);
+              // }}
+            >
+              {trendingTestimonial.map((data, index) => (
+                <SwiperSlide key={index} className="swiperSlide-card">
+                  <Link href="#">
+                    <Image
+                      src={data?.cardImage}
+                      alt="hero background"
+                      fill
+                      sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    />
+                  </Link>
+                </SwiperSlide>
+              ))}
+              <div className="prev" ref={prevRef}>
+                prev
+              </div>
+              <div className="next" ref={nextRef}>
+                next
+              </div>
+            </Swiper>
+            <Swiper
+              // ref={TextSwiperRef}
+              initialSlide={3}
+              effect={"fade"}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              centeredSlides={true}
+              loop={true}
+              modules={[Autoplay, EffectFade, Navigation]}
+              className="mySwiper-content"
+              speed={500}
+              allowTouchMove={false}
+              slidesPerView={"auto"}
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+            >
+              {trendingTestimonial.map((data, index) => (
+                <SwiperSlide key={index} className="swiperSlide-card">
+                  <Link href="#">
+                    <h3>{data?.title}</h3>
+                  </Link>
+                  <div className="hashtags">
+                    {data.hashtags?.map((data, index) => (
+                      <p key={index}>#{data.name}</p>
+                    ))}
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </>
         )}
       </div>
     </section>
