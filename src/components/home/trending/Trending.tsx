@@ -18,7 +18,14 @@ const Trending = () => {
 
   useEffect(() => {
     const fetchTrendingHero = async () => {
-      const trendingData = await getTrendingHomeInternational();
+      const trendingDataPromises = Array.from({ length: 9 }, (_, index) =>
+        getTrendingHomeInternational(index.toString())
+      );
+      const trendingDataArrays = await Promise.all(trendingDataPromises);
+      const trendingData = trendingDataArrays
+        .map((dataArray) => dataArray[0])
+        .filter(Boolean);
+
       setTrendingData(trendingData);
     };
     fetchTrendingHero();
@@ -54,6 +61,11 @@ const Trending = () => {
                 alt={`image of  ${item.name}`}
                 fill
                 sizes="(max-width: 768px) 200px, (max-width: 1200px) 400px, 500px"
+                style={{
+                  objectPosition: `${item.cardImageHotspot?.x * 100}% ${
+                    item.cardImageHotspot?.y * 100
+                  }%`,
+                }}
               />
             )}
             <div className="text-container">

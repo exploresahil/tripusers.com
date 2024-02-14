@@ -73,7 +73,7 @@ const page = () => {
     router.push("/testimonials/#testimonialsData");
   };
 
-  console.log("Testimonials ->", testimonials);
+  //console.log("Testimonials ->", testimonials);
 
   if (!testimonials) {
     return <PageLoading />;

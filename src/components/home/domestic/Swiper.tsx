@@ -47,7 +47,7 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
                     src={item.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    sizes="(max-width: 768px) 300px, (max-width: 1200px) 400px, 600px"
                   />
                 </>
               )}

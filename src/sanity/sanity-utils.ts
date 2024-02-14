@@ -247,16 +247,25 @@ export async function getInternationalPackagesSlug(
   );
 }
 
-export async function getTrendingHomeInternational(): Promise<international[]> {
+export async function getTrendingHomeInternational(
+  isTrendingHomeIndex: string
+): Promise<international[]> {
   return createClient(clientConfig).fetch(
-    groq`*[_type == "international" && isTrendingHome == true] | order(_createdAt asc) {
+    groq`*[_type == "international" && isTrendingHome == true && isTrendingHomeIndex == $isTrendingHomeIndex] | order(_createdAt asc) {
       _id,
       _createdAt,
       name,
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
+      "cardImageHotspot": cardImage.hotspot{
+        width,
+        height,
+        x,
+        y,
+      },
       isTrending,
       isTrendingHome,
+      isTrendingHomeIndex,
       isTrendingSlider,
       "internationalPackages": *[_type == "internationalPackages" && references(^._id)] {
         _id,
@@ -264,7 +273,8 @@ export async function getTrendingHomeInternational(): Promise<international[]> {
         title,
         price,
       },
-    }`
+    }`,
+    { isTrendingHomeIndex }
   );
 }
 
@@ -816,6 +826,7 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
       "slug": slug.current,
       "cardImage": cardImage.asset->url,
       reviewDate,
+      shortReview,
       tripTo,
       "hashtags": hashtags[] {
         name,

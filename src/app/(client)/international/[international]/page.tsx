@@ -44,7 +44,7 @@ const page = ({ params }: Props) => {
     fetchInternationalSlug();
   }, [slug]);
 
-  console.log("internationalSlugData->", data);
+  //console.log("internationalSlugData->", data);
 
   if (!data) {
     return <PageLoading />;

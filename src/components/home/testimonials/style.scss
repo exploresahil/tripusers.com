@@ -91,11 +91,14 @@
     }
 
     .mySwiper-content {
+      display: flex;
+
       .swiperSlide-card {
-        background-color: $light;
         display: flex;
         flex-direction: column;
         gap: 10px;
+        padding: 0 3vw 0 3vw;
+        visibility: hidden;
 
         .hashtags {
           display: flex;
@@ -110,6 +113,89 @@
             border-radius: 100px;
           }
         }
+        .shortReview {
+          margin-top: 10px;
+        }
+
+        .profile-container {
+          display: flex;
+          width: 100%;
+          background-color: $offLight;
+          padding: 10px;
+          border-radius: 10px;
+          flex-direction: column;
+          margin: 10px 0;
+
+          .profile {
+            display: flex;
+            gap: 15px;
+
+            .img-container {
+              position: relative;
+              width: 50px;
+              aspect-ratio: 1 / 1;
+              border-radius: 1000px;
+              //border: 1px solid $dark;
+              overflow: hidden;
+              display: grid;
+              place-content: center;
+              background-color: $yellow;
+
+              img {
+                object-fit: cover;
+              }
+
+              h5 {
+                font-size: 2.8rem;
+                opacity: 0.9;
+              }
+            }
+
+            &-info {
+              display: flex;
+              flex-direction: column;
+              gap: 2px;
+
+              h4 {
+                font-size: 1.2rem;
+              }
+
+              p {
+                font-size: 0.9rem;
+                opacity: 0.5;
+              }
+            }
+          }
+
+          .rating-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            .stars {
+              display: flex;
+            }
+
+            p {
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        .button {
+          background-color: $yellow;
+          color: $light;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px 0;
+          border-radius: 5px;
+        }
+      }
+
+      .swiper-slide-active {
+        visibility: visible !important;
       }
     }
   }

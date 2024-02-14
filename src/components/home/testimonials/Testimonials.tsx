@@ -1,5 +1,6 @@
 "use client";
 
+import { AiFillStar } from "react-icons/ai";
 import { BsStars } from "react-icons/bs";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./style.scss";
@@ -65,7 +66,7 @@ const Testimonials = () => {
     fetchTrendingData();
     fetchTrendingTestimonialData();
   }, []);
-  console.log(trendingTestimonial);
+  //console.log(trendingTestimonial);
 
   useEffect(() => {
     if (SwiperImageRef.current && SwiperTextRef.current) {
@@ -119,6 +120,13 @@ const Testimonials = () => {
   }, [SwiperImageRef.current, SwiperTextRef.current]);
   //console.log("fetchTrending ->", trending);
   //console.log("fetchTrendingTestimonial ->", trendingTestimonial);
+  const getStarColor = (
+    rating: string | undefined,
+    starIndex: number
+  ): string => {
+    const ratingValue = rating ? parseInt(rating.split("-")[0]) : 0;
+    return starIndex < ratingValue ? "#fd8f04" : "#1d1d1f";
+  };
 
   return (
     <section id="testimonials">
@@ -163,7 +171,7 @@ const Testimonials = () => {
               <div className="swiper-wrapper">
                 {trendingTestimonial.map((data, index) => (
                   <div key={index} className="swiper-slide swiperSlide-card">
-                    <Link href="#">
+                    <Link href={`/testimonials/${data.slug.current}`}>
                       <h3>{data?.title}</h3>
                     </Link>
                     <div className="hashtags">
@@ -171,6 +179,50 @@ const Testimonials = () => {
                         <p key={index}>#{data.name}</p>
                       ))}
                     </div>
+                    <p className="shortReview">{data.shortReview}</p>
+                    <div className="profile-container">
+                      <div className="profile">
+                        <div className="img-container">
+                          {data.profile.image ? (
+                            <Image
+                              src={data.profile.image}
+                              alt="hero background"
+                              fill
+                              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                            />
+                          ) : (
+                            <h5>{data.profile.name.charAt(0)}</h5>
+                          )}
+                        </div>
+                        <div className="profile-info">
+                          <h4>{data.profile.name}</h4>
+                          <p>
+                            Reviewed on:
+                            {data.reviewDate.toString()}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="rating-container">
+                        <div className="stars">
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <AiFillStar
+                              key={starIndex}
+                              style={{
+                                color: getStarColor(data.rating, starIndex),
+                              }}
+                            />
+                          ))}
+                        </div>
+                        <p>Trip to {data.tripTo}</p>
+                      </div>
+                    </div>
+
+                    <Link
+                      className="button"
+                      href={`/testimonials/${data.slug.current}`}
+                    >
+                      Read Full Story
+                    </Link>
                   </div>
                 ))}
               </div>

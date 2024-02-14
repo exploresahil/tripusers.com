@@ -81,6 +81,7 @@ const testimonials = {
       name: "hashtags",
       title: "Hashtags",
       type: "array",
+      description: "Don't add more than 5 Hashtags",
       of: [
         {
           type: "object",

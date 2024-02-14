@@ -43,6 +43,27 @@ const international = {
       initialValue: false,
     },
     {
+      name: "isTrendingHomeIndex",
+      title: "Trending Home Index",
+      type: "string",
+      initialValue: "none",
+      description: "if is trending on Home true then select index",
+      options: {
+        list: [
+          { title: "none", value: "none" },
+          { title: "index-1", value: "0" },
+          { title: "index-2", value: "1" },
+          { title: "index-3", value: "2" },
+          { title: "index-4", value: "3" },
+          { title: "index-5", value: "4" },
+          { title: "index-6", value: "5" },
+          { title: "index-7", value: "6" },
+          { title: "index-8", value: "7" },
+          { title: "index-9", value: "8" },
+        ],
+      },
+    },
+    {
       name: "isTrendingSlider",
       title: "Is trending on Slider",
       type: "boolean",

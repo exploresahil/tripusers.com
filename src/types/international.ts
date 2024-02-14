@@ -1,4 +1,13 @@
 import { PortableTextBlock } from "sanity";
+
+export type Hotspot = {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
+};
+export type CardImageHotspot = Hotspot;
+
 export type internationalPackages = {
   _id: string;
   _createdAt: Date;
@@ -49,8 +58,10 @@ export type international = {
     current: string;
   };
   cardImage: string;
+  cardImageHotspot: CardImageHotspot;
   isTrending: boolean;
   isTrendingHome: boolean;
+  isTrendingHomeIndex: string;
   isTrendingSlider: boolean;
   bannerImages: {
     _id: string;

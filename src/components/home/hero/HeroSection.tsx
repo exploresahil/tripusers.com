@@ -180,7 +180,7 @@ const HeroSection = () => {
                 <p>{data[1]?.title}</p>
                 <h2>{data[1]?.place.name}</h2>
                 <Link href={`/international/${data[1]?.place.slug.current}`}>
-                  Read More
+                  View Deals
                 </Link>
               </div>
             </SwiperSlide>
@@ -205,7 +205,7 @@ const HeroSection = () => {
                 <p>{data[2]?.title}</p>
                 <h2>{data[2]?.place.name}</h2>
                 <Link href={`/international/${data[2]?.place.slug.current}`}>
-                  Read More
+                  View Deals
                 </Link>
               </div>
             </SwiperSlide>
@@ -230,7 +230,7 @@ const HeroSection = () => {
                 <p>{data[3]?.title}</p>
                 <h2>{data[3]?.place.name}</h2>
                 <Link href={`/international/${data[3]?.place.slug.current}`}>
-                  Read More
+                  View Deals
                 </Link>
               </div>
             </SwiperSlide>
@@ -255,7 +255,7 @@ const HeroSection = () => {
                 <p>{data[4]?.title}</p>
                 <h2>{data[4]?.place.name}</h2>
                 <Link href={`/international/${data[3]?.place.slug.current}`}>
-                  Read More
+                  View Deals
                 </Link>
               </div>
             </SwiperSlide>
