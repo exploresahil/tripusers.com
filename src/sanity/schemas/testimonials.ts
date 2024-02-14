@@ -21,6 +21,17 @@ const testimonials = {
       validation: (Rule: any) => Rule.required(),
     },
     {
+      title: "Review date",
+      name: "reviewDate",
+      type: "date",
+    },
+    {
+      name: "tripTo",
+      title: "Trip To",
+      type: "string",
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
       name: "cardImage",
       title: "Card Image",
       type: "image",
@@ -28,16 +39,42 @@ const testimonials = {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: "isTrending",
-      title: "Trending on Home?",
-      type: "boolean",
-      description: "Whether Trending on Home",
-      initialValue: false,
+      name: "profile",
+      title: "Profile",
+      type: "object",
+      fields: [
+        {
+          name: "name",
+          title: "Name",
+          type: "string",
+          validation: (Rule: any) => Rule.required(),
+        },
+        {
+          name: "image",
+          title: "Profile Image",
+          type: "image",
+          options: { hotspot: true },
+        },
+      ],
+    },
+    {
+      name: "rating",
+      title: "Rating",
+      type: "string",
+      initialValue: "5-star",
+      options: {
+        list: [
+          { title: "5-Star", value: "5-star" },
+          { title: "4-Star", value: "4-star" },
+          { title: "3-Star", value: "3-star" },
+          { title: "2-Star", value: "2-star" },
+          { title: "1-Star", value: "1-star" },
+        ],
+      },
     },
     {
       name: "shortReview",
       title: "Short Review",
-      description: "If trending is true",
       type: "string",
     },
     {

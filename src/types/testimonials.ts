@@ -2,26 +2,20 @@ import { PortableTextBlock } from "sanity";
 
 export type Testimonial = {
   _id: string;
-  _type: "testimonials";
+  _createdAt: Date;
   title: string;
   slug: {
     current: string;
   };
-  cardImage: {
-    _type: "image";
-    asset: {
-      _ref: string;
-      _type: "reference";
-    };
-    hotspot: {
-      height: number;
-      width: number;
-      x: number;
-      y: number;
-    };
+  reviewDate: Date;
+  tripTo: string;
+  cardImage: string;
+  profile: {
+    name: string;
+    image: string;
   };
-  isTrending: boolean;
-  shortReview?: string;
+  rating: string;
+  shortReview: string;
   hashtags?: {
     name: string;
   }[];

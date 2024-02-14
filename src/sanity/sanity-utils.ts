@@ -13,6 +13,7 @@ import { special, specialPackages } from "../types/special";
 import { footer } from "../types/footer";
 import { About } from "../types/about";
 import { PrivacyPolicyAndTnc } from "../types/privacyPolicyAndTnc";
+import Testimonial from "../types/testimonials";
 
 //*------------------> Brand
 
@@ -801,6 +802,30 @@ export async function getSpecialPackagesSlug(
       }
     }`,
     { slug }
+  );
+}
+
+//* ---------------------> Testimonials
+
+export async function getTrendingTestimonials(): Promise<Testimonial[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "testimonials"] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      "cardImage": cardImage.asset->url,
+      reviewDate,
+      tripTo,
+      "hashtags": hashtags[] {
+        name,
+      },
+      "profile": profile {
+        name,
+        "image": image.asset->url,
+      },
+      rating,
+    }`
   );
 }
 
