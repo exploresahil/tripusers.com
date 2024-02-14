@@ -97,7 +97,7 @@ const Testimonials = () => {
         initialSlide: 5,
         effect: "fade",
         autoplay: {
-          delay: 4000,
+          delay: 4100,
           disableOnInteraction: false,
         },
         centeredSlides: true,
@@ -158,10 +158,10 @@ const Testimonials = () => {
                 ))}
               </div>
               <div className="prev" ref={prevRef}>
-                prev
+                <div className="size">prev</div>
               </div>
               <div className="next" ref={nextRef}>
-                next
+                <div className="size">next</div>
               </div>
             </div>
             <div
@@ -171,7 +171,10 @@ const Testimonials = () => {
               <div className="swiper-wrapper">
                 {trendingTestimonial.map((data, index) => (
                   <div key={index} className="swiper-slide swiperSlide-card">
-                    <Link href={`/testimonials/${data.slug.current}`}>
+                    <Link
+                      className="title"
+                      href={`/testimonials/${data.slug.current}`}
+                    >
                       <h3>{data?.title}</h3>
                     </Link>
                     <div className="hashtags">
