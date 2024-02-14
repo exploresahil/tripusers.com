@@ -1,14 +1,14 @@
 "use client";
 
 import { BsStars } from "react-icons/bs";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./style.scss";
 import { trending } from "@/src/types/trending";
 import {
   getTrending,
   getTrendingTestimonials,
 } from "@/src/sanity/sanity-utils";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, EffectCards, EffectFade } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
@@ -31,14 +31,27 @@ const Testimonials = () => {
 
   const fetchTrendingTestimonialData = async () => {
     const trendingTestimonialData = await getTrendingTestimonials();
-    setTrendingTestimonial(trendingTestimonialData);
+    setTrendingTestimonial(() => trendingTestimonialData.slice(1, 5));
   };
 
   useEffect(() => {
     fetchTrendingData();
     fetchTrendingTestimonialData();
   }, []);
+  const ImageSwiperRef = useRef<SwiperRef>(null);
+  const TextSwiperRef = useRef<SwiperRef>(null);
+  const [SlideIndex, setSlideIndex] = useState(0);
+  console.log("SlideIndex -> ", SlideIndex);
+  // useEffect(() => {
+  //   console.log(
+  //     ImageSwiperRef.current?.swiper.activeIndex,
+  //     TextSwiperRef?.current?.swiper.activeIndex
+  //   );
 
+  //   TextSwiperRef?.current?.swiper?.slideTo(
+  //     ImageSwiperRef.current?.swiper.activeIndex || 0
+  //   );
+  // }, [SlideIndex]);
   //console.log("fetchTrending ->", trending);
   //console.log("fetchTrendingTestimonial ->", trendingTestimonial);
 
@@ -53,6 +66,7 @@ const Testimonials = () => {
       <div className="testimonials-container">
         {trendingTestimonial.length > 0 && (
           <Swiper
+            ref={ImageSwiperRef}
             effect={"cards"}
             autoplay={{
               delay: 4000,
@@ -69,6 +83,9 @@ const Testimonials = () => {
             cardsEffect={{
               rotate: false,
               slideShadows: false,
+            }}
+            onSlideChange={(swiper) => {
+              setSlideIndex(swiper.realIndex);
             }}
           >
             {trendingTestimonial.map((data, index) => (
@@ -87,6 +104,7 @@ const Testimonials = () => {
         )}
         {trendingTestimonial.length > 0 && (
           <Swiper
+            ref={TextSwiperRef}
             effect={"fade"}
             autoplay={{
               delay: 4000,
