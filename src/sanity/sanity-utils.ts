@@ -828,6 +828,30 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
     }`
   );
 }
+export async function getTestimonials(): Promise<Testimonial[]> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "testimonials"] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      reviewDate,
+      tripTo,
+      "cardImage": cardImage.asset->url,    
+      "profile": profile {
+        name,
+        "image": image.asset->url,
+      },
+      rating,
+      shortReview,
+      "images": images[] {
+        "_id": asset->_id,
+        "url": asset->url,
+      },
+      fullReview,
+    }`
+  );
+}
 
 //* ---------------------> about
 

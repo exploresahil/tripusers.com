@@ -24,6 +24,9 @@ const Testimonials = () => {
     []
   );
 
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   const fetchTrendingData = async () => {
     const trendingData = await getTrending();
     setTrending(trendingData);
@@ -73,7 +76,10 @@ const Testimonials = () => {
               disableOnInteraction: false,
             }}
             centeredSlides={true}
-            navigation={true}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
             loop={true}
             modules={[Navigation, Autoplay, EffectCards]}
             className="mySwiper-images"
@@ -100,6 +106,12 @@ const Testimonials = () => {
                 </Link>
               </SwiperSlide>
             ))}
+            <div className="prev" ref={prevRef}>
+              prev
+            </div>
+            <div className="next" ref={nextRef}>
+              next
+            </div>
           </Swiper>
         )}
         {trendingTestimonial.length > 0 && (
@@ -112,11 +124,15 @@ const Testimonials = () => {
             }}
             centeredSlides={true}
             loop={true}
-            modules={[Autoplay, EffectFade]}
+            modules={[Autoplay, EffectFade, Navigation]}
             className="mySwiper-content"
             speed={500}
             allowTouchMove={false}
             slidesPerView={1}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
           >
             {trendingTestimonial.map((data, index) => (
               <SwiperSlide key={index} className="swiperSlide-card">

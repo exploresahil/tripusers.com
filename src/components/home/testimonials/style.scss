@@ -43,19 +43,31 @@
     .mySwiper-images {
       margin-bottom: 20px;
 
-      .swiper-button-prev::after,
-      .swiper-button-next::after {
-        $size: 20px;
-        width: $size;
-        height: $size;
+      .next,
+      .prev {
+        position: absolute;
+        z-index: 10;
+        width: 20px;
+        height: 20px;
+        font-family: swiper-icons;
         border-radius: 100px;
         font-size: 10px;
-        color: $dark;
+        color: #1d1d1f;
         background-color: $yellow;
         font-weight: bold;
-
         display: grid;
         place-content: center;
+        top: 50%;
+        cursor: pointer;
+      }
+
+      .prev {
+        left: 10px;
+        right: auto;
+      }
+      .next {
+        left: auto;
+        right: 10px;
       }
 
       .swiperSlide-card {
