@@ -155,7 +155,7 @@ const HeroSection = () => {
                 <p>{data[0]?.title}</p>
                 <h2>{data[0]?.place.name}</h2>
                 <Link href={`/international/${data[0]?.place.slug.current}`}>
-                  Read More
+                  View Deals
                 </Link>
               </div>
             </SwiperSlide>

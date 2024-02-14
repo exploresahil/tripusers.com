@@ -70,7 +70,7 @@
             background: linear-gradient(
               to bottom,
               rgba(35, 35, 35, 0),
-              rgba(35, 35, 35, 0.75) 100%
+              rgba(35, 35, 35, 0.2) 100%
             );
             top: auto;
             bottom: 0;
@@ -82,7 +82,6 @@
 
           img {
             object-fit: cover;
-
             background-color: $dark;
             background: linear-gradient(90deg, $yellow, $red, $yellow);
             background-size: 200%;
@@ -156,7 +155,7 @@
 
             &:hover {
               img {
-                transform: scale(1.2);
+                transform: perspective(1px) scale(1.2);
               }
             }
           }

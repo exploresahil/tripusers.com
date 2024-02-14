@@ -506,7 +506,7 @@ export async function getWildLife(
   const end = start + pageSize;
 
   const data = await createClient(clientConfig).fetch(
-    groq`*[_type == "wildlife"] | order(_createdAt asc) {
+    groq`*[_type == "wildlife"] | order(_createdAt asc)[$start...$end]{
       _id,
       _createdAt,
       name,
@@ -828,9 +828,15 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
     }`
   );
 }
-export async function getTestimonials(): Promise<Testimonial[]> {
-  return createClient(clientConfig).fetch(
-    groq`*[_type == "testimonials"] {
+export async function getTestimonials(
+  page: number = 1,
+  pageSize: number = 4
+): Promise<{ data: Testimonial[]; totalPages: number }> {
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+
+  const data = await createClient(clientConfig).fetch(
+    groq`*[_type == "testimonials"] | order(_createdAt asc)[$start...$end] {
       _id,
       _createdAt,
       title,
@@ -849,8 +855,17 @@ export async function getTestimonials(): Promise<Testimonial[]> {
         "url": asset->url,
       },
       fullReview,
-    }`
+    }`,
+    { start, end }
   );
+
+  const totalCount = await createClient(clientConfig).fetch(
+    groq`count(*[_type == "testimonials"])`
+  );
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  return { data, totalPages };
 }
 
 //* ---------------------> about

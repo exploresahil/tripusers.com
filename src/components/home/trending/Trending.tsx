@@ -53,7 +53,7 @@ const Trending = () => {
                 src={item.cardImage}
                 alt={`image of  ${item.name}`}
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                sizes="(max-width: 768px) 200px, (max-width: 1200px) 400px, 500px"
               />
             )}
             <div className="text-container">

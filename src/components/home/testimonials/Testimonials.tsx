@@ -126,7 +126,7 @@ const Testimonials = () => {
         <BsStars size={40} />
         <h2>{trending?.testimonialName}</h2>
         <p>{trending?.testimonialSubtitle}</p>
-        <Link href="/domestic">View All</Link>
+        <Link href="/testimonials">View All</Link>
       </div>
       <div className="testimonials-container">
         {trendingTestimonial.length > 0 && (
