@@ -59,7 +59,7 @@ const page = () => {
                 src={aboutData?.bannerImage}
                 alt="contact hero image"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
               />
               <div className="bg" />
             </>
@@ -94,7 +94,7 @@ const page = () => {
                     src={aboutData.imageOne}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   />
                 </div>
               </SwiperSlide>
@@ -104,7 +104,7 @@ const page = () => {
                     src={aboutData.imageTwo}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   />
                 </div>
               </SwiperSlide>
@@ -114,7 +114,7 @@ const page = () => {
                     src={aboutData.imageThree}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   />
                 </div>
               </SwiperSlide>
@@ -126,7 +126,7 @@ const page = () => {
                   src={aboutData.imageOne}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                 />
               </div>
               <div className="img-container">
@@ -134,7 +134,7 @@ const page = () => {
                   src={aboutData.imageTwo}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                 />
               </div>
               <div className="img-container">
@@ -142,7 +142,7 @@ const page = () => {
                   src={aboutData.imageThree}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                 />
               </div>
             </div>

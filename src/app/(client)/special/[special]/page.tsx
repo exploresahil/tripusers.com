@@ -78,7 +78,7 @@ const page = ({ params }: Props) => {
                     src={item.url}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   />
                 </div>
               </SwiperSlide>
@@ -119,7 +119,7 @@ const page = ({ params }: Props) => {
                                 src={item.url}
                                 alt="hero background"
                                 fill
-                                sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                               />
                             </div>
                           </SwiperSlide>

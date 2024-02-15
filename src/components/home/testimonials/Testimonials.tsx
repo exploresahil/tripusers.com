@@ -9,15 +9,17 @@ import {
   getTrending,
   getTrendingTestimonials,
 } from "@/src/sanity/sanity-utils";
-import { SwiperRef, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, EffectCards, EffectFade } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
-import Swiper from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-cards";
+import "swiper/css/effect-fade";
 import Testimonial from "@/src/types/testimonials";
+
 function getRandomUniqueElements(array: any[], count: number) {
   // Shuffle the input array
   const shuffledArray = array.slice().sort(() => Math.random() - 0.5);
@@ -44,11 +46,8 @@ const Testimonials = () => {
     []
   );
 
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-
-  const SwiperImageRef = useRef<any>();
-  const SwiperTextRef = useRef<any>();
+  const prevRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLDivElement>(null);
 
   const fetchTrendingData = async () => {
     const trendingData = await getTrending();
@@ -66,60 +65,10 @@ const Testimonials = () => {
     fetchTrendingData();
     fetchTrendingTestimonialData();
   }, []);
-  //console.log(trendingTestimonial);
 
-  useEffect(() => {
-    if (SwiperImageRef.current && SwiperTextRef.current) {
-      let ImageSwiper = new Swiper(SwiperImageRef.current, {
-        initialSlide: 0,
-        effect: "cards",
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-        centeredSlides: true,
-        navigation: {
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        },
-        loop: true,
-        modules: [Navigation, Autoplay, EffectCards],
-        speed: 500,
-        allowTouchMove: false,
-        slidesPerView: "auto",
-
-        cardsEffect: {
-          rotate: false,
-          slideShadows: false,
-        },
-      });
-      let TextSwiper = new Swiper(SwiperTextRef.current, {
-        initialSlide: 5,
-        effect: "fade",
-        autoplay: {
-          delay: 4100,
-          disableOnInteraction: false,
-        },
-        centeredSlides: true,
-        loop: true,
-        modules: [Autoplay, EffectFade, Navigation],
-        speed: 500,
-        allowTouchMove: false,
-        slidesPerView: "auto",
-        navigation: {
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        },
-      });
-
-      return () => {
-        ImageSwiper.destroy();
-        TextSwiper.destroy();
-      };
-    }
-  }, [SwiperImageRef.current, SwiperTextRef.current]);
   //console.log("fetchTrending ->", trending);
   //console.log("fetchTrendingTestimonial ->", trendingTestimonial);
+
   const getStarColor = (
     rating: string | undefined,
     starIndex: number
@@ -137,100 +86,137 @@ const Testimonials = () => {
         <Link href="/testimonials">View All</Link>
       </div>
       <div className="testimonials-container">
-        {trendingTestimonial.length > 0 && (
-          <>
-            <div
-              ref={SwiperImageRef}
-              className="mySwiper-images swiper-container"
-            >
-              <div className="swiper-wrapper">
-                {trendingTestimonial.map((data, index) => (
-                  <div key={index} className="swiper-slide swiperSlide-card">
-                    <Link href="#">
-                      <Image
-                        src={data?.cardImage}
-                        alt="hero background"
-                        fill
-                        sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                      />
-                    </Link>
-                  </div>
-                ))}
-              </div>
-              <div className="prev" ref={prevRef}>
-                <div className="size">prev</div>
-              </div>
-              <div className="next" ref={nextRef}>
-                <div className="size">next</div>
-              </div>
+        {trendingTestimonial.length > 0 ? (
+          <Swiper
+            initialSlide={0}
+            effect={"cards"}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            centeredSlides={true}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            loop={true}
+            modules={[Navigation, Autoplay, EffectCards]}
+            speed={500}
+            allowTouchMove={false}
+            slidesPerView={"auto"}
+            cardsEffect={{
+              rotate: false,
+              slideShadows: false,
+            }}
+            className="mySwiper-images swiper-container"
+          >
+            {trendingTestimonial.map((data, index) => (
+              <SwiperSlide
+                key={index}
+                className="swiper-slide swiperSlide-card"
+              >
+                <Link href="#">
+                  <Image
+                    src={data?.cardImage}
+                    alt="hero background"
+                    fill
+                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
+            <div className="prev" ref={prevRef}>
+              <div className="size">prev</div>
             </div>
-            <div
-              ref={SwiperTextRef}
-              className="mySwiper-content swiper-container"
-            >
-              <div className="swiper-wrapper">
-                {trendingTestimonial.map((data, index) => (
-                  <div key={index} className="swiper-slide swiperSlide-card">
-                    <Link
-                      className="title"
-                      href={`/testimonials/${data.slug.current}`}
-                    >
-                      <h3>{data?.title}</h3>
-                    </Link>
-                    <div className="hashtags">
-                      {data.hashtags?.map((data, index) => (
-                        <p key={index}>#{data.name}</p>
+            <div className="next" ref={nextRef}>
+              <div className="size">next</div>
+            </div>
+          </Swiper>
+        ) : (
+          <p>No data</p>
+        )}
+        {trendingTestimonial.length > 0 ? (
+          <Swiper
+            initialSlide={5}
+            effect={"fade"}
+            autoplay={{
+              delay: 4100,
+              disableOnInteraction: false,
+            }}
+            centeredSlides={true}
+            loop={true}
+            modules={[Autoplay, EffectFade, Navigation]}
+            speed={500}
+            allowTouchMove={false}
+            slidesPerView={1}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            className="mySwiper-content"
+          >
+            {trendingTestimonial.map((data, index) => (
+              <SwiperSlide key={index} className="swiperSlide-card">
+                <Link
+                  className="title"
+                  href={`/testimonials/${data.slug.current}`}
+                >
+                  <h3>{data?.title}</h3>
+                </Link>
+                <div className="hashtags">
+                  {data.hashtags?.map((data, index) => (
+                    <p key={index}>#{data.name}</p>
+                  ))}
+                </div>
+                <p className="shortReview">{data.shortReview}</p>
+                <div className="profile-container">
+                  <div className="profile">
+                    <div className="img-container">
+                      {data.profile.image ? (
+                        <Image
+                          src={data.profile.image}
+                          alt="hero background"
+                          fill
+                          sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                        />
+                      ) : (
+                        <h5>{data.profile.name.charAt(0)}</h5>
+                      )}
+                    </div>
+                    <div className="profile-info">
+                      <h4>{data.profile.name}</h4>
+                      <p>
+                        Reviewed on:
+                        {data.reviewDate.toString()}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="rating-container">
+                    <div className="stars">
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <AiFillStar
+                          key={starIndex}
+                          style={{
+                            color: getStarColor(data.rating, starIndex),
+                          }}
+                        />
                       ))}
                     </div>
-                    <p className="shortReview">{data.shortReview}</p>
-                    <div className="profile-container">
-                      <div className="profile">
-                        <div className="img-container">
-                          {data.profile.image ? (
-                            <Image
-                              src={data.profile.image}
-                              alt="hero background"
-                              fill
-                              sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
-                            />
-                          ) : (
-                            <h5>{data.profile.name.charAt(0)}</h5>
-                          )}
-                        </div>
-                        <div className="profile-info">
-                          <h4>{data.profile.name}</h4>
-                          <p>
-                            Reviewed on:
-                            {data.reviewDate.toString()}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="rating-container">
-                        <div className="stars">
-                          {Array.from({ length: 5 }).map((_, starIndex) => (
-                            <AiFillStar
-                              key={starIndex}
-                              style={{
-                                color: getStarColor(data.rating, starIndex),
-                              }}
-                            />
-                          ))}
-                        </div>
-                        <p>Trip to {data.tripTo}</p>
-                      </div>
-                    </div>
-
-                    <Link
-                      className="button"
-                      href={`/testimonials/${data.slug.current}`}
-                    >
-                      Read Full Story
-                    </Link>
+                    <p>Trip to {data.tripTo}</p>
                   </div>
-                ))}
-              </div>
-            </div>
-          </>
+                </div>
+
+                <Link
+                  className="button"
+                  href={`/testimonials/${data.slug.current}`}
+                >
+                  Read Full Story
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p>No data</p>
         )}
       </div>
     </section>

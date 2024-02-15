@@ -143,7 +143,7 @@ const HeroSection = () => {
                   src={data[0]?.heroImage.asset.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   style={{
                     objectPosition: `${data[0].heroImage.hotspot?.x * 100}% ${
                       data[0].heroImage.hotspot?.y * 100
@@ -168,7 +168,7 @@ const HeroSection = () => {
                   src={data[1]?.heroImage.asset.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   style={{
                     objectPosition: `${data[1].heroImage.hotspot?.x * 100}% ${
                       data[1].heroImage.hotspot?.y * 100
@@ -193,7 +193,7 @@ const HeroSection = () => {
                   src={data[2]?.heroImage.asset.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   style={{
                     objectPosition: `${data[2].heroImage.hotspot?.x * 100}% ${
                       data[2].heroImage.hotspot?.y * 100
@@ -218,7 +218,7 @@ const HeroSection = () => {
                   src={data[3]?.heroImage.asset.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   style={{
                     objectPosition: `${data[3].heroImage.hotspot?.x * 100}% ${
                       data[3].heroImage.hotspot?.y * 100
@@ -243,7 +243,7 @@ const HeroSection = () => {
                   src={data[4]?.heroImage.asset.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 1000px, 2000px"
+                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
                   style={{
                     objectPosition: `${data[4].heroImage.hotspot?.x * 100}% ${
                       data[4].heroImage.hotspot?.y * 100
