@@ -106,6 +106,7 @@
       grid-template-columns: repeat(4, 1fr);
 
       .country {
+        height: 180px;
         &:nth-child(1),
         &:nth-of-type(7),
         &:nth-child(10),
@@ -169,6 +170,7 @@
       grid-template-columns: repeat(4, 1fr);
 
       .country {
+        height: 250px;
         .text-container {
           font-size: 1.4rem;
 

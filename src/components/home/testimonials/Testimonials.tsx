@@ -133,7 +133,7 @@ const Testimonials = () => {
             </div>
           </Swiper>
         ) : (
-          <p>No data</p>
+          <p>No data / Loading...</p>
         )}
         {trendingTestimonial.length > 0 ? (
           <Swiper
@@ -185,10 +185,7 @@ const Testimonials = () => {
                     </div>
                     <div className="profile-info">
                       <h4>{data.profile.name}</h4>
-                      <p>
-                        Reviewed on:
-                        {data.reviewDate.toString()}
-                      </p>
+                      <p>{data.reviewDate.toString()}</p>
                     </div>
                   </div>
                   <div className="rating-container">
@@ -216,7 +213,7 @@ const Testimonials = () => {
             ))}
           </Swiper>
         ) : (
-          <p>No data</p>
+          <p>No data / Loading...</p>
         )}
       </div>
     </section>
