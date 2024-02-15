@@ -157,10 +157,7 @@ const Testimonials = () => {
           >
             {trendingTestimonial.map((data, index) => (
               <SwiperSlide key={index} className="swiperSlide-card">
-                <Link
-                  className="title"
-                  href={`/testimonials/${data.slug.current}`}
-                >
+                <Link className="title" href={`/testimonials/${data.slug}`}>
                   <h3>{data?.title}</h3>
                 </Link>
                 <div className="hashtags">
@@ -203,10 +200,7 @@ const Testimonials = () => {
                   </div>
                 </div>
 
-                <Link
-                  className="button"
-                  href={`/testimonials/${data.slug.current}`}
-                >
+                <Link className="button" href={`/testimonials/${data.slug}`}>
                   Read Full Story
                 </Link>
               </SwiperSlide>
