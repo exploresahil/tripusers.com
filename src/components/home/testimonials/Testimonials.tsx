@@ -115,7 +115,7 @@ const Testimonials = () => {
                 key={index}
                 className="swiper-slide swiperSlide-card"
               >
-                <Link href="#">
+                <Link href={`/testimonials/${data.slug}`}>
                   <Image
                     src={data?.cardImage}
                     alt="hero background"

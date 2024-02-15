@@ -10,7 +10,7 @@ import WildLife from "@/src/components/home/wildlife/WildLife";
 export default function Home() {
   return (
     <>
-      {/* <Loader /> */}
+      <Loader />
       <HeroSection />
       <Trending />
       <International />

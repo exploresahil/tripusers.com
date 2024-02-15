@@ -841,7 +841,7 @@ export async function getTrendingTestimonials(): Promise<Testimonial[]> {
 }
 export async function getTestimonials(
   page: number = 1,
-  pageSize: number = 4
+  pageSize: number = 6
 ): Promise<{ data: Testimonial[]; totalPages: number }> {
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
@@ -854,6 +854,42 @@ export async function getTestimonials(
       "slug": slug.current,
       reviewDate,
       tripTo,
+      "hashtags": hashtags[] {
+        name,
+      },
+      "cardImage": cardImage.asset->url,    
+      "profile": profile {
+        name,
+        "image": image.asset->url,
+      },
+      rating,
+      shortReview,
+
+    }`,
+    { start, end }
+  );
+
+  const totalCount = await createClient(clientConfig).fetch(
+    groq`count(*[_type == "testimonials"])`
+  );
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  return { data, totalPages };
+}
+
+export async function getTestimonialSlug(slug: string): Promise<Testimonial> {
+  return createClient(clientConfig).fetch(
+    groq`*[_type == "testimonials" && slug.current == $slug][0] {
+      _id,
+      _createdAt,
+      title,
+      "slug": slug.current,
+      reviewDate,
+      tripTo,
+      "hashtags": hashtags[] {
+        name,
+      },
       "cardImage": cardImage.asset->url,    
       "profile": profile {
         name,
@@ -867,16 +903,8 @@ export async function getTestimonials(
       },
       fullReview,
     }`,
-    { start, end }
+    { slug }
   );
-
-  const totalCount = await createClient(clientConfig).fetch(
-    groq`count(*[_type == "testimonials"])`
-  );
-
-  const totalPages = Math.ceil(totalCount / pageSize);
-
-  return { data, totalPages };
 }
 
 //* ---------------------> about
