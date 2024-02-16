@@ -21,6 +21,7 @@ import "swiper/css/effect-fade";
 import Image from "next/image";
 import Link from "next/link";
 import { wildlifePackage } from "@/src/types/wildlife";
+import SlugForm from "@/src/components/slugForm/SlugForm";
 
 type Props = {
   params: {
@@ -47,6 +48,7 @@ const AccordionItem = ({ title, header, ...rest }: any) => (
 
 const page = ({ params }: Props) => {
   const [data, setData] = useState<wildlifePackage>();
+  const [form, setForm] = useState<boolean>(false);
 
   const slug = params.wildLifePackage;
 
@@ -71,6 +73,9 @@ const page = ({ params }: Props) => {
   return (
     data && (
       <>
+        {form && (
+          <SlugForm onClick={() => setForm(false)} packageName={data?.title} />
+        )}
         <section id="internationalPackagesSlugHero">
           <Swiper
             effect={"fade"}
@@ -139,7 +144,7 @@ const page = ({ params }: Props) => {
               <p className="deal">{data?.deal}</p>
               <h4>₹ {data?.price.toLocaleString("en-in")}</h4>
               <p>{data?.priceSubtitle}</p>
-              <button>Send Enquiry</button>
+              <button onClick={() => setForm(true)}>Send Enquiry</button>
             </div>
           </div>
           <div className="package-container">

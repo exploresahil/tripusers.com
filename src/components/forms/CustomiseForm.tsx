@@ -92,7 +92,7 @@ const CustomiseForm = ({ onClick }: props) => {
       //console.log(data);
     }
   };
-  useGSAP(() => {
+  useEffect(() => {
     const boxClose = (e: any) => {
       if (!formDontainerRef.current?.contains(e.target)) {
         if (typeof onClick !== "undefined") onClick();
@@ -102,7 +102,7 @@ const CustomiseForm = ({ onClick }: props) => {
     return () => {
       document.removeEventListener("mousedown", boxClose);
     };
-  });
+  }, []);
 
   useEffect(() => {
     async function fetchBrand() {
