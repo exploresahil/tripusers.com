@@ -140,7 +140,7 @@ const Testimonials = () => {
             initialSlide={5}
             effect={"fade"}
             autoplay={{
-              delay: 4100,
+              delay: 4000,
               disableOnInteraction: false,
             }}
             centeredSlides={true}
