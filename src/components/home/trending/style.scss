@@ -213,12 +213,13 @@
           grid-column: 3 / 5;
         }
         img {
+          transform: perspective(500px);
           transition: transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1);
         }
 
         &:hover {
           img {
-            transform: perspective(100px) scale(1.2);
+            transform: scale(1.2);
           }
         }
       }
