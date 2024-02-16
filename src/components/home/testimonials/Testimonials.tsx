@@ -19,6 +19,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-cards";
 import "swiper/css/effect-fade";
 import Testimonial from "@/src/types/testimonials";
+import ImageSize from "@/src/utils/image-utils";
 
 function getRandomUniqueElements(array: any[], count: number) {
   // Shuffle the input array
@@ -120,7 +121,7 @@ const Testimonials = () => {
                     src={data?.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 </Link>
               </SwiperSlide>
@@ -178,7 +179,7 @@ const Testimonials = () => {
                           src={data.profile.image}
                           alt="hero background"
                           fill
-                          sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                          sizes={ImageSize.cardSize}
                         />
                       ) : (
                         <h5>{data.profile.name.charAt(0)}</h5>

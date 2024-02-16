@@ -22,6 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { wildlifePackage } from "@/src/types/wildlife";
 import SlugForm from "@/src/components/slugForm/SlugForm";
+import ImageSize from "@/src/utils/image-utils";
 
 type Props = {
   params: {
@@ -102,7 +103,7 @@ const page = ({ params }: Props) => {
                         src={item.url}
                         alt="hero background"
                         fill
-                        sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                        sizes={ImageSize.bannerSizes}
                       />
                     )}
                   </div>
@@ -198,7 +199,7 @@ const page = ({ params }: Props) => {
                                     src={img.url}
                                     alt="hero background"
                                     fill
-                                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                                    sizes={ImageSize.cardSize}
                                   />
                                 </div>
                               ))}

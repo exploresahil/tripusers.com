@@ -15,6 +15,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 import { trending } from "@/src/types/trending";
+import ImageSize from "@/src/utils/image-utils";
 
 const SpecialPackages = () => {
   const [specialData, setSpecialData] = useState<special[]>();
@@ -72,7 +73,7 @@ const SpecialPackages = () => {
                     src={item.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.bannerSizes}
                   />
                   <div className="text-container">
                     <div className="title">

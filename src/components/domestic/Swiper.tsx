@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import Image from "next/image";
 import { Domestic } from "@/src/types/domestic";
+import ImageSize from "@/src/utils/image-utils";
 
 const SwiperHero = ({ data, title }: { data: Domestic[]; title: string }) => {
   return (
@@ -46,7 +47,7 @@ const SwiperHero = ({ data, title }: { data: Domestic[]; title: string }) => {
                 src={item.cardImage}
                 alt="hero background"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.cardSize}
               />
             </div>
           </SwiperSlide>

@@ -18,6 +18,7 @@ import {
   getWildLife,
 } from "@/src/sanity/sanity-utils";
 import CustomiseForm from "../../forms/CustomiseForm";
+import ImageSize from "@/src/utils/image-utils";
 
 interface props {
   logo: string;
@@ -138,7 +139,7 @@ const Menu = (logo: props) => {
                   src={logo.logo}
                   alt="tripusers.com logo"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </Link>
               <button ref={menuCloseButtonRef}>
@@ -192,7 +193,7 @@ const Menu = (logo: props) => {
                   src={logo.logo}
                   alt="tripusers.com logo"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </Link>
               <button className="menu-close-button" ref={menuCloseButtonRef}>

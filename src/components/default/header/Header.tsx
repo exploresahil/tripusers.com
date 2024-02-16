@@ -7,6 +7,7 @@ import Link from "next/link";
 import Menu from "./Menu";
 import { brand } from "@/src/types/brand";
 import { useEffect, useState } from "react";
+import ImageSize from "@/src/utils/image-utils";
 
 const Header = () => {
   const [brandData, setBrandData] = useState<brand[]>([]);
@@ -42,7 +43,7 @@ const Header = () => {
             }
             alt="tripusers.com logo"
             fill
-            sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+            sizes={ImageSize.cardSize}
           />
         )}
       </Link>

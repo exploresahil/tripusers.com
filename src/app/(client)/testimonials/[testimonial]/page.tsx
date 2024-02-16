@@ -15,6 +15,7 @@ import "swiper/css/effect-fade";
 import { trending } from "@/src/types/trending";
 import { AiFillStar } from "react-icons/ai";
 import { PortableText } from "@portabletext/react";
+import ImageSize from "@/src/utils/image-utils";
 
 type Props = {
   params: { testimonial: string };
@@ -88,7 +89,7 @@ const page = ({ params }: Props) => {
                   src={item.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.bannerSizes}
                 />
               </div>
             </SwiperSlide>
@@ -106,7 +107,7 @@ const page = ({ params }: Props) => {
               src={testimonialData?.cardImage}
               alt="hero background"
               fill
-              sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+              sizes={ImageSize.cardSize}
             />
           </div>
           <div className="right">
@@ -126,7 +127,7 @@ const page = ({ params }: Props) => {
                       src={testimonialData?.profile.image}
                       alt="hero background"
                       fill
-                      sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                      sizes={ImageSize.cardSize}
                     />
                   ) : (
                     <h5>{testimonialData?.profile.name.charAt(0)}</h5>
@@ -185,7 +186,7 @@ const page = ({ params }: Props) => {
                   src={item.url}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </SwiperSlide>
             ))}

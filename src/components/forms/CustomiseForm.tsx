@@ -11,6 +11,7 @@ import { brand } from "@/src/types/brand";
 import { getBrand } from "@/src/sanity/sanity-utils";
 import Image from "next/image";
 import Link from "next/link";
+import ImageSize from "@/src/utils/image-utils";
 
 const schema = z.object({
   name: z.string().min(1),
@@ -121,7 +122,7 @@ const CustomiseForm = ({ onClick }: props) => {
               src={brandData[0]?.logoMark}
               alt="tripusers.com logo"
               fill
-              sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+              sizes={ImageSize.cardSize}
             />
           </Link>
           <h2>Customise your trip</h2>

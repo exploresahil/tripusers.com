@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 import PageLoading from "@/src/components/default/loader/PageLoading";
 import { AiFillStar } from "react-icons/ai";
 import Link from "next/link";
+import ImageSize from "@/src/utils/image-utils";
 
 const page = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -116,7 +117,7 @@ const page = () => {
                     src={data?.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.bannerSizes}
                   />
                 </div>
               </SwiperSlide>
@@ -143,7 +144,7 @@ const page = () => {
                   src={data?.cardImage}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </Link>
               <div className="content">
@@ -164,7 +165,7 @@ const page = () => {
                           src={data.profile.image}
                           alt="hero background"
                           fill
-                          sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                          sizes={ImageSize.cardSize}
                         />
                       ) : (
                         <h5>{data.profile.name.charAt(0)}</h5>

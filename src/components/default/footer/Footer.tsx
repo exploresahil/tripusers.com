@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import { brand } from "@/src/types/brand";
 import { contactUs } from "@/src/types/contact";
 import { footer } from "@/src/types/footer";
+import ImageSize from "@/src/utils/image-utils";
 
 const Footer = () => {
   const [brand, setBrand] = useState<brand[]>();
@@ -118,7 +119,7 @@ const Footer = () => {
               src={brand[0].lightImage}
               alt="logo"
               fill
-              sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+              sizes={ImageSize.cardSize}
             />
           )}
         </div>

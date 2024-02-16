@@ -9,6 +9,7 @@ import "./style.scss";
 import { useEffect, useRef, useState } from "react";
 import { brand } from "@/src/types/brand";
 import { getBrand } from "@/src/sanity/sanity-utils";
+import ImageSize from "@/src/utils/image-utils";
 
 interface props {
   onClick?: () => void;
@@ -83,7 +84,7 @@ const SlugForm = ({ onClick, packageName }: props) => {
                 src={brandData[0]?.logoMark}
                 alt="tripusers.com logo"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.cardSize}
               />
             )}
           </Link>

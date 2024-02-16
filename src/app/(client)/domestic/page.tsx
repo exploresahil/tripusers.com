@@ -7,8 +7,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Domestic } from "@/src/types/domestic";
 import PageLoading from "@/src/components/default/loader/PageLoading";
-import SwiperHero from "@/src/components/domestic/Swiper";
+import SwiperHero from "@/src/components/international/Swiper";
+
 import { useRouter } from "next/navigation";
+import ImageSize from "@/src/utils/image-utils";
 
 const page = () => {
   const [domestic, setDomestic] = useState<Domestic[]>([]);
@@ -84,7 +86,7 @@ const page = () => {
                     src={data.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 )}
               </div>

@@ -18,6 +18,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { heroInfo } from "@/src/types/heroInfo";
+import ImageSize from "@/src/utils/image-utils";
 
 const page = () => {
   const isMobile = useMediaQuery({ maxWidth: 820 });
@@ -59,7 +60,7 @@ const page = () => {
                 src={aboutData?.bannerImage}
                 alt="contact hero image"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.bannerSizes}
               />
               <div className="bg" />
             </>
@@ -94,7 +95,7 @@ const page = () => {
                     src={aboutData.imageOne}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 </div>
               </SwiperSlide>
@@ -104,7 +105,7 @@ const page = () => {
                     src={aboutData.imageTwo}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 </div>
               </SwiperSlide>
@@ -114,7 +115,7 @@ const page = () => {
                     src={aboutData.imageThree}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 </div>
               </SwiperSlide>
@@ -126,7 +127,7 @@ const page = () => {
                   src={aboutData.imageOne}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </div>
               <div className="img-container">
@@ -134,7 +135,7 @@ const page = () => {
                   src={aboutData.imageTwo}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </div>
               <div className="img-container">
@@ -142,7 +143,7 @@ const page = () => {
                   src={aboutData.imageThree}
                   alt="hero background"
                   fill
-                  sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                  sizes={ImageSize.cardSize}
                 />
               </div>
             </div>

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { international } from "@/src/types/international";
 import { trending } from "@/src/types/trending";
+import ImageSize from "@/src/utils/image-utils";
 
 const Trending = () => {
   const [TrendingData, setTrendingData] = useState<international[]>([]);
@@ -60,7 +61,7 @@ const Trending = () => {
                 src={item.cardImage}
                 alt={`image of  ${item.name}`}
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.bannerSizes}
                 style={{
                   objectPosition: `${item.cardImageHotspot?.x * 100}% ${
                     item.cardImageHotspot?.y * 100

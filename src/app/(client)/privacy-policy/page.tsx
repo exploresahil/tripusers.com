@@ -6,6 +6,7 @@ import { PrivacyPolicyAndTnc } from "@/src/types/privacyPolicyAndTnc";
 import { getPrivacyPolicyAndTnc } from "@/src/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import ImageSize from "@/src/utils/image-utils";
 
 const page = () => {
   const [privacyPolicyAndTnc, setPrivacyPolicyAndTnc] =
@@ -35,7 +36,7 @@ const page = () => {
                 src={privacyPolicyAndTnc?.privacyPolicy.bannerImage}
                 alt="contact hero image"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.bannerSizes}
               />
               <div className="bg" />
             </>

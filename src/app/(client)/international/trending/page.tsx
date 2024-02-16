@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { international } from "@/src/types/international";
 import PageLoading from "@/src/components/default/loader/PageLoading";
+import ImageSize from "@/src/utils/image-utils";
 
 const page = () => {
   const [internationalTrending, setInternationalTrending] =
@@ -45,7 +46,7 @@ const page = () => {
                     src={data.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 )}
               </div>

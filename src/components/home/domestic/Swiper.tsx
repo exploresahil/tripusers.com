@@ -8,6 +8,7 @@ import Link from "next/link";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import ImageSize from "@/src/utils/image-utils";
 
 const SwiperContainer = ({ data }: { data: Domestic[] }) => {
   //console.log("data->", data[5].wildlifePackage);
@@ -47,7 +48,7 @@ const SwiperContainer = ({ data }: { data: Domestic[] }) => {
                     src={item.cardImage}
                     alt="hero background"
                     fill
-                    sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                    sizes={ImageSize.cardSize}
                   />
                 </>
               )}

@@ -4,6 +4,7 @@ import "./style.scss";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { opacity, slideUp } from "./anim";
+import ImageSize from "@/src/utils/image-utils";
 
 const logoAnim = "https://i.postimg.cc/X7gKtr09/logo-anim-once.gif";
 
@@ -57,7 +58,7 @@ const Loader = () => {
                 src={logoAnim}
                 alt="loading animation"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.cardSize}
               />
             </div>
             <div className="travel-container">
@@ -65,7 +66,7 @@ const Loader = () => {
                 src={travelAnim}
                 alt="loading animation"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.cardSize}
               />
             </div>
             <motion.p variants={opacity} initial="initial" animate="enter">

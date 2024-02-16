@@ -10,6 +10,7 @@ import { international } from "@/src/types/international";
 import Image from "next/image";
 import { Domestic } from "@/src/types/domestic";
 import { wildLife } from "@/src/types/wildlife";
+import ImageSize from "@/src/utils/image-utils";
 
 const SwiperHero = ({
   data,
@@ -43,7 +44,7 @@ const SwiperHero = ({
                 src={item.cardImage}
                 alt="hero background"
                 fill
-                sizes="(max-width: 768px) 600px, (max-width: 1200px) 800px, 1080px"
+                sizes={ImageSize.bannerSizes}
               />
             </div>
           </SwiperSlide>
