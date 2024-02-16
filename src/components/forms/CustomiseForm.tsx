@@ -45,7 +45,7 @@ const CustomiseForm = ({ onClick }: props) => {
   const [brandData, setBrandData] = useState<brand[]>([]);
 
   const CustomiseFormRef = useRef<HTMLElement | null>(null);
-  const formDontainerRef = useRef<HTMLDivElement | null>(null);
+  const formContainerRef = useRef<HTMLDivElement | null>(null);
   const {
     register,
     handleSubmit,
@@ -94,7 +94,7 @@ const CustomiseForm = ({ onClick }: props) => {
   };
   useEffect(() => {
     const boxClose = (e: any) => {
-      if (!formDontainerRef.current?.contains(e.target)) {
+      if (!formContainerRef.current?.contains(e.target)) {
         if (typeof onClick !== "undefined") onClick();
       }
     };
@@ -114,7 +114,7 @@ const CustomiseForm = ({ onClick }: props) => {
 
   return (
     <section id="CustomiseForm" ref={CustomiseFormRef}>
-      <div className="form-container" ref={formDontainerRef}>
+      <div className="form-container" ref={formContainerRef}>
         <div className="title-container">
           <Link href="/" className="logo-mark">
             <Image

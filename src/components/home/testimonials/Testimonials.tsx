@@ -125,12 +125,16 @@ const Testimonials = () => {
                 </Link>
               </SwiperSlide>
             ))}
-            <div className="prev" ref={prevRef}>
-              <div className="size">prev</div>
-            </div>
-            <div className="next" ref={nextRef}>
-              <div className="size">next</div>
-            </div>
+            {trendingTestimonial.length > 0 && (
+              <>
+                <div className="prev" ref={prevRef}>
+                  <div className="size">prev</div>
+                </div>
+                <div className="next" ref={nextRef}>
+                  <div className="size">next</div>
+                </div>
+              </>
+            )}
           </Swiper>
         ) : (
           <p>No data / Loading...</p>
