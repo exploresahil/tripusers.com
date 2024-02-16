@@ -118,7 +118,7 @@ const SlugForm = ({ onClick, packageName }: props) => {
     } else {
       setIsSubmit(true);
       fetch(
-        `${process.env.NEXT_PUBLIC_SANITY_APP_SCRIPT_URL}?action=addEnquiry`,
+        `${process.env.NEXT_PUBLIC_FORM_APP_SCRIPT_URL}?action=addEnquiry`,
         {
           method: "POST",
           body: JSON.stringify({

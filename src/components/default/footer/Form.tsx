@@ -38,7 +38,7 @@ const Form = () => {
       });
     } else {
       setIsSubmit(true);
-      fetch(`${process.env.NEXT_PUBLIC_SANITY_APP_SCRIPT_URL}?action=addSub`, {
+      fetch(`${process.env.NEXT_PUBLIC_FORM_APP_SCRIPT_URL}?action=addSub`, {
         method: "POST",
         body: JSON.stringify({
           ...error.data,

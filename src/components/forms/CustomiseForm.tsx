@@ -67,7 +67,7 @@ const CustomiseForm = ({ onClick }: props) => {
     } else {
       setIsSubmit(true);
       fetch(
-        `${process.env.NEXT_PUBLIC_SANITY_APP_SCRIPT_URL}?action=addEnquiries`,
+        `${process.env.NEXT_PUBLIC_FORM_APP_SCRIPT_URL}?action=addEnquiries`,
         {
           method: "POST",
           body: JSON.stringify({
