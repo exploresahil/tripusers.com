@@ -96,8 +96,8 @@ const Testimonials = () => {
             }}
             centeredSlides={true}
             navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
+              prevEl: ".prev",
+              nextEl: ".next",
             }}
             loop={true}
             modules={[Navigation, Autoplay, EffectCards]}
@@ -150,8 +150,8 @@ const Testimonials = () => {
             allowTouchMove={false}
             slidesPerView={1}
             navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
+              prevEl: ".prev",
+              nextEl: ".next",
             }}
             className="mySwiper-content"
           >
