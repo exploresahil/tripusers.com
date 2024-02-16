@@ -36,17 +36,28 @@ interface enquiryDataTypes {
   createAt: string;
 }
 
+interface subscribeDataTypes {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  createAt: string;
+}
+
 const Admin = () => {
   const [contactData, setContactData] = useState<dataTypes[]>([]);
   const [enquiriesData, setEnquiriesData] = useState<enquiriesDataTypes[]>([]);
   const [enquiryData, setEnquiryData] = useState<enquiryDataTypes[]>([]);
+  const [subscribeData, setSubscribeData] = useState<subscribeDataTypes[]>([]);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<
-    "contact" | "enquiries" | "enquiry"
+    "contact" | "enquiries" | "enquiry" | "subscribe"
   >("contact");
   const conatctTableRef = useRef<HTMLTableElement | null>(null);
   const enquiriesTableRef = useRef<HTMLTableElement | null>(null);
   const enquiryTableRef = useRef<HTMLTableElement | null>(null);
+  const subscribeTableRef = useRef<HTMLTableElement | null>(null);
 
   const fetchData = () => {
     setLoading(true);
@@ -140,15 +151,47 @@ const Admin = () => {
       });
   };
 
+  const fetchSubscriptionData = () => {
+    setLoading(true);
+    console.log("Fetching..");
+
+    fetch(`${process.env.NEXT_PUBLIC_FORM_APP_SCRIPT_URL}?action=getSub`, {
+      method: "GET",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then((result) => {
+        const sortedData = result.data.sort(
+          (a: dataTypes, b: dataTypes) => b.id - a.id
+        );
+        setSubscribeData(sortedData);
+      })
+      .catch((error) => {
+        console.error("Error fetching contactData:", error);
+        setLoading(false);
+      })
+      .finally(() => {
+        console.log("Finished fetching contactData");
+
+        setLoading(false);
+      });
+  };
+
   useEffect(() => {
     fetchData();
     fetchEnquiriesData();
     fetchEnquiryData();
+    fetchSubscriptionData();
   }, []);
 
   //console.log("contactData=>", contactData);
   //console.log("enquiriesData=>", enquiriesData);
   //console.log("enquiryData=>", enquiryData);
+  //console.log("subscribeData=>", subscribeData);
 
   const generateFilename = (prefix: string) => {
     const date = new Date();
@@ -177,6 +220,11 @@ const Admin = () => {
     filename: generateFilename("Enquiry-sheet"),
     sheet: "Enquiry",
   });
+  const { onDownload: subscribeDownload } = useDownloadExcel({
+    currentTableRef: subscribeTableRef.current,
+    filename: generateFilename("subscription-sheet"),
+    sheet: "subscription",
+  });
 
   return (
     <>
@@ -203,6 +251,12 @@ const Admin = () => {
               className={activeTab === "enquiry" ? "active" : ""}
             >
               Enquiry
+            </button>
+            <button
+              onClick={() => setActiveTab("subscribe")}
+              className={activeTab === "subscribe" ? "active" : ""}
+            >
+              Subscription
             </button>
           </div>
           <div className="refresh-signout">
@@ -241,6 +295,16 @@ const Admin = () => {
               <div className="table-title">
                 <h3>Enquiry Form Data</h3>
                 <button onClick={enquiryDownload}>
+                  <IoMdDownload />
+                </button>
+              </div>
+            )}
+          </>
+          <>
+            {activeTab === "subscribe" && (
+              <div className="table-title">
+                <h3>Subscription Form Data</h3>
+                <button onClick={subscribeDownload}>
                   <IoMdDownload />
                 </button>
               </div>
@@ -331,6 +395,32 @@ const Admin = () => {
                           <td>{data.adult}</td>
                           <td>{data.child}</td>
                           <td>{data.infant}</td>
+                          <td>{data.createAt}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </>
+              <>
+                {activeTab === "subscribe" && (
+                  <table ref={subscribeTableRef}>
+                    <thead>
+                      <tr>
+                        <th>Sr/No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Submitted at</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {subscribeData.map((data, index) => (
+                        <tr key={index}>
+                          <td>{data.id}</td>
+                          <td>{data.name}</td>
+                          <td>{data.email}</td>
+                          <td>{data.phone}</td>
                           <td>{data.createAt}</td>
                         </tr>
                       ))}

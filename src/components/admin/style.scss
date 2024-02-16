@@ -82,8 +82,11 @@
     }
 
     .tabs-button {
+      width: 70%;
       display: flex;
       gap: 10px;
+      overflow-x: scroll;
+      padding-bottom: 10px;
 
       .active {
         background-color: $yellow;
