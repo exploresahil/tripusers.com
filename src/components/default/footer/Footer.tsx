@@ -128,6 +128,9 @@ const Footer = () => {
           <div className="links-container">
             <div className="discover">
               <h4>Discover Us</h4>
+              <Link href="/domestic">India</Link>
+              <Link href="/wild-life">Wildlife</Link>
+              <Link href="/international">International</Link>
               <Link href="/about">About</Link>
             </div>
             <div className="support">
