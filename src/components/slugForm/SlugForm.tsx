@@ -73,7 +73,6 @@ const SlugForm = ({ onClick, packageName }: props) => {
   const [brandData, setBrandData] = useState<brand[]>();
   const [adultCount, setAdultCount] = useState<number>(1);
   const [childCount, setChildCount] = useState<number>(0);
-  const [infantCount, setInfantCount] = useState<number>(0);
 
   const formContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -221,6 +220,7 @@ const SlugForm = ({ onClick, packageName }: props) => {
               {...register("travelDate", {
                 required: "travel date is required",
               })}
+              required
             />
             {errors.travelDate && (
               <p className="errors" style={{ color: "tomato" }}>
@@ -275,7 +275,7 @@ const SlugForm = ({ onClick, packageName }: props) => {
                 </p>
               )}
             </div>
-            <button type="submit">{!isSubmit ? "Submit" : "Submitted"}</button>
+            <button type="submit">{!isSubmit ? "Submit" : "Loading..."}</button>
           </form>
         </div>
       </div>
