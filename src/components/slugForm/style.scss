@@ -54,6 +54,10 @@
       flex-direction: column;
       gap: 10px;
 
+      .errors {
+        font-size: 0.85rem;
+      }
+
       label {
         margin-top: 10px;
         font-size: 0.9rem;
@@ -121,12 +125,18 @@
           display: flex;
           flex-direction: column;
           gap: 10px;
+
+          .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+          }
         }
       }
 
       button[type="submit"] {
         background-color: $yellow;
-        height: 40px;
+        height: 35px;
         border-radius: 5px;
       }
     }
@@ -137,12 +147,13 @@
 
 @media screen and (min-width: 820px) {
   #slugForm {
-    padding: 10vh 12vw;
-    padding: 10dvh 12vw;
+    padding: 10vh 24vw;
+    padding: 10dvh 24vw;
     height: auto;
 
     .form-container {
       height: auto;
+      overflow-y: visible;
     }
 
     .title-container {
@@ -160,6 +171,10 @@
         .contact-details {
           .top {
             flex-direction: row;
+
+            .input-section {
+              width: 100%;
+            }
           }
         }
       }
@@ -171,8 +186,8 @@
 
 @media screen and (min-width: 1025px) {
   #slugForm {
-    padding: 10vh 26vw;
-    padding: 10dvh 26vw;
+    padding: 10vh 34vw;
+    padding: 10dvh 34vw;
 
     .form-container {
       width: auto;
