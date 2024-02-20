@@ -28,7 +28,7 @@ const schema = z.object({
   packageName: z.string(),
   adult: z.string().min(0),
   child: z.string().min(0),
-  infant: z.string().min(0),
+  travelDate: z.string().min(0),
   name: z.string(),
   email: z.string(),
   mobile: z
@@ -214,7 +214,17 @@ const SlugForm = ({ onClick, packageName }: props) => {
               )}
             </div>
             <label>Travel Date</label>
-            <input type="date" required />
+            <input
+              type="date"
+              {...register("travelDate", {
+                required: "travel date is required",
+              })}
+            />
+            {errors.travelDate && (
+              <p className="errors" style={{ color: "tomato" }}>
+                {errors.travelDate.message}
+              </p>
+            )}
             <div className="contact-details">
               <label>Contact Details</label>
               <div className="top">
