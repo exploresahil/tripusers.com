@@ -29,7 +29,7 @@ interface enquiryDataTypes {
   packageName: string;
   adult: string;
   child: string;
-  infant: string;
+  travelDate: string;
   name: string;
   email: string;
   mobile: string;
@@ -226,6 +226,19 @@ const Admin = () => {
     sheet: "subscription",
   });
 
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      "en-GB",
+      options
+    );
+    return formattedDate;
+  };
+
   return (
     <>
       <section id="adminHero">
@@ -381,7 +394,7 @@ const Admin = () => {
                         <th>Phone Number</th>
                         <th>Adult</th>
                         <th>Child</th>
-                        <th>infant</th>
+                        <th>Travel Date</th>
                         <th>Submitted at</th>
                       </tr>
                     </thead>
@@ -394,7 +407,7 @@ const Admin = () => {
                           <td>{data.mobile}</td>
                           <td>{data.adult}</td>
                           <td>{data.child}</td>
-                          <td>{data.infant}</td>
+                          <td>{formatDate(data.travelDate)}</td>
                           <td>{data.createAt}</td>
                         </tr>
                       ))}
