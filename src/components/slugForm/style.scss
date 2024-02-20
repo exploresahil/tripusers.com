@@ -92,11 +92,13 @@
         .counter {
           display: flex;
           flex-direction: column;
+
           gap: 5px;
 
           .value {
             display: flex;
             gap: 5px;
+            align-items: center;
 
             button {
               width: max-content;
