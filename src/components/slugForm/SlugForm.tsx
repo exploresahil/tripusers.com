@@ -123,6 +123,8 @@ const SlugForm = ({ onClick, packageName }: props) => {
           method: "POST",
           body: JSON.stringify({
             ...error.data,
+            adult: adultCount,
+            child: childCount,
           }),
         }
       )
