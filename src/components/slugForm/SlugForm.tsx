@@ -174,6 +174,7 @@ const SlugForm = ({ onClick, packageName }: props) => {
               value={packageName}
               readOnly
             />
+
             <div className="count-container">
               <Counter
                 value={adultCount}
@@ -189,7 +190,9 @@ const SlugForm = ({ onClick, packageName }: props) => {
                 }}
               />
               {errors.adult && (
-                <p style={{ color: "tomato" }}>{errors.adult.message}</p>
+                <p className="errors" style={{ color: "tomato" }}>
+                  {errors.adult.message}
+                </p>
               )}
               <Counter
                 value={childCount}
@@ -205,50 +208,46 @@ const SlugForm = ({ onClick, packageName }: props) => {
                 }}
               />
               {errors.child && (
-                <p style={{ color: "tomato" }}>{errors.child.message}</p>
-              )}
-              <Counter
-                value={infantCount}
-                title="Infant"
-                onIncrement={() => setInfantCount(infantCount + 1)}
-                onDecrement={() =>
-                  setInfantCount(infantCount > 0 ? infantCount - 1 : 0)
-                }
-                inputProps={{
-                  ...register("infant", {
-                    required: "Number of infant is required",
-                  }),
-                }}
-              />
-              {errors.infant && (
-                <p style={{ color: "tomato" }}>{errors.infant.message}</p>
+                <p className="errors" style={{ color: "tomato" }}>
+                  {errors.child.message}
+                </p>
               )}
             </div>
+            <label>Travel Date</label>
+            <input type="date" required />
             <div className="contact-details">
               <label>Contact Details</label>
               <div className="top">
-                <input
-                  type="text"
-                  {...register("name", {
-                    required: "Name is required",
-                  })}
-                  placeholder="Your Full Name"
-                  required
-                />
-                {errors.name && (
-                  <p style={{ color: "tomato" }}>{errors.name.message}</p>
-                )}
-                <input
-                  type="email"
-                  {...register("email", {
-                    required: "Email is required",
-                  })}
-                  placeholder="Your Email"
-                  required
-                />
-                {errors.email && (
-                  <p style={{ color: "tomato" }}>{errors.email.message}</p>
-                )}
+                <div className="input-section">
+                  <input
+                    type="text"
+                    {...register("name", {
+                      required: "Name is required",
+                    })}
+                    placeholder="Your Full Name"
+                    required
+                  />
+                  {errors.name && (
+                    <p className="errors" style={{ color: "tomato" }}>
+                      {errors.name.message}
+                    </p>
+                  )}
+                </div>
+                <div className="input-section">
+                  <input
+                    type="email"
+                    {...register("email", {
+                      required: "Email is required",
+                    })}
+                    placeholder="Your Email"
+                    required
+                  />
+                  {errors.email && (
+                    <p className="errors" style={{ color: "tomato" }}>
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
               </div>
               <input
                 type="text"
@@ -259,7 +258,9 @@ const SlugForm = ({ onClick, packageName }: props) => {
                 required
               />
               {errors.mobile && (
-                <p style={{ color: "tomato" }}>{errors.mobile.message}</p>
+                <p className="errors" style={{ color: "tomato" }}>
+                  {errors.mobile.message}
+                </p>
               )}
             </div>
             <button type="submit">{!isSubmit ? "Submit" : "Submitted"}</button>
