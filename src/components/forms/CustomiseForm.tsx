@@ -190,7 +190,7 @@ const CustomiseForm = ({ onClick }: props) => {
                   {...register("guest")}
                   type="number"
                   min={0}
-                  placeholder="No. of guests."
+                  placeholder="No. of guests"
                 />
               </div>
               <textarea

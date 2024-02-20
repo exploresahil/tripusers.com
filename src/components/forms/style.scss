@@ -87,6 +87,10 @@
             outline: none;
             border: 1px solid $yellow;
           }
+
+          &::placeholder {
+            font-size: 0.8rem;
+          }
         }
 
         input {

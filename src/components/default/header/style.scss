@@ -213,6 +213,10 @@ header {
             &:focus {
               outline: none;
             }
+
+            &::placeholder {
+              color: $light;
+            }
           }
 
           svg {
@@ -354,6 +358,10 @@ header {
         input {
           border: 1px solid $dark !important;
           color: $dark !important;
+
+          &::placeholder {
+            color: $dark !important;
+          }
         }
 
         svg {
