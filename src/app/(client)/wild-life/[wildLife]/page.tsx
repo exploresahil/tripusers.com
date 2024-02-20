@@ -23,6 +23,7 @@ import Link from "next/link";
 import CustomiseForm from "@/src/components/forms/CustomiseForm";
 import { wildLife } from "@/src/types/wildlife";
 import ImageSize from "@/src/utils/image-utils";
+import SlugForm from "@/src/components/slugForm/SlugForm";
 
 type Props = {
   params: { wildLife: string };
@@ -31,7 +32,7 @@ type Props = {
 const page = ({ params }: Props) => {
   const [data, setData] = useState<wildLife>();
   const [mobileForm, setMobileForm] = useState(false);
-
+  const [packageName, setPackageName] = useState("");
   const slug = params.wildLife;
 
   useEffect(() => {
@@ -56,7 +57,12 @@ const page = ({ params }: Props) => {
 
   return (
     <>
-      {mobileForm && <CustomiseForm onClick={() => setMobileForm(false)} />}
+      {mobileForm && (
+        <SlugForm
+          packageName={packageName}
+          onClick={() => setMobileForm(false)}
+        />
+      )}
       <section id="internationalSlugHero">
         <Swiper
           effect={"fade"}
@@ -164,7 +170,12 @@ const page = ({ params }: Props) => {
                       <Link href={`/wild-life/${data.slug}/${item.slug}`}>
                         View Details
                       </Link>
-                      <button onClick={() => setMobileForm(true)}>
+                      <button
+                        onClick={() => {
+                          setPackageName(item.title);
+                          setMobileForm(true);
+                        }}
+                      >
                         Quick Enquiry
                       </button>
                     </div>

@@ -22,6 +22,7 @@ import Link from "next/link";
 import CustomiseForm from "@/src/components/forms/CustomiseForm";
 import { special } from "@/src/types/special";
 import ImageSize from "@/src/utils/image-utils";
+import SlugForm from "@/src/components/slugForm/SlugForm";
 
 type Props = {
   params: { special: string };
@@ -30,7 +31,7 @@ type Props = {
 const page = ({ params }: Props) => {
   const [data, setData] = useState<special>();
   const [mobileForm, setMobileForm] = useState(false);
-
+  const [packageName, setPackageName] = useState("");
   const slug = params.special;
 
   useEffect(() => {
@@ -53,7 +54,12 @@ const page = ({ params }: Props) => {
 
   return (
     <>
-      {mobileForm && <CustomiseForm onClick={() => setMobileForm(false)} />}
+      {mobileForm && (
+        <SlugForm
+          packageName={packageName}
+          onClick={() => setMobileForm(false)}
+        />
+      )}
       <section id="internationalSlugHero">
         <Swiper
           effect={"fade"}
@@ -161,7 +167,12 @@ const page = ({ params }: Props) => {
                       <Link href={`/special/${data.slug}/${item.slug}`}>
                         View Details
                       </Link>
-                      <button onClick={() => setMobileForm(true)}>
+                      <button
+                        onClick={() => {
+                          setPackageName(item.title);
+                          setMobileForm(true);
+                        }}
+                      >
                         Quick Enquiry
                       </button>
                     </div>
