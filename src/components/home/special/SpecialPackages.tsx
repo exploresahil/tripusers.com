@@ -75,13 +75,15 @@ const SpecialPackages = () => {
                     fill
                     sizes={ImageSize.bannerSizes}
                   />
-                  <div className="text-container">
-                    <div className="title">
-                      <h2>{item.cardTitle}</h2>
-                      <p>{item.cardSubtitle}</p>
+                  {item.cardTitle && item.cardSubtitle && (
+                    <div className="text-container">
+                      <div className="title">
+                        <h2>{item.cardTitle}</h2>
+                        <p>{item.cardSubtitle}</p>
+                      </div>
+                      <Link href={`/special/${item.slug}`}>Learn More</Link>
                     </div>
-                    <Link href={`/special/${item.slug}`}>Learn More</Link>
-                  </div>
+                  )}
                 </Link>
               </SwiperSlide>
             ))}

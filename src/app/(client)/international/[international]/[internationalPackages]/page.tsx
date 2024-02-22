@@ -8,9 +8,8 @@ import { internationalPackages } from "@/src/types/international";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectFade, Autoplay } from "swiper/modules";
-import { FaPlane } from "react-icons/fa";
+import { FaCarAlt, FaPlane } from "react-icons/fa";
 import { FaPassport } from "react-icons/fa";
-import { FaBus } from "react-icons/fa";
 import { ImSpoonKnife } from "react-icons/im";
 import { RiHotelFill, RiLandscapeFill } from "react-icons/ri";
 import { PortableText } from "@portabletext/react";
@@ -23,6 +22,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SlugForm from "@/src/components/slugForm/SlugForm";
 import ImageSize from "@/src/utils/image-utils";
+import iconsData from "@/src/utils/icons-utils";
 
 type Props = {
   params: {
@@ -128,12 +128,42 @@ const page = ({ params }: Props) => {
             <div className="icons">
               {data.addOns != null && (
                 <>
-                  {data.addOns.isHotels && <RiHotelFill />}
-                  {data.addOns.isFood && <ImSpoonKnife />}
-                  {data.addOns.isTransport && <FaBus />}
-                  {data.addOns.isFlight && <FaPlane />}
-                  {data.addOns.isSightseeing && <RiLandscapeFill />}
-                  {data.addOns.isVisa && <FaPassport />}
+                  {data.addOns.isHotels && (
+                    <span>
+                      <RiHotelFill />
+                      <p>{iconsData.hotels}</p>
+                    </span>
+                  )}
+                  {data.addOns.isFood && (
+                    <span>
+                      <ImSpoonKnife />
+                      <p>{iconsData.food}</p>
+                    </span>
+                  )}
+                  {data.addOns.isTransport && (
+                    <span>
+                      <FaCarAlt />
+                      <p>{iconsData.transport}</p>
+                    </span>
+                  )}
+                  {data.addOns.isFlight && (
+                    <span>
+                      <FaPlane />
+                      <p>{iconsData.flight}</p>
+                    </span>
+                  )}
+                  {data.addOns.isSightseeing && (
+                    <span>
+                      <RiLandscapeFill />
+                      <p>{iconsData.sightseeing}</p>
+                    </span>
+                  )}
+                  {data.addOns.isVisa && (
+                    <span>
+                      <FaPassport />
+                      <p>{iconsData.visas}</p>
+                    </span>
+                  )}
                 </>
               )}
             </div>

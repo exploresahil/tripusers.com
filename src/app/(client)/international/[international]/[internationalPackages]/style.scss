@@ -142,6 +142,17 @@
         display: flex;
         gap: 10px;
 
+        span {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+
+          p {
+            font-size: 0.7rem;
+          }
+        }
+
         svg {
           $size: 20px;
           width: $size;
@@ -425,6 +436,14 @@
           .tags {
             justify-content: flex-start;
             gap: 20px;
+          }
+        }
+
+        .icons {
+          gap: 20px;
+
+          span {
+            gap: 5px;
           }
         }
       }
