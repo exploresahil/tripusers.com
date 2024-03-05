@@ -142,7 +142,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-footer">
-          <p> © 2013 - 24 Tripusers.com. All Rights Reserved.</p>
+          <p> © 2024 Tripusers.com. All Rights Reserved.</p>
           <p>
             Design & Developed by <br />
             <span>
