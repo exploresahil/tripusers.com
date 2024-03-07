@@ -22,9 +22,11 @@ export default authMiddleware({
     "/privacy-policy",
     /^\/terms-&-conditions\/.*/,
     "/terms-&-conditions",
+    "/api",
+    /^\/api\/.*/,
   ],
 });
 
 export const config = {
-  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/"],
 };
